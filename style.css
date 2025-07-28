@@ -1,0 +1,228 @@
+/* Variabel Warna dan Font Utama */
+:root {
+    --bg-color: #f0f5f1; /* Hijau lembut */
+    --text-color: #333333;
+    --primary-color: #ffffff;
+    --accent-color: #c9b47f; /* Emas */
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --font-heading: 'Lora', serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* Reset dan Pengaturan Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Kontainer Utama */
+.container {
+    max-width: 680px;
+    width: 100%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Header */
+.logo {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid var(--accent-color);
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--text-color);
+}
+
+.powered-by {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Tombol Link */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.link-button {
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    padding: 15px 20px;
+    text-decoration: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border: 2px solid var(--accent-color);
+    box-shadow: 0 4px 10px var(--shadow-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    cursor: pointer; /* Untuk button */
+    font-family: var(--font-body); /* Untuk button */
+    width: 100%; /* Untuk button */
+}
+
+.link-button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    background-color: #fcfaf2;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+    padding: 20px 0;
+}
+
+/* Modal Info Kegiatan */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 25px 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 15px;
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.9);}
+    to {opacity: 1; transform: scale(1);}
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#kegiatan-list {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.kegiatan-item {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
+.kegiatan-item:last-child {
+    border-bottom: none;
+}
+
+.kegiatan-item h3 {
+    font-family: var(--font-heading);
+    margin-bottom: 5px;
+    color: var(--text-color);
+}
+
+.kegiatan-item p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Halaman Tasbih */
+.tasbih-container {
+    padding-top: 50px;
+}
+
+.tasbih-title {
+    margin-bottom: 20px;
+}
+
+.tasbih-display {
+    background-color: var(--primary-color);
+    border: 3px solid var(--accent-color);
+    border-radius: 15px;
+    font-size: 4rem;
+    font-weight: 600;
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+.tasbih-controls {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.tasbih-button {
+    font-size: 1.2rem;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.tasbih-button.reset {
+    background-color: #8a8a8a;
+}
+
+.tasbih-button:hover {
+    filter: brightness(1.1);
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 30px;
+    color: #555;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+    .link-button {
+        padding: 12px 15px;
+        font-size: 1rem;
+    }
+    .tasbih-display {
+        font-size: 3rem;
+    }
+}
