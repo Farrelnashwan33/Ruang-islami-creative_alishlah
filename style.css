@@ -305,3 +305,33 @@ footer {
 @keyframes blink {
     50% { opacity: 0.5; }
 }
+
+.dev-status {
+    margin-top: 15px;
+    text-align: center;
+    font-weight: bold;
+    color: #b30000;
+    background-color: #fff3cd;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 1.05em;
+    border: 1px solid #ffeeba;
+    animation: blink 1.5s infinite, slideIn 1s ease-out;
+}
+
+/* Animasi berkedip */
+@keyframes blink {
+    50% { opacity: 0.5; }
+}
+
+/* Animasi geser masuk */
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
