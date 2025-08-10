@@ -1,15 +1,20 @@
-/* Variabel Warna dan Font Utama */
+/* ============================= */
+/* Variabel Warna & Font Utama   */
+/* ============================= */
 :root {
     --bg-color: #f0f5f1; /* Hijau lembut */
-    --text-color: #333333;
+    --text-color: #2b2b2b;
     --primary-color: #ffffff;
     --accent-color: #c9b47f; /* Emas */
-    --shadow-color: rgba(0, 0, 0, 0.1);
+    --accent-gradient: linear-gradient(135deg, #d4c28c, #c9b47f);
+    --shadow-color: rgba(0, 0, 0, 0.08);
     --font-heading: 'Lora', serif;
     --font-body: 'Poppins', sans-serif;
 }
 
-/* Reset dan Pengaturan Dasar */
+/* ============================= */
+/* Reset & Dasar                 */
+/* ============================= */
 * {
     margin: 0;
     padding: 0;
@@ -18,45 +23,60 @@
 
 body {
     font-family: var(--font-body);
-    background-color: var(--bg-color);
+    background: var(--bg-color);
     color: var(--text-color);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
     padding: 20px;
+    line-height: 1.6;
 }
 
-/* Kontainer Utama */
+/* ============================= */
+/* Kontainer Utama               */
+/* ============================= */
 .container {
     max-width: 680px;
     width: 100%;
     margin: 20px auto;
     text-align: center;
+    animation: fadeSlide 0.5s ease;
 }
 
-/* Header */
+/* ============================= */
+/* Header                        */
+/* ============================= */
 .logo {
-    width: 100px;
-    height: 100px;
+    width: 110px;
+    height: 110px;
     margin-bottom: 15px;
     border-radius: 50%;
     border: 3px solid var(--accent-color);
+    box-shadow: 0 4px 15px var(--shadow-color);
+    transition: transform 0.3s ease;
+}
+.logo:hover {
+    transform: rotate(3deg) scale(1.05);
 }
 
 h1 {
     font-family: var(--font-heading);
-    font-size: 2.2rem;
+    font-size: 2.3rem;
     color: var(--text-color);
+    margin-bottom: 5px;
 }
 
 .powered-by {
-    font-size: 0.9rem;
-    color: #555;
+    font-size: 0.95rem;
+    color: #666;
     margin-bottom: 30px;
+    letter-spacing: 0.3px;
 }
 
-/* Tombol Link */
+/* ============================= */
+/* Tombol Link                   */
+/* ============================= */
 .links {
     display: flex;
     flex-direction: column;
@@ -64,28 +84,30 @@ h1 {
 }
 
 .link-button {
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     color: var(--text-color);
     padding: 15px 20px;
     text-decoration: none;
     border-radius: 12px;
     font-size: 1.1rem;
     font-weight: 600;
-    border: 2px solid var(--accent-color);
-    box-shadow: 0 4px 10px var(--shadow-color);
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
-    cursor: pointer; /* Untuk button */
-    font-family: var(--font-body); /* Untuk button */
-    width: 100%; /* Untuk button */
+    border: 2px solid transparent;
+    background-image: var(--accent-gradient);
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    box-shadow: 0 4px 12px var(--shadow-color);
+    transition: all 0.25s ease;
+    cursor: pointer;
 }
-
 .link-button:hover {
-    transform: scale(1.03);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
-    background-color: #fcfaf2;
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    filter: brightness(1.05);
 }
 
-/* Footer */
+/* ============================= */
+/* Footer                        */
+/* ============================= */
 footer {
     text-align: center;
     font-size: 0.8rem;
@@ -93,46 +115,43 @@ footer {
     padding: 20px 0;
 }
 
-/* Modal Info Kegiatan */
+/* ============================= */
+/* Modal Info Kegiatan           */
+/* ============================= */
 .modal {
     display: none;
     position: fixed;
     z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
+    inset: 0;
+    background-color: rgba(0,0,0,0.45);
     justify-content: center;
     align-items: center;
+    backdrop-filter: blur(4px);
 }
 
 .modal-content {
-    background-color: #fefefe;
-    margin: auto;
+    background: #fff;
     padding: 25px 30px;
-    border: 1px solid #888;
+    border-radius: 15px;
     width: 90%;
     max-width: 500px;
-    border-radius: 15px;
     position: relative;
-    animation: fadeIn 0.3s;
-}
-
-@keyframes fadeIn {
-    from {opacity: 0; transform: scale(0.9);}
-    to {opacity: 1; transform: scale(1);}
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    animation: fadeIn 0.3s ease;
 }
 
 .close-button {
     color: #aaa;
     position: absolute;
-    top: 10px;
+    top: 12px;
     right: 20px;
     font-size: 28px;
     font-weight: bold;
     cursor: pointer;
+    transition: color 0.2s ease;
+}
+.close-button:hover {
+    color: #555;
 }
 
 #kegiatan-list {
@@ -154,13 +173,13 @@ footer {
     margin-bottom: 5px;
     color: var(--text-color);
 }
-
 .kegiatan-item p {
-    font-size: 0.9rem;
-    line-height: 1.5;
+    font-size: 0.92rem;
 }
 
-/* Halaman Tasbih */
+/* ============================= */
+/* Halaman Tasbih                */
+/* ============================= */
 .tasbih-container {
     padding-top: 50px;
 }
@@ -170,13 +189,14 @@ footer {
 }
 
 .tasbih-display {
-    background-color: var(--primary-color);
+    background: var(--primary-color);
     border: 3px solid var(--accent-color);
     border-radius: 15px;
     font-size: 4rem;
-    font-weight: 600;
+    font-weight: 700;
     padding: 30px;
     margin-bottom: 25px;
+    box-shadow: 0 4px 12px var(--shadow-color);
 }
 
 .tasbih-controls {
@@ -186,34 +206,79 @@ footer {
 }
 
 .tasbih-button {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     padding: 12px 25px;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    background-color: var(--accent-color);
+    background: var(--accent-gradient);
     color: var(--primary-color);
     font-weight: 600;
-    transition: background-color 0.2s ease;
+    transition: transform 0.2s ease, filter 0.2s ease;
 }
-
-.tasbih-button.reset {
-    background-color: #8a8a8a;
-}
-
 .tasbih-button:hover {
+    transform: scale(1.05);
     filter: brightness(1.1);
 }
+.tasbih-button.reset {
+    background: #8a8a8a;
+}
 
+/* ============================= */
+/* Back Link                     */
+/* ============================= */
 .back-link {
     display: inline-block;
     margin-top: 30px;
     color: #555;
     text-decoration: none;
     font-weight: 600;
+    transition: color 0.2s ease;
+}
+.back-link:hover {
+    color: var(--accent-color);
 }
 
-/* Responsive */
+/* ============================= */
+/* Animasi                       */
+/* ============================= */
+@keyframes fadeIn {
+    from {opacity: 0; transform: scale(0.92);}
+    to {opacity: 1; transform: scale(1);}
+}
+@keyframes fadeSlide {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* ============================= */
+/* Efek Animasi Tasbih           */
+/* ============================= */
+.pulse {
+    animation: pulseScale 0.25s ease;
+}
+
+@keyframes pulseScale {
+    0% {
+        transform: scale(1);
+        color: var(--text-color);
+        text-shadow: none;
+    }
+    50% {
+        transform: scale(1.15);
+        color: var(--accent-color);
+        text-shadow: 0 0 8px rgba(201, 180, 127, 0.6);
+    }
+    100% {
+        transform: scale(1);
+        color: var(--text-color);
+        text-shadow: none;
+    }
+}
+
+/* ============================= */
+/* Responsive                    */
+/* ============================= */
 @media (max-width: 480px) {
     h1 {
         font-size: 1.8rem;
