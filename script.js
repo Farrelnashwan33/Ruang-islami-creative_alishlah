@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const kegiatan = [
         { judul: "Kajian Subuh", waktu: "Setiap Ahad, Ba'da Subuh", keterangan: "Hubungi Bapak Wandi (+62 852-2206-8878)" },
         { judul: "Tadabbur Al-Qur'an", waktu: "Setiap Rabu, Ba'da Maghrib", keterangan: "Di ruang utama masjid" },
-        { judul: "Pelatihan Tahsin", waktu: "Sabtu, 08.00 WIB", keterangan: "Untuk umum" }
+        { judul: "Tahfidz", waktu: "Setiap Hari Jumat ( Ba'da Maghrib-Selesai)", keterangan: "Untuk umum" }
     ];
 
     kegiatanButton.addEventListener('click', () => {
