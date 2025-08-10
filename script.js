@@ -1,5 +1,5 @@
 // 🚧 Website Sedang Dalam Pengembangan - COMING SOON 🚧
-console.log("🚧 Website Sedang Dalam Pengembangan - COMING SOON 🚧");
+console.log("🚧 Website Portofolio Sedang Dalam Pengembangan - COMING SOON 🚧");
 
 // Kalau mau juga ada alert pop-up:
 alert("🚧 Website Portofolio Sedang Dalam Pengembangan - COMING SOON 🚧");
