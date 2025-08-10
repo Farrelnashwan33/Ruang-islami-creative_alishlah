@@ -2,7 +2,7 @@
 console.log("🚧 Website Sedang Dalam Pengembangan - COMING SOON 🚧");
 
 // Kalau mau juga ada alert pop-up:
-alert("🚧 Website Sedang Dalam Pengembangan - COMING SOON 🚧");
+alert("🚧 Website Portofolio Sedang Dalam Pengembangan - COMING SOON 🚧");
 
 document.addEventListener('DOMContentLoaded', function() {
     // --- Data Kegiatan ---
