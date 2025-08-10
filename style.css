@@ -23,17 +23,15 @@ body {
     padding: 0;
 }
 
-/* Header dengan ornamen islami */
+/* Header */
 header {
-    background: url('https://www.transparenttextures.com/patterns/asfalt-dark.png'), 
-                linear-gradient(135deg, #1f6f3f, #14542d);
+    background: linear-gradient(135deg, #1f6f3f, #14542d);
     padding: 30px 20px;
     color: white;
-    border-bottom: 4px solid #0e3e23;
     position: relative;
+    border-bottom: 4px solid #0e3e23;
 }
 
-/* Overlay pola geometris */
 header::after {
     content: "";
     background: url('https://www.transparenttextures.com/patterns/arabesque.png');
@@ -46,6 +44,7 @@ header::after {
 
 header .logo {
     max-width: 120px;
+    width: 30vw;
     border-radius: 50%;
     border: 3px solid #fff;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
@@ -55,14 +54,14 @@ header .logo {
 
 header h1 {
     font-family: 'Lora', serif;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2.2rem);
     margin-top: 10px;
     position: relative;
     z-index: 1;
 }
 
 .powered-by {
-    font-size: 0.9rem;
+    font-size: clamp(0.8rem, 2.5vw, 1rem);
     color: #e0f2e9;
     margin-bottom: 20px;
     position: relative;
@@ -81,6 +80,7 @@ header h1 {
     font-weight: 600;
     box-shadow: 0 3px 6px rgba(0,0,0,0.15);
     transition: all 0.2s ease-in-out;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
 }
 
 .link-button:hover {
@@ -94,6 +94,7 @@ header h1 {
     font-style: italic;
     animation: blink 1.2s infinite;
     color: #b34b00;
+    font-size: clamp(0.85rem, 2.5vw, 1rem);
 }
 
 @keyframes blink {
@@ -107,7 +108,7 @@ footer {
     text-align: center;
     padding: 12px;
     margin-top: 30px;
-    font-size: 0.9rem;
+    font-size: clamp(0.75rem, 2vw, 0.9rem);
 }
 
 /* Modal */
@@ -115,7 +116,7 @@ footer {
     display: none;
     position: fixed;
     z-index: 100;
-    padding-top: 100px;
+    padding-top: 80px;
     left: 0; top: 0;
     width: 100%; height: 100%;
     background-color: rgba(0,0,0,0.5);
@@ -126,7 +127,7 @@ footer {
     margin: auto;
     padding: 20px;
     border: 2px solid #1f6f3f;
-    width: 80%;
+    width: 90%;
     max-width: 500px;
     border-radius: 12px;
     text-align: left;
@@ -137,4 +138,13 @@ footer {
     font-size: 1.5rem;
     cursor: pointer;
     color: #1f6f3f;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .link-button {
+        display: block;
+        width: 85%;
+        margin: 10px auto;
+    }
 }
