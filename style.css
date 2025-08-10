@@ -1,142 +1,125 @@
 body {
-    font-family: 'Poppins', sans-serif;
     margin: 0;
-    background: linear-gradient(180deg, #f0f9f4, #d4f0e0);
-    color: #2e473b;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #0f5132, #14532d);
+    color: white;
+    text-align: center;
+}
+
+/* Ornamen Masjid */
+.masjid-top {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 20px;
+    height: 100px;
+}
+.dome {
+    width: 120px;
+    height: 80px;
+    background: #FFD700;
+    border-radius: 60px 60px 0 0;
+    position: relative;
+}
+.minaret {
+    width: 20px;
+    height: 80px;
+    background: #FFD700;
+}
+.minaret.left { margin-right: 20px; }
+.minaret.right { margin-left: 20px; }
+.moon {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    box-shadow: -6px 0 0 0 white;
+    margin-right: 15px;
 }
 
 /* Banner */
 .coming-soon-banner {
-    background-color: #1f6f3f;
-    color: #fff;
-    text-align: center;
+    background: #FFD700;
     padding: 10px;
     font-weight: bold;
-    font-size: 1rem;
-    border-bottom: 3px solid #14542d;
+    color: #0f5132;
 }
 
-/* Header */
-header {
-    background: linear-gradient(135deg, #1f6f3f, #14542d);
-    padding: 30px 20px;
-    color: white;
-    text-align: center;
-    border-bottom: 4px solid #0e3e23;
-    position: relative;
+/* Container */
+.container {
+    margin-top: 20px;
 }
 
-header::after {
-    content: "";
-    background: url('https://www.transparenttextures.com/patterns/arabesque.png');
-    opacity: 0.15;
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-}
-
-header .logo {
-    max-width: 120px;
-    width: 30vw;
+.logo {
+    width: 100px;
     border-radius: 50%;
-    border: 3px solid #fff;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    position: relative;
-    z-index: 1;
+    border: 3px solid #FFD700;
 }
 
-header h1 {
-    font-family: 'Lora', serif;
-    font-size: clamp(1.5rem, 4vw, 2.2rem);
-    margin-top: 10px;
-    position: relative;
-    z-index: 1;
+h1 {
+    font-family: 'Amiri', serif;
+    margin: 10px 0;
 }
 
 .powered-by {
-    font-size: clamp(0.8rem, 2.5vw, 1rem);
-    color: #e0f2e9;
-    margin-bottom: 20px;
-    position: relative;
-    z-index: 1;
+    font-size: 0.9em;
+    color: #ddd;
 }
 
-/* Buttons */
+/* Link Buttons */
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px;
+}
+
 .link-button {
-    display: inline-block;
-    background-color: #1f6f3f;
-    color: #fff;
-    padding: 12px 18px;
-    margin: 8px;
-    border-radius: 8px;
+    background: #FFD700;
+    color: #0f5132;
     text-decoration: none;
-    font-weight: 600;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-    transition: all 0.2s ease-in-out;
-    font-size: clamp(0.85rem, 2.5vw, 1rem);
+    padding: 12px;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
 }
-
 .link-button:hover {
-    background-color: #14542d;
+    background: #f1c40f;
     transform: scale(1.05);
 }
 
-/* Status */
 .dev-status {
-    margin-top: 20px;
-    font-style: italic;
-    animation: blink 1.2s infinite;
-    color: #b34b00;
-    font-size: clamp(0.85rem, 2.5vw, 1rem);
-}
-
-@keyframes blink {
-    50% { opacity: 0.5; }
+    font-size: 0.8em;
+    margin-top: 10px;
+    color: #bbb;
 }
 
 /* Footer */
 footer {
-    background-color: #14542d;
-    color: #fff;
-    text-align: center;
-    padding: 12px;
     margin-top: 30px;
-    font-size: clamp(0.75rem, 2vw, 0.9rem);
+    padding: 15px;
+    background: rgba(0,0,0,0.3);
 }
 
 /* Modal */
 .modal {
     display: none;
     position: fixed;
-    z-index: 100;
-    padding-top: 80px;
-    left: 0; top: 0;
+    top: 0; left: 0;
     width: 100%; height: 100%;
-    background-color: rgba(0,0,0,0.5);
+    background: rgba(0,0,0,0.6);
 }
-
 .modal-content {
-    background-color: #f9fff9;
-    margin: auto;
+    background: white;
+    color: black;
+    margin: 10% auto;
     padding: 20px;
-    border: 2px solid #1f6f3f;
-    width: 90%;
-    max-width: 500px;
-    border-radius: 12px;
-    text-align: left;
+    border-radius: 15px;
+    width: 80%;
+    max-width: 400px;
 }
-
 .close-button {
     float: right;
-    font-size: 1.5rem;
     cursor: pointer;
-    color: #1f6f3f;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .link-button {
-        display: block;
-        width: 85%;
-        margin: 10px auto;
-    }
+    font-weight: bold;
+    font-size: 20px;
 }
