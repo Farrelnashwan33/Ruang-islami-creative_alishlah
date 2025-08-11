@@ -3,62 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruang Islami Kreatif</title>
+    <title>Ruang Islami Creative</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Amiri&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
-    <!-- Ornamen Masjid di Atas -->
-    <div class="masjid-top">
-        <div class="minaret left"></div>
-        <div class="dome"></div>
-        <div class="minaret right"></div>
-    </div>
-
-    <!-- Banner -->
-    <div class="ticker-container">
-    <span class="ticker-text">🌙 AHLAN WA SAHLAN DI RUANG ISLAMI MASJID AL-ISHLAH SOREANG INDAH</span>
-</div>
-
-
     <div class="container">
-        <header>
-            <img src="asset/logo al-ishlah.jpg" alt="Logo Islami" class="logo">
-            <h1>Ruang Islami Kreatif</h1>
-            <p class="powered-by">Pusat Dakwah & Pendidikan | Al-Ishlah Kreatif 2025</p>
+        <header class="header-main">
+            <img src="/asset/logo al-ishlah.jpg" alt="Logo Masjid Al-Ishlah" class="logo">
+            <h1 class="header-title">Ruang Islami Creative</h1>
+            <p class="header-subtitle">Pusat Dakwah Dan Pendidikan</p>
         </header>
 
-        <main class="links">
-            <a href="https://www.google.com/maps/place/Al+-+Ishlah" target="_blank" class="link-button">
-                📍 Lokasi Masjid
-            </a>
-            <a href="tasbih.html" class="link-button">
-                🧿 Tasbih Digital
-            </a>
-            <button id="kegiatan-button" class="link-button">
-                📅 Info Kegiatan
-            </button>
-            <a href="https://drive.google.com/drive/folders/1cPsgmGjMnOB11jceCYJ0ZrRA-DyF6B9X" target="_blank" class="link-button">
-                📸 Link Dokumentasi
-            </a>
-            <p class="dev-status">🚧 Website Portofolio dalam Pengembangan 🚧</p>
+        <marquee class="welcome-text" behavior="scroll" direction="left">
+            Selamat datang di website Ruang Creative Islami Masjid Al-Ishlah Soreang Indah
+        </marquee>
+
+        <main class="link-list">
+            <a href="tasbih.html" class="link-button"><i class="fas fa-praying-hands icon"></i>Tasbih Digital</a>
+            <a href="https://drive.google.com/drive/folders/1cPsgmGjMnOB11jceCYJ0ZrRA-DyF6B9X" target="_blank" class="link-button"><i class="fab fa-google-drive icon"></i>Google Drive</a>
+            <a href="https://maps.app.goo.gl/v4XkcJFZXnXcFhjt8" target="_blank" class="link-button"><i class="fas fa-map-marked-alt icon"></i>Lokasi Masjid</a>
+            <button onclick="showComingSoonAlert()" class="link-button coming-soon-button"><i class="fas fa-lock icon"></i>Website Portofolio</button>
+            <a href="kegiatan.html" class="link-button"><i class="fas fa-calendar-alt icon"></i>Kegiatan</a>
         </main>
+
+        <footer class="footer">
+            <p>&copy; 2025 Al-Ishlahmediacreative. All Rights Reserved.</p>
+        </footer>
     </div>
-
-    <footer>
-        &copy; 2025 Al-ishlahmediaKreatif - Semua Hak Dilindungi
-    </footer>
-
-    <!-- Modal -->
-    <div id="kegiatan-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button">&times;</span>
-            <h2>Informasi Kegiatan</h2>
-            <div id="kegiatan-list"></div>
-        </div>
-    </div>
-
     <script src="script.js"></script>
 </body>
 </html>
