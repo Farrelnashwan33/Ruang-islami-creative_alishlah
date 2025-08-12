@@ -1,29 +1,57 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tasbih Digital</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tasbih Digital — Ruang Islami Creative</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-    <div class="tasbih-container">
-        <header class="tasbih-header">
-            <a href="index.html" class="back-home-button"><i class="fas fa-arrow-left"></i> Kembali</a>
-            <h1 class="tasbih-title">Tasbih Digital</h1>
-        </header>
-        <main class="tasbih-main">
-            <div id="counter" class="counter">0</div>
-            <div class="dzikir-buttons">
-                <button id="addButton" class="dzikir-button add-button"><i class="fas fa-plus"></i> Tambah</button>
-                <button id="resetButton" class="dzikir-button reset-button"><i class="fas fa-redo-alt"></i> Reset</button>
-            </div>
-        </main>
+<body class="tasbih-page">
+  <header class="site-header small">
+    <div class="container nav">
+      <div class="brand">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'><circle cx='12' cy='12' r='11' fill='%232E7D32'/><path d='M12 3 L15 9 L21 9 L16 13 L18 20 L12 16 L6 20 L8 13 L3 9 L9 9 Z' fill='%23FFD700' opacity='0.95'/></svg>" alt="Masjid Al-Ishlah" class="logo" />
+        <div class="brand-text">
+          <h1 style="font-size:1.05rem">Tasbih Digital</h1>
+          <small>Ruang Islami Creative</small>
+        </div>
+      </div>
+
+      <nav class="tasbih-nav">
+        <button class="btn outline" id="addBtn">Tambah</button>
+        <button class="btn ghost" id="resetBtn">Reset</button>
+        <a href="index.html" class="btn" id="backHome">Back to Home</a>
+      </nav>
     </div>
-    <script src="script.js"></script>
+  </header>
+
+  <main class="tasbih-main">
+    <div class="tasbih-card">
+      <div class="pattern-bg" aria-hidden="true"></div>
+
+      <div class="counter-wrap">
+        <h2 class="counter-title">Dzikir Counter</h2>
+        <div class="counter-display" id="countDisplay">0</div>
+        <p class="counter-sub">Ingatlah Allah — setiap helaan, setiap detik.</p>
+
+        <div class="counter-controls">
+          <button class="btn large primary" id="addLarge">+ Tambah</button>
+          <button class="btn large outline" id="resetLarge">Reset</button>
+        </div>
+
+        <div class="small-note">Tips: Klik tombol 'Tambah' atau area counter untuk menambah. Nilai tersimpan di browser.</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer small">
+    <div class="container">
+      <p>© <span id="year2"></span> Masjid Al-Ishlah</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

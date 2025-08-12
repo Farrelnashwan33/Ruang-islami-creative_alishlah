@@ -1,39 +1,136 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruang Islami Creative</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ruang Islami Creative - Masjid Al-Ishlah</title>
+
+  <!-- Font Amiri (nuansa Islami) -->
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="container">
-        <header class="header-main">
-            <img src="/asset/logo al-ishlah.jpg" alt="Logo Masjid Al-Ishlah" class="logo">
-            <h1 class="header-title">Ruang Islami Creative</h1>
-            <p class="header-subtitle">Pusat Dakwah Dan Pendidikan</p>
-        </header>
+  <!-- NAVBAR -->
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'><circle cx='12' cy='12' r='11' fill='%232E7D32'/><path d='M12 3 L15 9 L21 9 L16 13 L18 20 L12 16 L6 20 L8 13 L3 9 L9 9 Z' fill='%23FFD700' opacity='0.95'/></svg>" alt="Masjid Al-Ishlah" class="logo" />
+        <div class="brand-text">
+          <h1>Masjid Al-Ishlah</h1>
+          <small>Ruang Islami Creative</small>
+        </div>
+      </div>
 
-        <marquee class="welcome-text" behavior="scroll" direction="left">
-            Selamat datang di website Ruang Creative Islami Masjid Al-Ishlah Soreang Indah
-        </marquee>
+      <nav class="main-nav" id="mainNav">
+        <a href="index.html" class="nav-link active">Home</a>
+        <a href="tasbih.html" class="nav-link">Tasbih Digital</a>
+        <a href="#" class="nav-link" id="gdriveLink">Google Drive</a>
+        <a href="kegiatan.html" class="nav-link">Kegiatan</a>
+        <a href="#maps" class="nav-link">Maps Lokasi</a>
+        <a href="#" class="nav-link coming" id="portfolioBtn"><span class="lock">🔒</span> Website Portofolio</a>
+      </nav>
 
-        <main class="link-list">
-            <a href="tasbih.html" class="link-button"><i class="fas fa-praying-hands icon"></i>Tasbih Digital</a>
-            <a href="https://drive.google.com/drive/folders/1cPsgmGjMnOB11jceCYJ0ZrRA-DyF6B9X" target="_blank" class="link-button"><i class="fab fa-google-drive icon"></i>Google Drive</a>
-            <a href="https://maps.app.goo.gl/v4XkcJFZXnXcFhjt8" target="_blank" class="link-button"><i class="fas fa-map-marked-alt icon"></i>Lokasi Masjid</a>
-            <button onclick="showComingSoonAlert()" class="link-button coming-soon-button"><i class="fas fa-lock icon"></i>Website Portofolio</button>
-            <a href="kegiatan.html" class="link-button"><i class="fas fa-calendar-alt icon"></i>Kegiatan</a>
-        </main>
-
-        <footer class="footer">
-            <p>&copy; 2025 Al-Ishlahmediacreative. All Rights Reserved.</p>
-        </footer>
+      <div class="nav-actions">
+        <button class="icon-btn bell" id="bellBtn" title="Ikuti Instagram Masjid Al-Ishlah">
+          🔔
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="buka menu">☰</button>
+      </div>
     </div>
-    <script src="script.js"></script>
+
+    <!-- IG follow popup (hidden by default) -->
+    <div class="ig-popup" id="igPopup" aria-hidden="true">
+      <div class="ig-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="ig-logo" />
+        <h3>Ikuti @MasjidAlIshlah</h3>
+        <p>Follow kami di Instagram untuk update kegiatan dan pengumuman.</p>
+        <div class="ig-actions">
+          <button id="igFollowBtn" class="btn primary">Follow & Buka Instagram</button>
+          <button id="igCloseBtn" class="btn ghost">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div class="marquee-wrap" aria-hidden="false">
+    <div class="marquee">
+      <span>Selamat datang di website Ruang Creative Islami Masjid Al-Ishlah Soreang Indah</span>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <main class="container main">
+    <section class="hero">
+      <h2>Selamat Datang</h2>
+      <p class="lead">Ruang Islami Creative - Masjid Al-Ishlah. Nuansa Islami modern — hijau, putih, dan emas.</p>
+
+      <div class="features-grid">
+        <a class="feature-card" href="tasbih.html">
+          <div class="icon">📿</div>
+          <h3>Tasbih Digital</h3>
+          <p>Counter dzikir dengan desain Islami modern.</p>
+        </a>
+
+        <button class="feature-card" id="gdriveBtn">
+          <div class="icon">🗂️</div>
+          <h3>Google Drive</h3>
+          <p>Buka folder desain & dokumen masjid.</p>
+        </button>
+
+        <a class="feature-card" href="#maps" id="mapsBtn">
+          <div class="icon">🗺️</div>
+          <h3>Maps Lokasi</h3>
+          <p>Lihat lokasi Masjid Al-Ishlah dengan ornamen Islami.</p>
+        </a>
+
+        <button class="feature-card" id="portfolioBtn2">
+          <div class="icon">🔒</div>
+          <h3>Website Portofolio</h3>
+          <p>Coming soon — klik untuk info.</p>
+        </button>
+
+        <a class="feature-card" href="kegiatan.html">
+          <div class="icon">📅</div>
+          <h3>Kegiatan</h3>
+          <p>Daftar kegiatan masjid dalam layout card.</p>
+        </a>
+      </div>
+    </section>
+
+    <!-- Maps Section -->
+    <section class="maps-section" id="maps">
+      <h3>Lokasi Masjid Al-Ishlah</h3>
+      <div class="map-frame">
+        <!-- Google maps embed. Query-based embed will center on the search term -->
+        <iframe
+          src="https://www.google.com/maps?q=Masjid+Al-Ishlah+Soreang&output=embed"
+          style="border:0;"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+        <div class="map-ornament-top-left"></div>
+        <div class="map-ornament-bottom-right"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Coming Soon Popup -->
+  <div class="modal" id="comingSoonModal" aria-hidden="true">
+    <div class="modal-card">
+      <h3>🚧 Website Portofolio sedang dalam pengembangan</h3>
+      <p>Nantikan segera! Terima kasih atas kesabaran dan dukungannya.</p>
+      <button class="btn primary" id="closeComing">Tutup</button>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Masjid Al-Ishlah — Ruang Islami Creative</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>

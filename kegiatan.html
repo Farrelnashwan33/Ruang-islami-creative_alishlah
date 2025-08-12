@@ -1,45 +1,77 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kegiatan</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kegiatan — Masjid Al-Ishlah</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <div class="kegiatan-container">
-        <header class="kegiatan-header">
-            <a href="index.html" class="back-home-button"><i class="fas fa-arrow-left"></i> Kembali</a>
-            <h1 class="kegiatan-title">Daftar Kegiatan</h1>
-        </header>
-        <main class="kegiatan-grid">
-            <div class="kegiatan-card">
-                <img src="/asset/picture/jumber.jpeg" alt="Jumat Bersih" class="kegiatan-image">
-                <div class="card-content">
-                    <h2 class="card-title">Jumat Berkah </h2>
-                    <p class="card-description">Kegiatan rutin setiap hari Jumat untuk membersihkan area masjid dan sekitarnya.</p>
-                </div>
-            </div>
-            <div class="kegiatan-card">
-                <img src="/asset/picture/mengaji.jpeg" alt="Pengajian Bulanan" class="kegiatan-image">
-                <div class="card-content">
-                    <h2 class="card-title">Maghrib Mengaji</h2>
-                    <p class="card-description">Pengajian rutin setiap bulan dengan narasumber yang berbeda-beda. Terbuka untuk umum.</p>
-                </div>
-            </div>
-            <div class="kegiatan-card">
-                <img src="https://via.placeholder.com/400x250.png?text=Bazar+Amal" alt="Bazar Amal" class="kegiatan-image">
-                <div class="card-content">
-                    <h2 class="card-title">Bazar Amal</h2>
-                    <p class="card-description">Kegiatan sosial untuk menggalang dana bagi yang membutuhkan, tersedia berbagai macam barang dan makanan.</p>
-                </div>
-            </div>
-        </main>
+  <header class="site-header">
+    <div class="container nav">
+      <div class="brand">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'><circle cx='12' cy='12' r='11' fill='%232E7D32'/><path d='M12 3 L15 9 L21 9 L16 13 L18 20 L12 16 L6 20 L8 13 L3 9 L9 9 Z' fill='%23FFD700' opacity='0.95'/></svg>" alt="Masjid Al-Ishlah" class="logo" />
+        <div class="brand-text">
+          <h1>Masjid Al-Ishlah</h1>
+          <small>Ruang Islami Creative</small>
+        </div>
+      </div>
+
+      <nav class="main-nav">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="tasbih.html" class="nav-link">Tasbih Digital</a>
+        <a href="kegiatan.html" class="nav-link active">Kegiatan</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a class="btn small" href="index.html">Kembali</a>
+      </div>
     </div>
-    <script src="script.js"></script>
+  </header>
+
+  <main class="container main">
+    <section class="activities">
+      <h2>Agenda & Kegiatan</h2>
+      <p class="lead">Berikut kegiatan rutin dan khusus yang diselenggarakan Masjid Al-Ishlah.</p>
+
+      <div class="cards-grid" id="activitiesGrid">
+        <!-- beberapa contoh card; admin dapat mengganti gambar & teks -->
+        <article class="activity-card">
+          <img src="https://picsum.photos/seed/shalat/400/240" alt="Shalat Berjamaah">
+          <h3>Shalat Berjamaah</h3>
+          <p>Shalat lima waktu berjamaah setiap hari dengan tausiyah singkat setelah Isya'.</p>
+        </article>
+
+        <article class="activity-card">
+          <img src="https://picsum.photos/seed/education/400/240" alt="Kajian Rutin">
+          <h3>Kajian Rutin</h3>
+          <p>Kajian tafsir Al-Qur'an setiap Ahad pagi untuk semua umur.</p>
+        </article>
+
+        <article class="activity-card">
+          <img src="https://picsum.photos/seed/ramadhan/400/240" alt="Buka Puasa Bersama">
+          <h3>Buka Puasa Bersama</h3>
+          <p>Acara buka puasa dan santunan anak yatim setiap bulan Ramadhan.</p>
+        </article>
+
+        <article class="activity-card">
+          <img src="https://picsum.photos/seed/charity/400/240" alt="Santunan">
+          <h3>Santunan Sosial</h3>
+          <p>Program bantuan untuk warga kurang mampu dan distribusi sembako.</p>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year3"></span> Masjid Al-Ishlah — Ruang Islami Creative</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
