@@ -1,136 +1,466 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ruang Islami Creative - Masjid Al-Ishlah</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Islami Creative</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0d4726; /* Hijau Islami */
+            --accent-color: #ffc107; /* Kuning */
+            --light-bg-color: #f0f4f7;
+            --text-color: #333;
+            --white-color: #fff;
+            --dark-green-overlay: rgba(13, 71, 38, 0.7);
+        }
 
-  <!-- Font Amiri (nuansa Islami) -->
-  <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-  <link rel="stylesheet" href="style.css" />
+        body {
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            background-color: var(--light-bg-color);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.5rem;
+            font-family: 'Amiri', serif;
+        }
+
+        .navbar .logo i {
+            margin-right: 10px;
+            font-size: 2rem;
+            color: var(--accent-color);
+        }
+
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-menu a {
+            color: var(--white-color);
+            text-decoration: none;
+            margin-left: 20px;
+            transition: color 0.3s ease;
+            font-weight: 400;
+        }
+
+        .navbar-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        .navbar-menu .notification-bell {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            margin-left: 20px;
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white-color);
+            padding-top: 6rem; /* Adjust for fixed navbar */
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("https://placehold.co/1200x600/0d4726/ffffff?text=Latar+Belakang+Masjid") no-repeat center center/cover;
+            filter: grayscale(80%) brightness(50%);
+            z-index: -1;
+        }
+
+        .hero .profile-picture {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--accent-color);
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-family: 'Amiri', serif;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        /* Main Content Sections */
+        .main-content {
+            padding-top: 2rem;
+        }
+
+        .section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-family: 'Amiri', serif;
+            color: var(--primary-color);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent-color);
+        }
+
+        /* Kegiatan Section */
+        .kegiatan {
+            background-color: var(--white-color);
+        }
+
+        .kegiatan .kegiatan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+        }
+        
+        .kegiatan .kegiatan-card {
+            background-color: var(--light-bg-color);
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: left;
+            transition: transform 0.3s ease;
+        }
+
+        .kegiatan .kegiatan-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .kegiatan .kegiatan-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .kegiatan .kegiatan-card h3 {
+            font-family: 'Amiri', serif;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .kegiatan .kegiatan-card p {
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .kegiatan .btn-container {
+            margin-top: 2rem;
+        }
+        
+        .kegiatan .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .kegiatan .btn:hover {
+            transform: translateY(-3px);
+            background-color: #0a331c;
+        }
+
+        /* Google Maps Section */
+        .maps {
+            background-color: var(--light-bg-color);
+        }
+
+        .maps iframe {
+            width: 100%;
+            max-width: 800px;
+            height: 400px;
+            border: 5px solid var(--primary-color);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Coming Soon Section */
+        .coming-soon {
+            background-color: var(--white-color);
+            padding: 6rem 2rem;
+        }
+
+        .coming-soon .content {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            padding: 3rem;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        .coming-soon .content h3 {
+            font-family: 'Amiri', serif;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .coming-soon .content p {
+            font-weight: 300;
+            font-size: 1.1rem;
+        }
+
+        .coming-soon .content .accent-text {
+            color: var(--accent-color);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--primary-color);
+            color: var(--white-color);
+            text-align: center;
+            padding: 2rem;
+            border-top: 5px solid var(--accent-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+            .navbar .logo {
+                font-size: 1.2rem;
+            }
+            .navbar .logo i {
+                font-size: 1.5rem;
+            }
+            /* Menghapus tautan menu kecuali lonceng */
+            .navbar-menu a:not(.notification-bell) {
+                display: none;
+            }
+            .navbar-menu .notification-bell {
+                margin: 0;
+            }
+            .hero {
+                height: 350px;
+                padding-top: 80px; /* Menyesuaikan untuk navbar yang lebih kecil */
+            }
+            .hero .profile-picture {
+                width: 120px;
+                height: 120px;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+            .section {
+                padding: 2rem 1rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .kegiatan .kegiatan-grid {
+                grid-template-columns: 1fr;
+            }
+            .kegiatan .kegiatan-card {
+                text-align: left; /* Teks tetap rata kiri agar lebih rapi di mobile */
+                padding: 1rem;
+            }
+            .kegiatan .kegiatan-card p {
+                font-size: 0.9rem;
+            }
+            .maps iframe {
+                height: 300px;
+            }
+            .coming-soon .content {
+                padding: 2rem 1rem;
+            }
+            .coming-soon .content h3 {
+                font-size: 1.5rem;
+            }
+            .footer {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- NAVBAR -->
-  <header class="site-header">
-    <div class="container nav">
-      <div class="brand">
-        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 24 24'><circle cx='12' cy='12' r='11' fill='%232E7D32'/><path d='M12 3 L15 9 L21 9 L16 13 L18 20 L12 16 L6 20 L8 13 L3 9 L9 9 Z' fill='%23FFD700' opacity='0.95'/></svg>" alt="Masjid Al-Ishlah" class="logo" />
-        <div class="brand-text">
-          <h1>Masjid Al-Ishlah</h1>
-          <small>Ruang Islami Creative</small>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-mosque"></i>
+            <span>Ruang Islami Creative</span>
         </div>
-      </div>
-
-      <nav class="main-nav" id="mainNav">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="tasbih.html" class="nav-link">Tasbih Digital</a>
-        <a href="#" class="nav-link" id="gdriveLink">Google Drive</a>
-        <a href="kegiatan.html" class="nav-link">Kegiatan</a>
-        <a href="#maps" class="nav-link">Maps Lokasi</a>
-        <a href="#" class="nav-link coming" id="portfolioBtn"><span class="lock">🔒</span> Website Portofolio</a>
-      </nav>
-
-      <div class="nav-actions">
-        <button class="icon-btn bell" id="bellBtn" title="Ikuti Instagram Masjid Al-Ishlah">
-          🔔
-        </button>
-        <button class="hamburger" id="hamburger" aria-label="buka menu">☰</button>
-      </div>
-    </div>
-
-    <!-- IG follow popup (hidden by default) -->
-    <div class="ig-popup" id="igPopup" aria-hidden="true">
-      <div class="ig-card">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" class="ig-logo" />
-        <h3>Ikuti @MasjidAlIshlah</h3>
-        <p>Follow kami di Instagram untuk update kegiatan dan pengumuman.</p>
-        <div class="ig-actions">
-          <button id="igFollowBtn" class="btn primary">Follow & Buka Instagram</button>
-          <button id="igCloseBtn" class="btn ghost">Tutup</button>
+        <div class="navbar-menu">
+            <a href="#kegiatan-section">Kegiatan</a>
+            <a href="#maps-section">Google Maps</a>
+            <a href="https://www.instagram.com/masjidalishlahsoreangindah?igsh=MXA3YXBiMGdpamVsZA==" target="_blank" class="notification-bell">
+                <i class="fas fa-bell"></i>
+            </a>
         </div>
-      </div>
-    </div>
-  </header>
+    </nav>
 
-  <!-- MARQUEE -->
-  <div class="marquee-wrap" aria-hidden="false">
-    <div class="marquee">
-      <span>Selamat datang di website Ruang Creative Islami Masjid Al-Ishlah Soreang Indah</span>
-    </div>
-  </div>
+    <!-- Hero Section -->
+    <header class="hero">
+        <img src="https://placehold.co/150x150/0d4726/ffc107?text=Logo+Masjid" onerror="this.onerror=null;this.src='https://placehold.co/150x150/0d4726/ffc107?text=Logo+Masjid';" alt="Logo Masjid Al-Ishlah" class="profile-picture">
+        <h1>Ruang Islami Creative</h1>
+        <p>powered by Al-IshlahMedia Creative 2025</p>
+    </header>
 
-  <!-- MAIN -->
-  <main class="container main">
-    <section class="hero">
-      <h2>Selamat Datang</h2>
-      <p class="lead">Ruang Islami Creative - Masjid Al-Ishlah. Nuansa Islami modern — hijau, putih, dan emas.</p>
+    <!-- Main Content Sections -->
+    <main class="main-content">
 
-      <div class="features-grid">
-        <a class="feature-card" href="tasbih.html">
-          <div class="icon">📿</div>
-          <h3>Tasbih Digital</h3>
-          <p>Counter dzikir dengan desain Islami modern.</p>
-        </a>
+        <!-- Section Kegiatan -->
+        <section id="kegiatan-section" class="section kegiatan">
+            <h2 class="section-title">Kegiatan Masjid</h2>
+            <p>
+                Masjid Al-Ishlah Soreang Indah secara rutin menyelenggarakan berbagai kegiatan keagamaan dan sosial untuk mempererat tali silaturahmi dan meningkatkan keimanan jamaah. Dokumentasi lengkap kegiatan kami dapat dilihat melalui tombol di bawah.
+            </p>
+            <div class="kegiatan-grid">
+                
+                <!-- Kajian Tadabbur Quran -->
+                <div class="kegiatan-card">
+                    <img src="https://placehold.co/600x400/0d4726/ffc107?text=Kajian+Tadabbur+Quran" alt="Gambar Kajian Tadabbur Quran">
+                    <h3>Kajian Tadabbur Quran</h3>
+                    <p>
+                        Kegiatan mengkaji dan merenungkan makna Al-Quran secara mendalam untuk meningkatkan pemahaman dan pengamalan.
+                    </p>
+                </div>
+                
+                <!-- Tahfidz Qur'an -->
+                <div class="kegiatan-card">
+                    <img src="https://placehold.co/600x400/0d4726/ffc107?text=Tahfidz+Quran" alt="Gambar Tahfidz Quran">
+                    <h3>Tahfidz Qur'an</h3>
+                    <p>
+                        Program menghafal Al-Quran yang diadakan secara rutin untuk anak-anak dan dewasa, dibimbing oleh para ustadz yang kompeten.
+                    </p>
+                </div>
+                
+                <!-- Kajian Ahad Subuh Berjama'ah -->
+                <div class="kegiatan-card">
+                    <img src="https://placehold.co/600x400/0d4726/ffc107?text=Kajian+Ahad+Subuh" alt="Gambar Kajian Ahad Subuh Berjama'ah">
+                    <h3>Kajian Ahad Subuh Berjama'ah</h3>
+                    <p>
+                        Kajian rutin setiap hari Ahad setelah shalat Subuh berjama'ah, membahas berbagai tema keislaman untuk bekal sehari-hari.
+                    </p>
+                </div>
 
-        <button class="feature-card" id="gdriveBtn">
-          <div class="icon">🗂️</div>
-          <h3>Google Drive</h3>
-          <p>Buka folder desain & dokumen masjid.</p>
-        </button>
+                <!-- Jumat Berkah -->
+                <div class="kegiatan-card">
+                    <img src="https://placehold.co/600x400/0d4726/ffc107?text=Jumat+Berkah" alt="Gambar Jumat Berkah">
+                    <h3>Jumat Berkah</h3>
+                    <p>
+                        Inisiatif berbagi makanan dan minuman kepada jamaah setelah shalat Jumat, sebagai wujud kepedulian sosial dan mempererat silaturahmi.
+                    </p>
+                </div>
 
-        <a class="feature-card" href="#maps" id="mapsBtn">
-          <div class="icon">🗺️</div>
-          <h3>Maps Lokasi</h3>
-          <p>Lihat lokasi Masjid Al-Ishlah dengan ornamen Islami.</p>
-        </a>
+            </div>
+            
+            <div class="btn-container">
+                <a href="https://drive.google.com/drive/folders/1cPsgmGjMnOB11jceCYJ0ZrRA-DyF6B9X" target="_blank" class="btn">
+                    Lihat Dokumentasi Kegiatan
+                </a>
+            </div>
+        </section>
 
-        <button class="feature-card" id="portfolioBtn2">
-          <div class="icon">🔒</div>
-          <h3>Website Portofolio</h3>
-          <p>Coming soon — klik untuk info.</p>
-        </button>
+        <!-- Section Google Maps -->
+        <section id="maps-section" class="section maps">
+            <h2 class="section-title">Lokasi Masjid</h2>
+            <p>Temukan lokasi Masjid Al-Ishlah Soreang Indah di peta berikut.</p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.340032959664!2d107.56847837583696!3d-6.968254793043868!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ea811c761661%3A0x6a2c20a9a1d47101!2sMasjid%20Al-Ishlah!5e0!3m2!1sid!2sid!4v1717565345719!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </section>
 
-        <a class="feature-card" href="kegiatan.html">
-          <div class="icon">📅</div>
-          <h3>Kegiatan</h3>
-          <p>Daftar kegiatan masjid dalam layout card.</p>
-        </a>
-      </div>
-    </section>
+        <!-- Section Coming Soon -->
+        <section id="coming-soon-section" class="section coming-soon">
+            <div class="content">
+                <h3>Sedang Dalam Pengembangan</h3>
+                <p>Website <span class="accent-text">Portofolio</span> sedang dalam pengembangan</p>
+                <p>Buletin Masjid Al-Ishlah - <span class="accent-text">Coming Soon</span></p>
+            </div>
+        </section>
 
-    <!-- Maps Section -->
-    <section class="maps-section" id="maps">
-      <h3>Lokasi Masjid Al-Ishlah</h3>
-      <div class="map-frame">
-        <!-- Google maps embed. Query-based embed will center on the search term -->
-        <iframe
-          src="https://www.google.com/maps?q=Masjid+Al-Ishlah+Soreang&output=embed"
-          style="border:0;"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <div class="map-ornament-top-left"></div>
-        <div class="map-ornament-bottom-right"></div>
-      </div>
-    </section>
-  </main>
+    </main>
 
-  <!-- Coming Soon Popup -->
-  <div class="modal" id="comingSoonModal" aria-hidden="true">
-    <div class="modal-card">
-      <h3>🚧 Website Portofolio sedang dalam pengembangan</h3>
-      <p>Nantikan segera! Terima kasih atas kesabaran dan dukungannya.</p>
-      <button class="btn primary" id="closeComing">Tutup</button>
-    </div>
-  </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <p>© 2025 Al-IshlahMedia Creative. Hak cipta dilindungi.</p>
+    </footer>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>© <span id="year"></span> Masjid Al-Ishlah — Ruang Islami Creative</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+    <script>
+        // JavaScript untuk memastikan tautan scroll berfungsi
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
