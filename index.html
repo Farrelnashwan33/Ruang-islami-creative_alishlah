@@ -1,467 +1,350 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ruang Islami Creative</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #0d4726; /* Hijau Islami */
-            --accent-color: #ffc107; /* Kuning */
-            --light-bg-color: #f0f4f7;
-            --text-color: #333;
-            --white-color: #fff;
-            --dark-green-overlay: rgba(13, 71, 38, 0.7);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruang Islami Creative - HUT RI ke-80</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+<style>
+:root {
+    --primary-color: #d32f2f;
+    --accent-color: #ffffff;
+    --light-bg-color: #fff5f5;
+    --text-color: #333;
+    --gold-color: #ffcc00;
+}
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            background-color: var(--light-bg-color);
-            color: var(--text-color);
-            scroll-behavior: smooth;
-        }
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        /* Navbar */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--light-bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
 
-        .navbar .logo {
-            display: flex;
-            align-items: center;
-            font-weight: 600;
-            font-size: 1.5rem;
-            font-family: 'Amiri', serif;
-        }
+/* Navbar */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, var(--primary-color), #b71c1c);
+    color: var(--accent-color);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
 
-        .navbar .logo i {
-            margin-right: 10px;
-            font-size: 2rem;
-            color: var(--accent-color);
-        }
+.navbar .logo {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1.3rem;
+    font-family: 'Amiri', serif;
+}
 
-        .navbar-menu {
-            display: flex;
-            align-items: center;
-        }
+.navbar .logo i {
+    margin-right: 10px;
+    font-size: 1.8rem;
+    color: var(--gold-color);
+}
 
-        .navbar-menu a {
-            color: var(--white-color);
-            text-decoration: none;
-            margin-left: 20px;
-            transition: color 0.3s ease;
-            font-weight: 400;
-        }
+.navbar-menu {
+    display: flex;
+    align-items: center;
+}
 
-        .navbar-menu a:hover {
-            color: var(--accent-color);
-        }
+.navbar-menu a {
+    color: var(--accent-color);
+    text-decoration: none;
+    margin-left: 20px;
+    font-weight: 500;
+    transition: 0.3s;
+}
 
-        .navbar-menu .notification-bell {
-            background-color: transparent;
-            border: none;
-            cursor: pointer;
-            font-size: 1.5rem;
-            margin-left: 20px;
-            color: var(--accent-color);
-        }
+.navbar-menu a:hover {
+    color: var(--gold-color);
+}
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            height: 450px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: var(--white-color);
-            padding-top: 6rem; /* Adjust for fixed navbar */
-        }
-        
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("/asset/picture/masjid.jpeg") no-repeat center center/cover;
-            filter: grayscale(80%) brightness(50%);
-            z-index: -1;
-        }
+/* Mobile Menu Toggle */
+.menu-toggle {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
 
-        .hero .profile-picture {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 5px solid var(--accent-color);
-            margin-bottom: 1rem;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
+/* Hero */
+.hero {
+    position: relative;
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 6rem;
+    text-align: center;
+    color: var(--accent-color);
+}
 
-        .hero h1 {
-            font-size: 2.5rem;
-            font-family: 'Amiri', serif;
-            margin-bottom: 0.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
+.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("/asset/picture/masjid.jpeg") no-repeat center/cover;
+    filter: brightness(50%);
+    z-index: -1;
+}
 
-        .hero p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-        
-        /* Main Content Sections */
-        .main-content {
-            padding-top: 2rem;
-        }
+.hero .profile-picture {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid var(--gold-color);
+    object-fit: cover;
+    background-color: var(--accent-color);
+    margin-bottom: 1rem;
+}
 
-        .section {
-            padding: 4rem 2rem;
-            text-align: center;
-        }
+.hero h1 {
+    font-size: 2.5rem;
+    font-family: 'Amiri', serif;
+}
 
-        .section-title {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-family: 'Amiri', serif;
-            color: var(--primary-color);
-            position: relative;
-            padding-bottom: 10px;
-        }
+.hero p {
+    font-size: 1.1rem;
+}
 
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--accent-color);
-        }
+/* Section Title */
+.section-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Amiri', serif;
+    color: var(--primary-color);
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
 
-        /* Kegiatan Section */
-        .kegiatan {
-            background-color: var(--white-color);
-        }
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background-color: var(--gold-color);
+}
 
-        .kegiatan .kegiatan-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 2rem auto;
-        }
-        
-        .kegiatan .kegiatan-card {
-            background-color: var(--light-bg-color);
-            padding: 1.5rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            text-align: left;
-            transition: transform 0.3s ease;
-        }
+/* Kegiatan */
+.kegiatan {
+    background-color: var(--accent-color);
+    padding: 4rem 1rem;
+}
 
-        .kegiatan .kegiatan-card:hover {
-            transform: translateY(-5px);
-        }
+.kegiatan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: auto;
+}
 
-        .kegiatan .kegiatan-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-        
-        .kegiatan .kegiatan-card h3 {
-            font-family: 'Amiri', serif;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-        
-        .kegiatan .kegiatan-card p {
-            font-size: 1rem;
-            margin-bottom: 0;
-        }
+.kegiatan-card {
+    background-color: var(--light-bg-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.3s;
+}
 
-        .kegiatan .btn-container {
-            margin-top: 2rem;
-        }
-        
-        .kegiatan .btn {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
+.kegiatan-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+}
 
-        .kegiatan .btn:hover {
-            transform: translateY(-3px);
-            background-color: #0a331c;
-        }
+.kegiatan-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
 
-        /* Google Maps Section */
-        .maps {
-            background-color: var(--light-bg-color);
-        }
+.kegiatan-card h3 {
+    padding: 1rem;
+    color: var(--primary-color);
+}
 
-        .maps iframe {
-            width: 100%;
-            max-width: 800px;
-            height: 400px;
-            border: 5px solid var(--primary-color);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
+.kegiatan-card p {
+    padding: 0 1rem 1rem;
+    font-size: 0.95rem;
+}
 
-        /* Coming Soon Section */
-        .coming-soon {
-            background-color: var(--white-color);
-            padding: 6rem 2rem;
-        }
+/* Button */
+.btn {
+    display: inline-block;
+    margin-top: 2rem;
+    padding: 0.8rem 1.5rem;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    border-radius: 50px;
+    font-weight: bold;
+    text-decoration: none;
+}
 
-        .coming-soon .content {
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            padding: 3rem;
-            border-radius: 15px;
-            max-width: 600px;
-            margin: 0 auto;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            position: relative;
-        }
+.btn:hover {
+    background-color: #b71c1c;
+}
 
-        .coming-soon .content h3 {
-            font-family: 'Amiri', serif;
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-        
-        .coming-soon .content p {
-            font-weight: 300;
-            font-size: 1.1rem;
-        }
+/* Maps */
+.maps {
+    text-align: center;
+    padding: 4rem 1rem;
+    background-color: #fff0f0;
+}
 
-        .coming-soon .content .accent-text {
-            color: var(--accent-color);
-            font-weight: 600;
-        }
+.maps iframe {
+    border: 5px solid var(--primary-color);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 800px;
+    height: 350px;
+}
 
-        /* Footer */
-        .footer {
-            background-color: var(--primary-color);
-            color: var(--white-color);
-            text-align: center;
-            padding: 2rem;
-            border-top: 5px solid var(--accent-color);
-        }
+/* Footer */
+.footer {
+    background: linear-gradient(90deg, var(--primary-color), #b71c1c);
+    color: var(--accent-color);
+    text-align: center;
+    padding: 1rem;
+    border-top: 4px solid var(--gold-color);
+}
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
-            }
-            .navbar .logo {
-                font-size: 1.2rem;
-            }
-            .navbar .logo i {
-                font-size: 1.5rem;
-            }
-            /* Menghapus tautan menu kecuali lonceng */
-            .navbar-menu a:not(.notification-bell) {
-                display: none;
-            }
-            .navbar-menu .notification-bell {
-                margin: 0;
-            }
-            .hero {
-                height: 350px;
-                padding-top: 80px; /* Menyesuaikan untuk navbar yang lebih kecil */
-            }
-            .hero .profile-picture {
-                width: 120px;
-                height: 120px;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero p {
-                font-size: 1rem;
-            }
-            .section {
-                padding: 2rem 1rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .kegiatan .kegiatan-grid {
-                grid-template-columns: 1fr;
-            }
-            .kegiatan .kegiatan-card {
-                text-align: left; /* Teks tetap rata kiri agar lebih rapi di mobile */
-                padding: 1rem;
-            }
-            .kegiatan .kegiatan-card p {
-                font-size: 0.9rem;
-            }
-            .maps iframe {
-                height: 300px;
-            }
-            .coming-soon .content {
-                padding: 2rem 1rem;
-            }
-            .coming-soon .content h3 {
-                font-size: 1.5rem;
-            }
-            .footer {
-                padding: 1rem;
-            }
-        }
-    </style>
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .navbar-menu {
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background: var(--primary-color);
+        flex-direction: column;
+        width: 200px;
+        display: none;
+        padding: 1rem;
+    }
+
+    .navbar-menu.show {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: block;
+        color: var(--accent-color);
+    }
+
+    .navbar-menu a {
+        margin: 10px 0;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero .profile-picture {
+        width: 120px;
+        height: 120px;
+    }
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+}
+</style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="logo">
-            <i class="fas fa-mosque"></i>
-            <span>Ruang Islami Creative</span>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="logo">
+        <i class="fas fa-mosque"></i>
+        <span>Ruang Islami Creative</span>
+    </div>
+    <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
+    <div class="navbar-menu" id="navbar-menu">
+        <a href="#kegiatan-section">Kegiatan</a>
+        <a href="#maps-section">Lokasi</a>
+        <a href="https://www.instagram.com/masjidalishlahsoreangindah" target="_blank"><i class="fas fa-bell"></i></a>
+    </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero">
+    <img src="/asset/logo al-ishlah.jpg" onerror="this.src='https://placehold.co/150x150/0d4726/ffc107?text=Logo+Masjid';" alt="Logo Masjid" class="profile-picture">
+    <h1>Ruang Islami Creative</h1>
+    <p>Pusat Dakwah Dan Pendidikan</p>
+</header>
+
+<!-- Kegiatan -->
+<section id="kegiatan-section" class="kegiatan">
+    <h2 class="section-title">Kegiatan Masjid</h2>
+    <div class="kegiatan-grid">
+        <div class="kegiatan-card">
+            <img src="/asset/picture/tadabbur.jpeg" alt="">
+            <h3>Kajian Tadabbur Quran</h3>
+            <p>Mengkaji dan merenungkan makna Al-Quran secara mendalam.</p>
         </div>
-        <div class="navbar-menu">
-            <a href="#kegiatan-section">Kegiatan</a>
-            <a href="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.839201019071!2d107.53726117442147!3d-7.02817906885312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ec3a19fd2d63%3A0xc728ef3ee5aadc99!2sAl%20-%20Ishlah!5e0!3m2!1sid!2sid!4v1754983576216!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">Google Maps</a>
-            <a href="https://www.instagram.com/masjidalishlahsoreangindah?igsh=MXA3YXBiMGdpamVsZA==" target="_blank" class="notification-bell">
-                <i class="fas fa-bell"></i>
-            </a>
+        <div class="kegiatan-card">
+            <img src="/asset/picture/mengaji.jpeg" alt="">
+            <h3>Tahfidz Qur'an</h3>
+            <p>Program menghafal Al-Quran untuk anak-anak dan dewasa.</p>
         </div>
-    </nav>
+        <div class="kegiatan-card">
+            <img src="/asset/picture/poto.jpeg" alt="">
+            <h3>Kajian Ahad Subuh</h3>
+            <p>Kajian rutin setelah shalat Subuh berjamaah.</p>
+        </div>
+        <div class="kegiatan-card">
+            <img src="/asset/picture/jumber.jpeg" alt="">
+            <h3>Jumat Berkah</h3>
+            <p>Berbagi makanan & minuman kepada jamaah setelah shalat Jumat.</p>
+        </div>
+    </div>
+    <div style="text-align:center;">
+        <a href="https://drive.google.com/drive/folders/1cPsgmGjMnOB11jceCYJ0ZrRA-DyF6B9X" target="_blank" class="btn">Lihat Dokumentasi</a>
+    </div>
+</section>
 
-    <!-- Hero Section -->
-    <header class="hero">
-        <img src="/asset/logo al-ishlah.jpg" onerror="this.onerror=null;this.src='https://placehold.co/150x150/0d4726/ffc107?text=Logo+Masjid';" alt="Logo Masjid Al-Ishlah" class="profile-picture">
-        <h1>Ruang Islami Creative</h1>
-        <p>Pusat Dakwah Dan Pendidikan</p>
-    </header>
+<!-- Maps -->
+<section id="maps-section" class="maps">
+    <h2 class="section-title">Lokasi Masjid</h2>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3500.9515451162824!2d107.5398361!3d-7.0281844!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ec3a19fd2d63%3A0xc728ef3ee5aadc99!2sAl%20-%20Ishlah!5e1!3m2!1sid!2sid!4v1754985307112!5m2!1sid!2sid" allowfullscreen loading="lazy"></iframe>
+</section>
 
-    <!-- Main Content Sections -->
-    <main class="main-content">
+<!-- Footer -->
+<footer class="footer">
+    <p>© 2025 Ruang Islami Creative - Dirgahayu ke-80 RI</p>
+</footer>
 
-        <!-- Section Kegiatan -->
-        <section id="kegiatan-section" class="section kegiatan">
-            <h2 class="section-title">Kegiatan Masjid</h2>
-            <p>
-                Masjid Al-Ishlah Soreang Indah secara rutin menyelenggarakan berbagai kegiatan keagamaan dan sosial untuk mempererat tali silaturahmi dan meningkatkan keimanan jamaah. Dokumentasi lengkap kegiatan kami dapat dilihat melalui tombol di bawah.
-            </p>
-            <div class="kegiatan-grid">
-                
-                <!-- Kajian Tadabbur Quran -->
-                <div class="kegiatan-card">
-                    <img src="/asset/picture/tadabbur.jpeg" alt="Gambar Kajian Tadabbur Quran">
-                    <h3>Kajian Tadabbur Quran</h3>
-                    <p>
-                        Kegiatan mengkaji dan merenungkan makna Al-Quran secara mendalam untuk meningkatkan pemahaman dan pengamalan.
-                    </p>
-                </div>
-                
-                <!-- Tahfidz Qur'an -->
-                <div class="kegiatan-card">
-                    <img src="/asset/picture/mengaji.jpeg" alt="Gambar Tahfidz Quran">
-                    <h3>Tahfidz Qur'an</h3>
-                    <p>
-                        Program menghafal Al-Quran yang diadakan secara rutin untuk anak-anak dan dewasa, dibimbing oleh para ustadz yang kompeten.
-                    </p>
-                </div>
-                
-                <!-- Kajian Ahad Subuh Berjama'ah -->
-                <div class="kegiatan-card">
-                    <img src="/asset/picture/poto.jpeg" alt="Gambar Kajian Ahad Subuh Berjama'ah">
-                    <h3>Kajian Ahad Subuh Berjama'ah</h3>
-                    <p>
-                        Kajian rutin setiap hari Ahad setelah shalat Subuh berjama'ah, membahas berbagai tema keislaman untuk bekal sehari-hari.
-                    </p>
-                </div>
+<script>
+document.getElementById('menu-toggle').addEventListener('click', function(){
+    document.getElementById('navbar-menu').classList.toggle('show');
+});
+</script>
 
-                <!-- Jumat Berkah -->
-                <div class="kegiatan-card">
-                    <img src="/asset/picture/jumber.jpeg" alt="Gambar Jumat Berkah">
-                    <h3>Jumat Berkah</h3>
-                    <p>
-                        Inisiatif berbagi makanan dan minuman kepada jamaah setelah shalat Jumat, sebagai wujud kepedulian sosial dan mempererat silaturahmi.
-                    </p>
-                </div>
-
-            </div>
-            
-            <div class="btn-container">
-                <a href="https://drive.google.com/drive/folders/1cPsgmGjMnOB11jceCYJ0ZrRA-DyF6B9X" target="_blank" class="btn">
-                    Lihat Dokumentasi Kegiatan
-                </a>
-            </div>
-        </section>
-
-        <!-- Section Google Maps -->
-        <section id="maps-section" class="section maps">
-            <h2 class="section-title">Lokasi Masjid</h2>
-            <p>Temukan lokasi Masjid Al-Ishlah Soreang Indah di peta berikut.</p>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3500.9515451162824!2d107.5398361!3d-7.0281844!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ec3a19fd2d63%3A0xc728ef3ee5aadc99!2sAl%20-%20Ishlah!5e1!3m2!1sid!2sid!4v1754985307112!5m2!1sid!2sid" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </section>
-
-
-        <!-- Section Coming Soon -->
-        <section id="coming-soon-section" class="section coming-soon">
-            <div class="content">
-                <h3>Sedang Dalam Pengembangan</h3>
-                <p>Website <span class="accent-text">Portofolio</span> sedang dalam pengembangan</p>
-                <p>Buletin Masjid Al-Ishlah - <span class="accent-text">Coming Soon</span></p>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <p>© 2025 Al-IshlahMedia Creative. Hak cipta dilindungi.</p>
-    </footer>
-
-    <script>
-        // JavaScript untuk memastikan tautan scroll berfungsi
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-    </script>
 </body>
 </html>
