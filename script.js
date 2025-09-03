@@ -22,7 +22,7 @@ const body = document.body
 const h1 = document.createElement('h1')
 
 const namaSaya = document.createElement('p')
-namaSaya.innerHTML = '<marquee>Ahlan Wasahlan Di Masjid Al-Ishlah</marquee>'
+namaSaya.innerHTML = '<marquee>Masjid Al-Ishlah Perumahan Soreang Indah</marquee>'
 // fn + windows + titik
 const namaKamu = document.createElement('b')
 
@@ -72,6 +72,21 @@ cards.forEach((card, index) => {
    container.appendChild(cardElement);
 });
 
+/*************  ✨ Windsurf Command ⭐  *************/
+/**
+ * Fetches the prayer times for Jakarta, Indonesia using the Aladhan API.
+ * The method parameter is set to 2, which corresponds to the Islamic
+ * Society of North America (ISNA) method.
+ *
+ * If the request is successful, the function returns an object with the
+ * prayer times for each of the five daily prayers in 24-hour format.
+ * If the request fails, the function returns null and logs an error to the
+ * console.
+ *
+ * @returns {Object|null} Object with prayer times or null if request fails.
+ * @throws {Error} If the request fails.
+ */
+/*******  598dc38a-f4e4-4b30-b92b-280ed5c380da  *******/
 async function fetchPrayerTimes() {
     try {
         const response = await fetch("https://api.aladhan.com/v1/timingsByCity?city=Jakarta&country=Indonesia&method=2");
