@@ -1,148 +1,197 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Informasi Estetik</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: rgb(0, 134, 9);
-            font-family: Arial, sans-serif;
-            flex-wrap: wrap;
-        }
-        .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            max-width: 1200px;
-        }
-        .info-container {
-            width: 100%;
-            max-width: 350px;
-            background: rgb(255, 255, 255);
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            overflow: hidden;
-            padding: 10px;
-            text-align: center;
-            
-        }
-        .info-container:hover{
-            box-shadow: 4px 4px 4px black;
-        }
-        .info-container img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        .info-container h2 {
-            color: #000000;
-            font-size: 20px;
-            margin: 10px 0;
-        }
-        .info-container p {
-            color: #666;
-            font-size: 14px;
-        }
-        @media (max-width: 768px) {
-            body {
-                align-items: center;
-            }
-        }
-        .katakata{
-            background-color: rgb(0, 49, 3);
-            border-radius: 10px;
-            color: #fff;
-            text-shadow: 3px 3px 3px#000000;
-        }
-        .navbar1 {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #00340200;
-    color: #fff;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
-    border-radius: 10%;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informasi Estetik 2.0</title>
+  <style>
+    /* =========================
+       Reset & Global
+    ========================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Montserrat", sans-serif;
+    }
 
-.navbar1 ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0;
-}
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #00c853, #0091ea);
+      color: #fff;
+      padding-bottom: 100px;
+    }
 
-.navbar1 ul li {
-    display: inline;
-}
+    /* =========================
+       Ayat / Motivasi
+    ========================== */
+    .katakata {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      padding: 25px;
+      margin: 30px 15px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      max-width: 1100px;
+    }
 
-.navbar1 ul li a {
-  width: 50px; 
-  height: 50px; 
-  background-color: rgb(0, 49, 3); 
-  border-radius: 50%; 
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-  font-size: 16px; 
-  text-align: center; 
-}
+    .katakata h1 {
+      font-size: 22px;
+      margin-bottom: 15px;
+      line-height: 1.7;
+      text-shadow: 1px 1px 3px #000;
+    }
 
-.navbar1 ul li a:hover {
-    background-color: rgb(0, 134, 9);
-    transform: translateY(-5px);
-}
-    </style>
+    .katakata p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #f1f1f1;
+    }
+
+    /* =========================
+       Card Container
+    ========================== */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      max-width: 1200px;
+    }
+
+    .info-container {
+      width: 100%;
+      max-width: 330px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 20px;
+      text-align: center;
+      transition: 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .info-container:hover {
+      transform: translateY(-8px) scale(1.03);
+    }
+
+    .info-container img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 15px;
+      margin-bottom: 12px;
+    }
+
+    .info-container h2 {
+      font-size: 22px;
+      margin: 10px 0;
+      color: #fff;
+      text-shadow: 1px 1px 2px #000;
+    }
+
+    .info-container p {
+      font-size: 15px;
+      color: #f1f1f1;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    /* =========================
+       Navbar Modern
+    ========================== */
+    .navbar1 {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 420px;
+      background: linear-gradient(90deg, #00c853, #0091ea);
+      padding: 12px 0;
+      border-radius: 50px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+
+    .navbar1 ul {
+      list-style: none;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar1 ul li a {
+      width: 55px;
+      height: 55px;
+      background-color: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .navbar1 ul li a svg {
+      fill: #fff;
+      width: 26px;
+      height: 26px;
+      transition: transform 0.3s ease;
+    }
+
+    .navbar1 ul li a:hover {
+      background-color: rgba(255,255,255,0.3);
+      transform: translateY(-6px);
+    }
+
+    .navbar1 ul li a:hover svg {
+      transform: scale(1.2);
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <div class="katakata">
-            <h1 style="text-align: center;">يٰٓاَيُّهَا الَّذِيْنَ اٰمَنُوْٓا اَنْفِقُوْا مِمَّا رَزَقْنٰكُمْ مِّنْ قَبْلِ اَنْ يَّأْتِيَ يَوْمٌ لَّا بَيْعٌ فِيْهِ وَلَا خُلَّةٌ وَّلَا شَفَاعَةٌ ۗوَالْكٰفِرُوْنَ هُمُ الظّٰلِمُوْنَ</h1>
-            <p style="text-align: center;">Artinya: "Wahai orang-orang yang beriman, infakkanlah sebagian dari rezeki yang telah Kami anugerahkan kepadamu sebelum datang hari (Kiamat) yang tidak ada (lagi) jual beli padanya (hari itu), tidak ada juga persahabatan yang akrab, dan tidak ada pula syafaat. Orang-orang kafir itulah orang-orang zalim." (QS Al-Baqarah: 254).</p>
-        </div>
-        <div class="info-container">
-            <img src="Zakat_Clipart_Hd_PNG__Hand_Ilustration_For_Zakat__Raster__Hand__Ramadan_PNG_Image_For_Free_Download-removebg-preview.png" alt="Gambar Informasi 1">
-            <h2>INFAQ</h2>
-            <p style="text-align: start; color: #000000;"></p>
-            <p style="text-align: start; color: #000000;">No Telp : +6285221733602 (Ibu Oka Wahyuni)</p>
-        </div>
-        
-        <div class="info-container">
-            <img src="Zakat_Clipart_Hd_PNG__Hand_Ilustration_For_Zakat__Raster__Hand__Ramadan_PNG_Image_For_Free_Download-removebg-preview.png" alt="Gambar Informasi 2">
-            <h2>Menyalur dan menerima Zakat Mal dan Fidya</h2>
-            <p style="text-align: start; color: #000000;"></p>
-            <p style="text-align: start; color: #000000;">HUB NO TELPON :</p>
-            <p style="text-align: start; color: #000000;">Bapa Dodi:</p>
-        </div>
-        
-        <!-- <div class="info-container">
-            <img src="Screenshot (671).png" alt="Gambar Informasi 3">
-            <h2>pemabangunan gedung tahap 2</h2>
-            <p style="text-align: start; color: #000000;">Bank : BTN SYARIAH An YAYASAN DAARULHIKAM Rek : 7763000750</p>
-            <p style="text-align: start; color: #000000;">No Telp : 082172313485</p>
-        </div>
-        <div class="info-container">
-            <img src="Desain Infaq, Infaq, Infak, Kotak Infaq PNG Transparan Clipart dan File PSD untuk Unduh Gratis.jfif" alt="Gambar Informasi 3">
-            <h2>Infaq Admin</h2>
-            <p style="text-align: start; color: #000000;">Bank : (BCA An Muhammad Farhan Rek : 5945029541)</p>
-            <p style="text-align: start; color: #000000;">No Telp : ###</p>
-        </div>
-        <div class="katakata">
-            <h1 style="text-align: center;">Salurkan Dana anda kepada para santri dan pemabangunan ponpes daarulhikam batam</h1>
-        </div>
-    </div> -->
-    <nav class="navbar1">
-        <ul>
-          <li><a href="index.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgb(255, 255, 255);transform: msFilter"><path d="m21.743 12.331-9-10c-.379-.422-1.107-.422-1.486 0l-9 10a.998.998 0 0 0-.17 1.076c.16.361.518.593.913.593h2v7a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-7h2a.998.998 0 0 0 .743-1.669z"></path></svg></a></li>
-        </ul>
-    </nav>
+
+  <!-- 🔹 Ayat / Motivasi -->
+  <div class="katakata">
+    <h1>يٰٓاَيُّهَا الَّذِيْنَ اٰمَنُوْٓا اَنْفِقُوْا مِمَّا رَزَقْنٰكُمْ...</h1>
+    <p>
+      Artinya: "Wahai orang-orang yang beriman, infakkanlah sebagian dari rezeki yang telah Kami anugerahkan kepadamu sebelum datang hari (Kiamat) yang tidak ada (lagi) jual beli padanya, tidak ada juga persahabatan yang akrab, dan tidak ada pula syafaat. Orang-orang kafir itulah orang-orang zalim." (QS Al-Baqarah: 254).
+    </p>
+  </div>
+
+  <!-- 🔹 Card Container -->
+  <div class="container">
+    <div class="info-container">
+      <img src="Zakat_Clipart.png" alt="Infaq">
+      <h2>INFAQ</h2>
+      <p>No Telp : +6285221733602 (Ibu Oka Wahyuni)</p>
+    </div>
+
+    <div class="info-container">
+      <img src="Zakat_Clipart.png" alt="Zakat">
+      <h2>Zakat Mal & Fidya</h2>
+      <p>Hub No Telp : Bapak Dodi</p>
+    </div>
+  </div>
+
+  <!-- 🔹 Navbar -->
+  <nav class="navbar1">
+    <ul>
+      <li>
+        <a href="index.html">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="m21.743 12.331-9-10c-.379-.422-1.107-.422-1.486 0l-9 10a.998.998 0 0 0-.17 1.076c.16.361.518.593.913.593h2v7a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-4h4v4a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-7h2a.998.998 0 0 0 .743-1.669z"></path>
+          </svg>
+        </a>
+      </li>
+    </ul>
+  </nav>
 </body>
 </html>
