@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Masjid Al-Ishlah</title>
 
@@ -19,23 +18,25 @@
 
   <style>
     * {margin:0;padding:0;box-sizing:border-box;font-family:"Montserrat",sans-serif;}
-    body {background:#f9fafb;color:#1f2937;}
+    body {background:#f9fafb;color:#1f2937;line-height:1.6;}
 
     /* Navbar */
     .navbar {
       position:fixed;top:0;left:0;width:100%;
-      padding:1.2rem 8%;
-      background:rgba(255,255,255,0.7);backdrop-filter:blur(12px);
+      padding:1rem 8%;
+      background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);
       display:flex;justify-content:space-between;align-items:center;
-      z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.05);
+      z-index:1000;box-shadow:0 4px 15px rgba(0,0,0,0.08);
     }
-    .navbar .logo {font-size:1.8rem;font-weight:700;color:#047857;text-decoration:none;}
+    .navbar .logo {
+      font-size:1.6rem;font-weight:700;color:#047857;text-decoration:none;
+    }
     .navbar .links a {
-      margin-left:2rem;font-size:1rem;font-weight:600;color:#374151;
+      margin-left:1.5rem;font-size:1rem;font-weight:600;color:#374151;
       text-decoration:none;transition:0.3s;
     }
     .navbar .links a:hover {color:#059669;}
-    #menu-btn {display:none;font-size:1.5rem;cursor:pointer;}
+    #menu-btn {display:none;font-size:1.5rem;cursor:pointer;color:#047857;}
 
     /* Hero */
     .home {
@@ -44,13 +45,13 @@
       background:linear-gradient(to right,#ecfdf5,#f0fdf4);padding:2rem;
     }
     .home img {
-      max-width:140px; /* perkecil logo */
+      max-width:120px;
       margin-bottom:1rem;
     }
-    .home h3 {font-size:2.3rem;font-weight:700;color:#065f46;}
-    .home p {font-size:1.1rem;margin:1rem auto;max-width:600px;color:#4b5563;}
+    .home h3 {font-size:2.2rem;font-weight:700;color:#065f46;}
+    .home p {font-size:1.1rem;margin:1rem auto;max-width:650px;color:#374151;}
     .home a {
-      display:inline-block;margin-top:1rem;padding:12px 28px;background:#10b981;
+      display:inline-block;margin-top:1.5rem;padding:12px 30px;background:#10b981;
       color:white;border-radius:8px;font-weight:600;text-decoration:none;transition:0.3s;
     }
     .home a:hover {background:#059669;}
@@ -66,10 +67,10 @@
     }
     .box {
       background:white;border-radius:16px;padding:2rem;text-align:center;
-      box-shadow:0 6px 20px rgba(0,0,0,0.08);transition:transform 0.3s;
+      box-shadow:0 6px 18px rgba(0,0,0,0.08);transition:transform 0.3s;
     }
     .box:hover {transform:translateY(-6px);}
-    .box img {max-width:80px;margin-bottom:1rem;}
+    .box img {max-width:80px;margin-bottom:1rem;border-radius:8px;}
     .box h3 {font-size:1.3rem;margin-bottom:.5rem;color:#047857;}
     .box p {font-size:.95rem;color:#4b5563;}
 
@@ -77,7 +78,8 @@
     .footer {
       background:#064e3b;
       color:white;
-      padding:3rem 8% 2rem;
+      padding:3rem 8% 1.5rem;
+      margin-top:3rem;
     }
     .footer .box-container {
       display:grid;
@@ -87,17 +89,17 @@
     .footer h3 {
       margin-bottom:1rem;
       font-size:1.2rem;
+      font-weight:600;
       color:#ffffff;
       border-bottom:2px solid #10b981;
       display:inline-block;
-      padding-bottom:5px;
+      padding-bottom:6px;
     }
     .footer .link {
       display:block;
       margin:.5rem 0;
       color:#f0fdf4;
       font-size:1rem;
-      font-weight:500;
       text-decoration:none;
       transition:0.3s;
     }
@@ -112,13 +114,21 @@
     .footer .share a {
       display:inline-block;
       margin:.5rem;
-      font-size:1.5rem;
+      font-size:1.4rem;
       color:#f0fdf4;
       transition:0.3s;
     }
     .footer .share a:hover {
       color:#34d399;
-      transform:scale(1.2);
+      transform:scale(1.15);
+    }
+    .footer iframe {
+      width:100%;
+      height:350px;
+      border:0;
+      border-radius:12px;
+      box-shadow:0 4px 15px rgba(0,0,0,0.15);
+      margin-top:1.5rem;
     }
     .credit {
       text-align:center;
@@ -126,11 +136,22 @@
       font-size:.95rem;
       color:#d1d5db;
     }
+    .credit span {color:#34d399;font-weight:600;}
 
     /* Responsive */
     @media(max-width:768px){
       .navbar .links {display:none;}
       #menu-btn {display:block;}
+      .navbar .links.mobile {
+        display:flex;flex-direction:column;
+        background:white;padding:1rem;
+        position:absolute;top:60px;right:20px;
+        border-radius:10px;
+        box-shadow:0 4px 20px rgba(0,0,0,0.15);
+      }
+      .navbar .links.mobile a {
+        margin:0.5rem 0;color:#065f46;
+      }
     }
   </style>
 </head>
@@ -143,7 +164,7 @@
       <div class="links" id="navLinks">
         <a href="#home">Home</a>
         <a href="#about">About</a>
-        <a href="#Profiles">Program</a>
+        <a href="#program">Program</a>
         <a href="gallery.html">Gallery</a>
         <a href="#contact">Contact</a>
       </div>
@@ -155,26 +176,26 @@
   <section class="home" id="home">
     <img src="logo al-ishlah.png" alt="Logo Masjid">
     <h3>Website Masjid Al-Ishlah</h3>
-    <p>Ahlan Wasahlan di Website Masjid Al-Ishlah, pusat dakwah & pendidikan Soreang Indah.</p>
+    <p>Ahlan Wasahlan di Website Masjid Al-Ishlah, pusat dakwah & pendidikan di kawasan Soreang Indah.</p>
     <a href="#about">Selengkapnya</a>
   </section>
 
   <!-- About -->
   <section id="about">
     <h1 class="heading">Tentang <span>Masjid Al-Ishlah</span></h1>
-    <p style="text-align:center;max-width:700px;margin:auto;color:#4b5563;">
+    <p style="text-align:center;max-width:750px;margin:auto;color:#4b5563;font-size:1rem;">
       Masjid Al-Ishlah adalah pusat dakwah & pendidikan di kawasan Soreang Indah. 
-      Selain tempat ibadah, juga aktif dengan kegiatan keislaman, pendidikan Al-Qur’an, 
-      serta program sosial yang bermanfaat bagi masyarakat.
+      Selain tempat ibadah, masjid ini aktif menyelenggarakan kegiatan keislaman, 
+      pendidikan Al-Qur’an, serta program sosial yang bermanfaat bagi masyarakat.
     </p>
   </section>
 
   <!-- Programs -->
-  <section class="Profiles" id="Profiles">
+  <section id="program">
     <h1 class="heading">Program <span>Masjid</span></h1>
     <div class="box-container">
       <div class="box"><img src="/dokum/logo.jpg"><h3>TPQ</h3><p>Maghrib Mengaji & DTA Al-Ishlah</p></div>
-      <div class="box"><img src="/dokum/logo ramadhan .jpg"><h3>Ramadhan</h3><p>Cahaya Ramadhan & Pesantren Kilat Ramadhan</p></div>
+      <div class="box"><img src="/dokum/logo ramadhan .jpg"><h3>Ramadhan</h3><p>Cahaya Ramadhan & Pesantren Kilat</p></div>
       <div class="box"><img src="/dokum/logo rishlah.jpg"><h3>RISHLAH</h3><p>Remaja Islam Masjid Al-Ishlah</p></div>
       <div class="box"><img src="/dokum/logo pengajian .jpg"><h3>Pengajian</h3><p>Majelis Ta’lim & Kajian Tematik</p></div>
       <div class="box">
@@ -192,13 +213,13 @@
         <h3>Quick Links</h3>
         <a href="#home" class="link"><i class="fas fa-angle-right"></i> Home</a>
         <a href="#about" class="link"><i class="fas fa-angle-right"></i> About</a>
-        <a href="#Profiles" class="link"><i class="fas fa-angle-right"></i> Program</a>
+        <a href="#program" class="link"><i class="fas fa-angle-right"></i> Program</a>
         <a href="gallery.html" class="link"><i class="fas fa-angle-right"></i> Gallery</a>
       </div>
       <div class="box">
         <h3>Contact Info</h3>
-        <a href="#" class="link"><i class="fas fa-phone"></i>+62 821-2100-0429</a>
-        <a href="#" class="link"><i class="fas fa-map"></i> Soreang Indah, Kab. Bandung</a>
+        <a href="tel:+6282121000429" class="link"><i class="fas fa-phone"></i> +62 821-2100-0429</a>
+        <a href="#" class="link"><i class="fas fa-map-marker-alt"></i> Soreang Indah, Kab. Bandung</a>
       </div>
       <div class="box">
         <h3>Follow Us</h3>
@@ -212,15 +233,12 @@
     </div>
 
     <!-- Google Maps -->
-    <div style="margin-top:2rem; border-radius:12px; overflow:hidden; box-shadow:0 6px 20px rgba(0,0,0,0.15);">
-      <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3573.136113056824!2d107.53983609999999!3d-7.0281844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ec3a19fd2d63%3A0xc728ef3ee5aadc99!2sAl%20-%20Ishlah!5e1!3m2!1sen!2sid!4v1759218615650!5m2!1sen!2sid" 
-        width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" 
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
-    </div>
+    <iframe 
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3573.136113056824!2d107.53983609999999!3d-7.0281844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ec3a19fd2d63%3A0xc728ef3ee5aadc99!2sAl%20-%20Ishlah!5e1!3m2!1sen!2sid!4v1759218615650!5m2!1sen!2sid" 
+      allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
 
-    <div class="credit">created by <span>Al-Ishlah_Mediacreative</span> | all rights reserved!</div>
+    <div class="credit">Created by <span>Al-Ishlah_Mediacreative</span> | All Rights Reserved © 2025</div>
   </section>
 
   <!-- AOS -->
@@ -232,15 +250,7 @@
     const menuBtn = document.getElementById("menu-btn");
     const navLinks = document.getElementById("navLinks");
     menuBtn.onclick = () => {
-      navLinks.style.display = navLinks.style.display === "flex" ? "none" : "flex";
-      navLinks.style.flexDirection = "column";
-      navLinks.style.background = "white";
-      navLinks.style.padding = "1rem";
-      navLinks.style.position = "absolute";
-      navLinks.style.top = "60px";
-      navLinks.style.right = "20px";
-      navLinks.style.borderRadius = "10px";
-      navLinks.style.boxShadow = "0 4px 20px rgba(0,0,0,0.1)";
+      navLinks.classList.toggle("mobile");
     }
   </script>
 </body>
