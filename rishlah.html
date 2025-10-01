@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Layanan Zakat - Masjid Al-Ishlah</title>
+  <title>Remaja Masjid Al-Ishlah</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -15,6 +15,7 @@
       color: #111827;
       line-height: 1.7;
     }
+
     /* Navbar */
     .navbar {
       display: flex;
@@ -48,7 +49,7 @@
 
     /* Konten */
     .content {
-      max-width: 950px;
+      max-width: 1000px;
       margin: auto;
       background: #fff;
       padding: 30px;
@@ -57,47 +58,43 @@
     }
     .content p { color: #374151; margin-bottom: 1rem; }
 
-    /* Jenis Zakat */
-    .zakat-grid {
+    /* Kegiatan Remaja Masjid */
+    .activities {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
       margin-top: 30px;
     }
-    .zakat-card {
+    .activity-card {
       background: #f3f4f6;
       padding: 20px;
       border-radius: 12px;
       text-align: center;
-      transition: 0.3s;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: 0.3s;
     }
-    .zakat-card:hover { background: #e6fdf3; transform: translateY(-5px); }
-    .zakat-card i {
+    .activity-card:hover { transform: translateY(-5px); }
+    .activity-card i {
       font-size: 2rem;
       color: #10b981;
       margin-bottom: 10px;
     }
-    .zakat-card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+    .activity-card h3 { margin-bottom: 10px; }
 
-    /* CTA */
-    .cta {
-      text-align: center;
-      margin-top: 40px;
+    /* Galeri */
+    .galeri {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 30px;
     }
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 12px 25px;
-      border-radius: 8px;
-      background: #10b981;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      text-decoration: none;
+    .galeri img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: 0.3s;
     }
-    .btn:hover { background: #059669; }
+    .galeri img:hover { transform: scale(1.05); }
 
     /* Footer */
     footer {
@@ -128,7 +125,7 @@
       text-decoration: none;
       transition: 0.3s;
     }
-    .footer .link i { margin-right: 8px; color: #10b981; }
+    .footer .link:visited { color: #111827; }
     .footer .link:hover { color: #059669; margin-left: 5px; }
     .footer .share a {
       display: inline-block;
@@ -175,50 +172,51 @@
       <a href="index.html">Beranda</a>
       <a href="index.html#program">Program</a>
       <a href="index.html#dokumentasi">Dokumentasi</a>
-      <a href="#">Tentang</a>
+      <a href="lazis al ishlah.html">Layanan Zakat Al-Ishlah</a>
+      <a href="remaja-masjid.html">Remaja Masjid</a>
       <a href="kontak.html">Kontak</a>
     </div>
     <div class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></div>
   </nav>
 
-  <!-- Konten Layanan Zakat -->
+  <!-- Konten Remaja Masjid -->
   <section>
     <div class="content">
-      <h1 class="heading">Layanan <span>Zakat</span></h1>
+      <h1 class="heading">Remaja <span>Masjid Al-Ishlah</span></h1>
       <p>
-        Masjid Al-Ishlah menyediakan layanan zakat yang terpercaya, amanah, dan transparan. 
-        Jamaah dapat menyalurkan zakat fitrah, zakat maal, maupun infak dan sedekah 
-        melalui program layanan zakat 2.0 yang terintegrasi secara modern.
+        Remaja Masjid Al-Ishlah merupakan wadah bagi generasi muda Islam untuk menyalurkan kreativitas, 
+        meningkatkan ukhuwah, serta memperkuat iman melalui berbagai kegiatan positif dan bermanfaat.
       </p>
 
-      <h2>Jenis Zakat</h2>
-      <div class="zakat-grid">
-        <div class="zakat-card">
-          <i class="fas fa-bowl-rice"></i>
-          <h3>Zakat Fitrah</h3>
-          <p>Zakat wajib setiap muslim di bulan Ramadhan.</p>
+      <h2>Kegiatan Remaja Masjid</h2>
+      <div class="activities">
+        <div class="activity-card">
+          <i class="fas fa-book"></i>
+          <h3>Kajian Pemuda</h3>
+          <p>Kajian Islam tematik yang relevan dengan kehidupan remaja.</p>
         </div>
-        <div class="zakat-card">
-          <i class="fas fa-coins"></i>
-          <h3>Zakat Maal</h3>
-          <p>Zakat atas harta, emas, perak, penghasilan, dan tabungan.</p>
+        <div class="activity-card">
+          <i class="fas fa-futbol"></i>
+          <h3>Olahraga Sunnah</h3>
+          <p>Kegiatan futsal, panahan, dan olahraga sunnah lainnya.</p>
         </div>
-        <div class="zakat-card">
+        <div class="activity-card">
           <i class="fas fa-hand-holding-heart"></i>
-          <h3>Infak</h3>
-          <p>Sumbangan sukarela untuk membantu sesama.</p>
+          <h3>Aksi Sosial</h3>
+          <p>Bakti sosial, gotong royong, dan santunan bersama masyarakat.</p>
         </div>
-        <div class="zakat-card">
-          <i class="fas fa-seedling"></i>
-          <h3>Sedekah</h3>
-          <p>Pemberian ikhlas untuk keberkahan hidup.</p>
+        <div class="activity-card">
+          <i class="fas fa-microphone"></i>
+          <h3>Lomba & Event</h3>
+          <p>Lomba MTQ, adzan, ceramah, dan event kreatif Islami.</p>
         </div>
       </div>
 
-      <div class="cta">
-        <h2>Salurkan Zakat Anda</h2>
-        <p>Jadilah bagian dari keberkahan dengan menyalurkan zakat melalui Masjid Al-Ishlah.</p>
-        <a href="https://wa.me/0821-2100-0429" target="_blank" class="btn"><i class="fab fa-whatsapp"></i> Hubungi Petugas Zakat</a>
+      <h2>Galeri Remaja Masjid</h2>
+      <div class="galeri">
+        <img src="remaja1.jpg" alt="Kegiatan Kajian Pemuda">
+        <img src="remaja2.jpg" alt="Olahraga Sunnah">
+        <img src="remaja3.jpg" alt="Aksi Sosial">
       </div>
     </div>
   </section>
@@ -236,9 +234,8 @@
           <a href="index.html" class="link"><i class="fas fa-angle-right"></i>Beranda</a>
           <a href="index.html#program" class="link"><i class="fas fa-angle-right"></i>Program</a>
           <a href="index.html#dokumentasi" class="link"><i class="fas fa-angle-right"></i>Dokumentasi</a>
-          <a href="rishlah.html" class="link"><i class="fas fa-angle-right"></i>Dokumentasi</a>
           <a href="lazis al ishlah.html" class="link"><i class="fas fa-angle-right"></i>Layanan Zakat</a>
-          <a href="#" class="link"><i class="fas fa-angle-right"></i>Tentang</a>
+          <a href="remaja-masjid.html" class="link"><i class="fas fa-angle-right"></i>Remaja Masjid</a>
           <a href="kontak.html" class="link"><i class="fas fa-angle-right"></i>Kontak</a>
         </div>
         <div class="box">
@@ -256,7 +253,7 @@
         </div>
       </div>
       <div class="credit">
-        Dibuat oleh <span>Tim IT Masjid Al-Ishlah</span>
+        Dibuat  oleh <span>Tim IT Masjid Al-Ishlah</span>
       </div>
     </div>
   </footer>
