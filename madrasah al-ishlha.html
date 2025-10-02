@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maghrib Mengaji & Madrasah - Masjid Al-Ishlah</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: #f9fafb;
+      color: #111827;
+      line-height: 1.7;
+    }
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: #ffffff;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .navbar img { height: 45px; }
+    .navbar .links {
+      display: flex;
+      gap: 1.5rem;
+    }
+    .navbar .links a {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #111827;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .navbar .links a:hover { color: #059669; }
+    .menu-toggle { display: none; font-size: 1.6rem; cursor: pointer; color: #065f46; }
+
+    /* Hero */
+    .hero {
+      background: url('tpq-hero.jpg') center/cover no-repeat;
+      height: 65vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+    .hero-content h1 { font-size: 2.5rem; margin: 0; }
+    .hero-content p { margin-top: 10px; font-size: 1.1rem; }
+
+    /* Section umum */
+    section { padding: 60px 20px; max-width: 1100px; margin: auto; }
+    h2 { color: #065f46; font-weight: 700; margin-bottom: 1rem; }
+
+    /* Program */
+    .program {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .program .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      transition: 0.3s;
+    }
+    .program .card:hover { transform: translateY(-5px); }
+    .program .card h3 { color: #10b981; margin-top: 0; }
+
+    /* Jadwal */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    }
+    th, td {
+      padding: 15px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    th { background: #10b981; color: #fff; }
+
+    /* Galeri */
+    .galeri {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 15px;
+    }
+    .galeri img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      transition: 0.3s;
+    }
+    .galeri img:hover { transform: scale(1.05); }
+
+    /* Footer */
+    footer {
+      background: #f3f4f6;
+      color: #111827;
+      padding: 50px 20px;
+      border-top: 2px solid #e5e7eb;
+    }
+    .footer .box-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      text-align: left;
+    }
+    footer h3 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #065f46;
+      border-bottom: 2px solid #10b981;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .footer .link {
+      display: block;
+      margin: 8px 0;
+      font-size: 15px;
+      color: #111827;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .footer .link:hover { color: #059669; margin-left: 5px; }
+    .footer .share a {
+      display: inline-block;
+      margin: 0.4rem;
+      font-size: 1.4rem;
+      color: #111827;
+      transition: 0.3s;
+    }
+    .footer .share a:hover { transform: scale(1.2); }
+    .credit { text-align:center; margin-top:2rem; font-size:.95rem; }
+    .credit span { color:#10b981; font-weight:600; }
+
+    /* Popup */
+    .popup {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 2000;
+      display: none;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    .popup-content {
+      background: #ffffff;
+      color: #111827;
+      padding: 20px 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+      width: 300px;
+      position: relative;
+    }
+    .popup-content h3 {margin:0 0 10px; color:#065f46;}
+    .popup-content p {font-size: 14px; color:#374151;}
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
+      color: #999;
+    }
+    .close:hover {color: #333;}
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(30px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .navbar .links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 65px;
+        right: 20px;
+        background: #fff;
+        padding: 1rem 1.5rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      }
+      .navbar .links.active { display: flex; }
+      .menu-toggle { display: block; }
+      .hero-content h1 { font-size: 1.8rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+  <img src="logo al-ishlah.png" alt="Logo Masjid">
+  <div class="links" id="navLinks">
+    <a href="index.html">Beranda</a>
+    <a href="index.html#program">Program</a>
+    <a href="index.html#dokumentasi">Dokumentasi</a>
+    <a href="index.html#tentang">Tentang</a>
+    <a href="madrasah-al-ishlah.html">Pendidikan Al-Ishlah</a>
+    <a href="rishlah.html">Remaja Masjid</a>
+    <a href="lazis-al-ishlah.html">Layanan Zakat</a>
+    <a href="kontak.html">Kontak</a>
+  </div>
+</nav>
+    </div>
+    <div class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Maghrib Mengaji Al-Ishlah & DTA Al-Ishlah </h1>
+      <p>Perumahan Soreang Indah - Mencetak generasi cerdas Qur’ani </p>
+    </div>
+  </section>
+
+  <!-- Program -->
+  <section id="program">
+    <h2>Program Pendidikan Al-Ishlah</h2>
+    <div class="program">
+      <div class="card">
+        <h3>Maghrib Mengaji</h3>
+        <p>Pembelajaran baca tulis Al-Qur’an dengan metode iqro dan tahsin yang didirikan oleh bapa haji amir martajuli & bapa sofyan dkm al-ishlah</p>
+      </div>
+      <div class="card">
+        <h3>Madrasah Diniyah</h3>
+        <p>Mengajarkan dasar-dasar fiqih, akidah, akhlak, dan doa sehari-hari.</p>
+      </div>
+      <div class="card">
+        <h3>Hafalan Juz Amma</h3>
+        <p>Program tahfidz juz amma dengan pendampingan ustadz/ustadzah.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Jadwal -->
+  <section id="jadwal">
+    <h2>Jadwal Kegiatan</h2>
+    <table>
+      <tr>
+        <th>Hari</th>
+        <th>Waktu</th>
+        <th>Kegiatan</th>
+      </tr>
+      <tr>
+        <td>Senin - Jumat</td>
+        <td>Ba'da Maghrib - Selesai</td>
+        <td>Maghrib Mengaji Al-Ishlah</td>
+      </tr>
+      <td>Senin - Jumat</td>
+        <td>08.00 - 10.00</td>
+        <td>Paud AL-Ishlah</td>
+      <tr>
+        <td>Senin- Jumat</td>
+        <td>14.30 - 16.00</td>
+        <td>Madrasah Diniyah</td>
+      </tr>
+      <tr>
+        <td>Sabtu & Minggu</td>
+        <td>LIBUR</td>
+        <td>Maghrib Mengaji Al-Ishlah & DTA Al-Ishlah </td>
+      </tr>
+       <td>Sabtu & Minggu</td>
+        <td>LIBUR</td>
+        <td>Paud Al-Ishlah </td>
+    </table>
+  </section>
+
+  <!-- Galeri -->
+  <section id="galeri">
+    <h2>Dokumentasi Kegiatan</h2>
+    <div class="galeri">
+      <img src="/dokum/20240403_135224.heic" alt="Belajar TPQ">
+      <img src="" alt="Madrasah Diniyah">
+      <img src="" alt="Hafalan Juz Amma">
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="kontak">
+    <div class="footer">
+      <div class="box-container">
+        <div class="box">
+          <h3>Tentang Kami</h3>
+          <p>Maghrib Mengaji  & Madrasah Masjid Al-Ishlah berkomitmen mendidik generasi cerdas Qur’ani dengan ilmu agama yang kokoh.</p>
+        </div>
+        <div class="box">
+          <h3>Link Cepat</h3>
+         <a href="#" class="link"><i class="fas fa-angle-right"></i>Beranda</a>
+          <a href="#program" class="link"><i class="fas fa-angle-right"></i>Program</a>
+          <a href="#dokumentasi" class="link"><i class="fas fa-angle-right"></i>Dokumentasi</a>
+          <a href="kontak.html" class="link"><i class="fas fa-angle-right"></i>Kontak kami</a>
+          <a href="lazis al ishlah.html" class="link"><i class="fas fa-angle-right"></i>Layanan Zakat</a>
+          <a href="madrasah al-ishlha.html" class="link"><i class="fas fa-angle-right"></i>Layanan Zakat</a>
+          <a href="rishlah.html" class="link"><i class="fas fa-angle-right"></i>Remaja Masjid Al-Ishlah</a>
+          <a href="#" class="link"><i class="fas fa-angle-right"></i>Tentang</a>
+        </div>
+        <div class="box">
+          <h3>Ikuti Kami</h3>
+          <div class="share">
+            <a href="#" class="fab fa-facebook"></a>
+            <a href="#" class="fab fa-whatsapp"></a>
+            <a href="https://www.instagram.com/masjidalishlahsoreangindah?igsh=dmVpNnJ1cG93NmI5" class="fab fa-instagram"></a>
+            <a href="#" class="fab fa-youtube"></a>
+          </div>
+        </div>
+        <div class="box">
+          <h3>Lokasi</h3>
+          <p>Masjid Al-Ishlah, Perumahan Soreang Indah</p>
+          <iframe src="" width="100%" height="200" style="border:0;" allowfullscreen></iframe>
+        </div>
+      </div>
+      <div class="credit">
+        Dibuat oleh <span>Tim IT Remaja Masjid Al-Ishlah</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Popup -->
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close" id="closePopup">&times;</span>
+      <h3>📢 Pengumuman!</h3>
+      <p>Pendaftaran santri baru Maghrib Megaji & Madrasah sudah dibuka. Hubungi pengurus madrasah  untuk info lebih lanjut.</p>
+    </div>
+  </div>
+
+  <script>
+    // Navbar toggle
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+    // Popup
+    window.onload = function() {
+      setTimeout(() => {
+        document.getElementById("popup").style.display = "block";
+      }, 2000);
+    };
+    document.getElementById("closePopup").onclick = function() {
+      document.getElementById("popup").style.display = "none";
+    };
+  </script>
+</body>
+</html>
