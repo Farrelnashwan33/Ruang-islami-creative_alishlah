@@ -1,271 +1,484 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Remaja Masjid Al-Ishlah</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <style>
-    body {
-      font-family: 'Montserrat', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f9fafb;
-      color: #111827;
-      line-height: 1.7;
-    }
-
-    /* Navbar */
-    .navbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: #ffffff;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-    }
-    .navbar img { height: 45px; }
-    .navbar .links {
-      display: flex;
-      gap: 1.5rem;
-    }
-    .navbar .links a {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #111827;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .navbar .links a:hover { color: #059669; }
-    .menu-toggle { display: none; font-size: 1.6rem; cursor: pointer; color: #065f46; }
-
-    h1, h2, h3 { color: #065f46; font-weight: 700; }
-    section { padding: 60px 20px; }
-    .heading span { color: #10b981; }
-
-    /* Konten */
-    .content {
-      max-width: 1000px;
-      margin: auto;
-      background: #fff;
-      padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-    }
-    .content p { color: #374151; margin-bottom: 1rem; }
-
-    /* Kegiatan Remaja Masjid */
-    .activities {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin-top: 30px;
-    }
-    .activity-card {
-      background: #f3f4f6;
-      padding: 20px;
-      border-radius: 12px;
-      text-align: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-      transition: 0.3s;
-    }
-    .activity-card:hover { transform: translateY(-5px); }
-    .activity-card i {
-      font-size: 2rem;
-      color: #10b981;
-      margin-bottom: 10px;
-    }
-    .activity-card h3 { margin-bottom: 10px; }
-
-    /* Galeri */
-    .galeri {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 15px;
-      margin-top: 30px;
-    }
-    .galeri img {
-      width: 100%;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      transition: 0.3s;
-    }
-    .galeri img:hover { transform: scale(1.05); }
-
-    /* Footer */
-    footer {
-      background: #f3f4f6;
-      color: #111827;
-      padding: 50px 20px;
-      border-top: 2px solid #e5e7eb;
-    }
-    .footer .box-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 2rem;
-      text-align: left;
-    }
-    footer h3 {
-      font-size: 18px;
-      margin-bottom: 15px;
-      color: #065f46;
-      border-bottom: 2px solid #10b981;
-      display: inline-block;
-      padding-bottom: 5px;
-    }
-    .footer .link {
-      display: block;
-      margin: 8px 0;
-      font-size: 15px;
-      color: #111827;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-    .footer .link:visited { color: #111827; }
-    .footer .link:hover { color: #059669; margin-left: 5px; }
-    .footer .share a {
-      display: inline-block;
-      margin: 0.4rem;
-      font-size: 1.4rem;
-      color: #111827;
-      transition: 0.3s;
-    }
-    .footer .share a:hover { transform: scale(1.2); }
-    .footer iframe {
-      width: 100%;
-      height: 300px;
-      border: 0;
-      border-radius: 12px;
-      margin-top: 1.5rem;
-    }
-    .credit { text-align:center; margin-top:2rem; font-size:.95rem; }
-    .credit span { color:#10b981; font-weight:600; }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .navbar .links {
-        display: none;
-        flex-direction: column;
-        position: absolute;
-        top: 65px;
-        right: 20px;
-        background: #fff;
-        padding: 1rem 1.5rem;
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-      }
-      .navbar .links.active { display: flex; }
-      .menu-toggle { display: block; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Remaja Islam Masjid Al-Ishlah (Risalah) - Wadah pembinaan remaja muslim yang aktif, kreatif, dan berakhlak mulia.">
+    <title>Risalah - Remaja Islam Masjid Al-Ishlah</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-green': '#1a6b4a',
+                        'primary-green-dark': '#145239',
+                        'primary-green-light': '#2d7a5a',
+                        'accent-gold': '#d4af37',
+                        'accent-gold-light': '#e8c547',
+                        'cream': '#faf8f3',
+                        'off-white': '#f5f3ee',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .font-heading {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
 </head>
-<body>
-
-  <!-- Navbar -->
-  <nav class="navbar">
-    <img src="logo al-ishlah.png" alt="Logo Masjid">
-    <div class="links" id="navLinks">
-      <a href="index.html">Beranda</a>
-      <a href="index.html#program">Program</a>
-      <a href="index.html#dokumentasi">Dokumentasi</a>
-      <a href="lazis al ishlah.html">Layanan Zakat Al-Ishlah</a>
-      <a href="remaja-masjid.html">Remaja Masjid</a>
-      <a href="kontak.html">Kontak</a>
-    </div>
-    <div class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></div>
-  </nav>
-
-  <!-- Konten Remaja Masjid -->
-  <section>
-    <div class="content">
-      <h1 class="heading">Remaja <span>Masjid Al-Ishlah</span></h1>
-      <p>
-        Remaja Masjid Al-Ishlah merupakan wadah bagi generasi muda Islam untuk menyalurkan kreativitas, 
-        meningkatkan ukhuwah, serta memperkuat iman melalui berbagai kegiatan positif dan bermanfaat.
-      </p>
-
-      <h2>Kegiatan Remaja Masjid</h2>
-      <div class="activities">
-        <div class="activity-card">
-          <i class="fas fa-book"></i>
-          <h3>Kajian Pemuda</h3>
-          <p>Kajian Islam tematik yang relevan dengan kehidupan remaja.</p>
+<body class="bg-cream text-gray-800">
+    
+    <!-- Navigation Bar -->
+    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="index.html" class="flex items-center space-x-3">
+                        <img src="dokum/logo.jpg" alt="Logo Masjid Al-Ishlah" class="h-12 w-12 md:h-14 md:w-14 object-contain rounded-full bg-white p-1">
+                        <span class="font-heading font-bold text-lg md:text-xl text-primary-green hidden sm:block">Masjid Al-Ishlah</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex lg:items-center lg:space-x-1">
+                    <a href="index.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Beranda</a>
+                    <a href="infaq.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Program</a>
+                    <a href="gallery.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Galeri</a>
+                    <a href="index.html#kontak" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Kontak</a>
+                    <a href="pendidikan.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Pendidikan</a>
+                    <a href="rishlah.html" class="px-4 py-2 rounded-lg text-primary-green font-medium hover:bg-green-50 transition-colors">Risalah</a>
+                    <a href="infaq.html" class="ml-4 px-6 py-2 bg-primary-green text-white rounded-lg font-medium hover:bg-primary-green-dark transition-colors shadow-md">Donasi</a>
+                </div>
+                
+                <!-- Mobile Hamburger Menu -->
+                <button id="hamburger-menu" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none">
+                    <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
+                    <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
+                </button>
+            </div>
         </div>
-        <div class="activity-card">
-          <i class="fas fa-futbol"></i>
-          <h3>Olahraga Sunnah</h3>
-          <p>Kegiatan futsal, panahan, dan olahraga sunnah lainnya.</p>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-xl border-t">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <a href="index.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Beranda</a>
+                <a href="infaq.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Program</a>
+                <a href="gallery.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Galeri</a>
+                <a href="index.html#kontak" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Kontak</a>
+                <a href="pendidikan.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Pendidikan</a>
+                <a href="rishlah.html" class="block px-4 py-3 text-primary-green font-medium rounded-lg bg-green-50">Risalah</a>
+                <a href="infaq.html" class="block px-4 py-3 bg-primary-green text-white font-medium rounded-lg text-center mt-2">Donasi</a>
+            </div>
         </div>
-        <div class="activity-card">
-          <i class="fas fa-hand-holding-heart"></i>
-          <h3>Aksi Sosial</h3>
-          <p>Bakti sosial, gotong royong, dan santunan bersama masyarakat.</p>
+    </nav>
+    
+    <!-- Page Header -->
+    <section class="pt-32 pb-16 bg-gradient-to-r from-primary-green-dark to-primary-green text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="dokum/Muslim Friends PNG Transparent, Muslim Man Discuss With His Friend, Muslim, Discuss, Friend PNG Image For Free Download.jpeg" alt="Background" class="w-full h-full object-cover">
         </div>
-        <div class="activity-card">
-          <i class="fas fa-microphone"></i>
-          <h3>Lomba & Event</h3>
-          <p>Lomba MTQ, adzan, ceramah, dan event kreatif Islami.</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <div class="inline-block mb-4">
+                    <img src="dokum/logo rishlah.jpg" alt="Logo Risalah" class="h-20 w-20 md:h-24 md:w-24 object-contain mx-auto rounded-full bg-white/20 p-2">
+                </div>
+                <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4">Remaja Islam Masjid Al-Ishlah</h1>
+                <p class="text-xl md:text-2xl text-green-50 mb-2">(Risalah)</p>
+                <p class="text-lg md:text-xl text-green-100 mt-4">
+                    Wadah pembinaan remaja muslim yang aktif, kreatif, dan berakhlak mulia
+                </p>
+            </div>
         </div>
-      </div>
-
-      <h2>Galeri Remaja Masjid</h2>
-      <div class="galeri">
-        <img src="remaja1.jpg" alt="Kegiatan Kajian Pemuda">
-        <img src="remaja2.jpg" alt="Olahraga Sunnah">
-        <img src="remaja3.jpg" alt="Aksi Sosial">
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer">
-      <div class="box-container">
-        <div class="box">
-          <h3>Tentang Kami</h3>
-          <p>Masjid Al-Ishlah berkomitmen menjadi pusat ibadah, pendidikan, dan sosial masyarakat yang berlandaskan Al-Qur’an dan Sunnah.</p>
+    </section>
+    
+    <!-- About Section -->
+    <section class="py-12 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div>
+                    <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-green mb-6">Tentang Risalah</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        Remaja Islam Masjid Al-Ishlah (Risalah) adalah organisasi remaja yang menjadi wadah pembinaan dan pengembangan potensi remaja muslim di lingkungan Masjid Al-Ishlah. Kami berkomitmen untuk membentuk generasi muda yang berakhlak mulia, berilmu, dan mampu berkontribusi positif bagi umat dan masyarakat.
+                    </p>
+                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
+                        Melalui berbagai program dan kegiatan yang menarik dan bermakna, Risalah menjadi tempat bagi remaja untuk belajar, berkembang, dan bersosialisasi dalam lingkungan yang Islami dan kondusif.
+                    </p>
+                    <div class="flex flex-wrap gap-4 mt-6">
+                        <div class="bg-primary-green/10 px-6 py-3 rounded-lg">
+                            <p class="text-primary-green font-bold text-2xl">100+</p>
+                            <p class="text-gray-600 text-sm">Anggota Aktif</p>
+                        </div>
+                        <div class="bg-accent-gold/10 px-6 py-3 rounded-lg">
+                            <p class="text-accent-gold font-bold text-2xl">15+</p>
+                            <p class="text-gray-600 text-sm">Kegiatan/Bulan</p>
+                        </div>
+                        <div class="bg-primary-green-light/10 px-6 py-3 rounded-lg">
+                            <p class="text-primary-green-light font-bold text-2xl">10+</p>
+                            <p class="text-gray-600 text-sm">Program Unggulan</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square rounded-2xl overflow-hidden shadow-xl">
+                        <img src="dokum/picture 2.jpg" alt="Aktivitas Risalah" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-primary-green text-white p-6 rounded-xl shadow-lg hidden md:block">
+                        <p class="font-bold text-xl">Bergabung Bersama Kami!</p>
+                        <p class="text-sm mt-1">Untuk remaja usia 13-25 tahun</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="box">
-          <h3>Link Cepat</h3>
-          <a href="index.html" class="link"><i class="fas fa-angle-right"></i>Beranda</a>
-          <a href="index.html#program" class="link"><i class="fas fa-angle-right"></i>Program</a>
-          <a href="index.html#dokumentasi" class="link"><i class="fas fa-angle-right"></i>Dokumentasi</a>
-          <a href="lazis al ishlah.html" class="link"><i class="fas fa-angle-right"></i>Layanan Zakat</a>
-          <a href="remaja-masjid.html" class="link"><i class="fas fa-angle-right"></i>Remaja Masjid</a>
-          <a href="kontak.html" class="link"><i class="fas fa-angle-right"></i>Kontak</a>
+    </section>
+    
+    <!-- Visi & Misi Section -->
+    <section class="py-12 md:py-20 bg-cream">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-green mb-4">Visi & Misi</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Komitmen Risalah dalam membina generasi muda Islam
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                <!-- Visi -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-primary-green">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-primary-green rounded-full flex items-center justify-center mr-4">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl text-primary-green">Visi</h3>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed text-lg">
+                        Menjadi organisasi remaja Islam yang unggul dalam membina generasi muda yang berakhlak mulia, berwawasan luas, kreatif, dan mampu menjadi agen perubahan positif di masyarakat berdasarkan nilai-nilai Islam.
+                    </p>
+                </div>
+                
+                <!-- Misi -->
+                <div class="bg-white rounded-xl shadow-lg p-8 border-l-4 border-accent-gold">
+                    <div class="flex items-center mb-6">
+                        <div class="w-14 h-14 bg-accent-gold rounded-full flex items-center justify-center mr-4">
+                            <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl text-primary-green">Misi</h3>
+                    </div>
+                    <ul class="text-gray-700 leading-relaxed space-y-3 text-lg">
+                        <li class="flex items-start">
+                            <span class="text-accent-gold mr-3 mt-1">✓</span>
+                            <span>Menyelenggarakan pembinaan akidah, ibadah, dan akhlak yang berkelanjutan</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent-gold mr-3 mt-1">✓</span>
+                            <span>Mengembangkan potensi dan bakat remaja melalui kegiatan kreatif dan inovatif</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent-gold mr-3 mt-1">✓</span>
+                            <span>Meningkatkan kepedulian sosial dan lingkungan melalui kegiatan amal</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent-gold mr-3 mt-1">✓</span>
+                            <span>Memperkuat ukhuwah Islamiyah dan silaturahmi antar remaja</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-accent-gold mr-3 mt-1">✓</span>
+                            <span>Membekali remaja dengan ilmu pengetahuan dan keterampilan praktis</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="box">
-          <h3>Ikuti Kami</h3>
-          <div class="share">
-            <a href="#" class="fab fa-facebook"></a>
-            <a href="#" class="fab fa-whatsapp"></a>
-            <a href="https://www.instagram.com/masjidalishlahsoreangindah?igsh=dmVpNnJ1cG93NmI5" class="fab fa-instagram"></a>
-            <a href="#" class="fab fa-youtube"></a>
-          </div>
+    </section>
+    
+    <!-- Program & Kegiatan Section -->
+    <section class="py-12 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-green mb-4">Program & Kegiatan</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Berbagai program menarik yang diselenggarakan untuk pembinaan remaja
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Program 1 -->
+                <div class="bg-cream rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-primary-green to-primary-green-dark flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Kajian Rutin</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Kajian mingguan dengan tema-tema yang relevan untuk remaja, seperti akhlak, fiqih remaja, dan kehidupan sehari-hari dalam perspektif Islam.
+                        </p>
+                        <p class="text-sm text-gray-500">Setiap: Minggu, 15:00 WIB</p>
+                    </div>
+                </div>
+                
+                <!-- Program 2 -->
+                <div class="bg-cream rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-accent-gold to-accent-gold-light flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Tahfidz Al-Qur'an</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Program menghafal Al-Qur'an untuk remaja dengan metode yang menyenangkan dan efektif. Tersedia berbagai level dari pemula hingga lanjutan.
+                        </p>
+                        <p class="text-sm text-gray-500">Setiap: Selasa & Kamis, 16:00 WIB</p>
+                    </div>
+                </div>
+                
+                <!-- Program 3 -->
+                <div class="bg-cream rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-primary-green-light to-primary-green flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Kegiatan Sosial</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Aksi sosial dan bakti sosial untuk melatih kepedulian dan empati remaja terhadap sesama, seperti kunjungan ke panti asuhan, bersih-bersih lingkungan, dll.
+                        </p>
+                        <p class="text-sm text-gray-500">Bulanan / Khusus Event</p>
+                    </div>
+                </div>
+                
+                <!-- Program 4 -->
+                <div class="bg-cream rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Risalah Creative</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Wadah untuk mengembangkan kreativitas remaja melalui berbagai kegiatan seperti content creation, desain grafis, fotografi, dan videografi dengan nilai-nilai Islam.
+                        </p>
+                        <p class="text-sm text-gray-500">Fleksibel / Project Based</p>
+                    </div>
+                </div>
+                
+                <!-- Program 5 -->
+                <div class="bg-cream rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Outbond & Gathering</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Kegiatan outbond dan gathering untuk memperkuat ikatan persaudaraan antar anggota, melatih kerja sama tim, dan meningkatkan kemampuan leadership.
+                        </p>
+                        <p class="text-sm text-gray-500">Triwulan / Khusus Event</p>
+                    </div>
+                </div>
+                
+                <!-- Program 6 -->
+                <div class="bg-cream rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
+                    <div class="h-48 bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                        <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Leadership Training</h3>
+                        <p class="text-gray-600 mb-4 leading-relaxed">
+                            Program pelatihan kepemimpinan untuk mengembangkan kemampuan leadership, public speaking, dan manajemen organisasi dengan nilai-nilai Islam.
+                        </p>
+                        <p class="text-sm text-gray-500">Semester / Khusus</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="box">
-          <h3>Lokasi</h3>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.951585275975!2d107.53726117442147!3d-7.02817906885312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ec3a19fd2d63%3A0xc728ef3ee5aadc99!2sAl%20-%20Ishlah!5e1!3m2!1sid!2sid!4v1759301579158!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+    
+    <!-- Join Us Section -->
+    <section class="py-12 md:py-20 bg-gradient-to-r from-primary-green-dark to-primary-green text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="dokum/picture 3.jpg" alt="Background" class="w-full h-full object-cover">
         </div>
-      </div>
-      <div class="credit">
-        Dibuat  oleh <span>Tim IT Masjid Al-Ishlah</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Script menu mobile -->
-  <script>
-    const menuBtn = document.getElementById("menuBtn");
-    const navLinks = document.getElementById("navLinks");
-    menuBtn.addEventListener("click", () => {
-      navLinks.classList.toggle("active");
-    });
-  </script>
-
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl mb-6">Bergabung dengan Risalah</h2>
+                <p class="text-lg md:text-xl text-green-50 mb-8 max-w-2xl mx-auto">
+                    Ayo bergabung bersama kami! Jadilah bagian dari keluarga besar Remaja Islam Masjid Al-Ishlah dan kembangkan potensimu bersama remaja muslim lainnya.
+                </p>
+                
+                <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 md:p-8 mb-8 text-left">
+                    <h3 class="font-heading font-bold text-xl mb-4">Syarat Keanggotaan:</h3>
+                    <ul class="space-y-3 text-green-50">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Usia 13 - 25 tahun</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Bersedia mengikuti kegiatan rutin</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Memiliki komitmen untuk belajar dan berkembang</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Mendapat persetujuan orang tua/wali</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a href="index.html#kontak" class="px-8 py-4 bg-white text-primary-green font-semibold rounded-lg hover:bg-green-50 transition-all duration-300 shadow-lg transform hover:scale-105">
+                        Hubungi Kami
+                    </a>
+                    <a href="gallery.html" class="px-8 py-4 bg-accent-gold text-white font-semibold rounded-lg hover:bg-accent-gold-light transition-all duration-300 shadow-lg transform hover:scale-105">
+                        Lihat Kegiatan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-primary-green-dark text-white py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 mb-10">
+                <!-- About Section -->
+                <div>
+                    <h3 class="font-heading font-bold text-xl mb-4">Tentang Kami</h3>
+                    <p class="text-green-100 leading-relaxed mb-4">
+                        Masjid Al-Ishlah adalah pusat kegiatan Islami kreatif yang berkomitmen untuk memajukan umat melalui pendidikan, dakwah, dan kegiatan sosial.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-primary-green rounded-full flex items-center justify-center hover:bg-primary-green-light transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary-green rounded-full flex items-center justify-center hover:bg-primary-green-light transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary-green rounded-full flex items-center justify-center hover:bg-primary-green-light transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-primary-green rounded-full flex items-center justify-center hover:bg-primary-green-light transition-colors">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-heading font-bold text-xl mb-4">Tautan Cepat</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-green-100 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="infaq.html" class="text-green-100 hover:text-white transition-colors">Program & Donasi</a></li>
+                        <li><a href="gallery.html" class="text-green-100 hover:text-white transition-colors">Galeri</a></li>
+                        <li><a href="rishlah.html" class="text-green-100 hover:text-white transition-colors">Risalah</a></li>
+                        <li><a href="index.html#kontak" class="text-green-100 hover:text-white transition-colors">Kontak</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="font-heading font-bold text-xl mb-4">Kontak</h3>
+                    <ul class="space-y-3 text-green-100">
+                        <li class="flex items-start">
+                            <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span>Jl. Masjid Al-Ishlah, Kelurahan..., Kecamatan..., Kota/Kabupaten...</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            <span>+62 XXX-XXXX-XXXX</span>
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            <span>info@al-ishlah.org</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Prayer Times -->
+                <div>
+                    <h3 class="font-heading font-bold text-xl mb-4">Waktu Sholat</h3>
+                    <ul class="space-y-2 text-green-100">
+                        <li class="flex justify-between">
+                            <span>Subuh</span>
+                            <span class="font-semibold">04:30</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Dzuhur</span>
+                            <span class="font-semibold">12:15</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Ashar</span>
+                            <span class="font-semibold">15:30</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Maghrib</span>
+                            <span class="font-semibold">18:15</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <span>Isya</span>
+                            <span class="font-semibold">19:30</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="border-t border-primary-green pt-8 mt-8 text-center text-green-200">
+                <p>&copy; 2025 Masjid Al-Ishlah. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="main.js"></script>
 </body>
 </html>
