@@ -60,3 +60,128 @@ html {
   opacity: 0.7;
   pointer-events: none;
 }
+
+/* Footer Styles - Diperbaiki agar rapi */
+footer {
+  background-color: var(--primary-green-dark);
+  color: #fff;
+  padding: 2.5rem 0 1rem 0;
+  font-family: 'Inter', sans-serif;
+  border-top: 4px solid var(--accent-gold);
+}
+
+.footer-wrapper {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.footer-logo img {
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
+  border-radius: 50%;
+  background: #fff3;
+  padding: 0.35rem;
+  border: 2px solid var(--accent-gold);
+}
+.footer-logo-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: var(--accent-gold);
+  letter-spacing: 1px;
+}
+
+.footer-links,
+.footer-contact,
+.footer-sosmed {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  min-width: 160px;
+}
+
+.footer-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.07rem;
+  font-weight: 600;
+  letter-spacing: .5px;
+  margin-bottom: 0.6rem;
+  color: var(--accent-gold);
+}
+
+.footer-links a,
+.footer-contact a,
+.footer-sosmed a {
+  color: #f5f3ee;
+  text-decoration: none;
+  transition: color 0.2s;
+  font-size: 1rem;
+}
+
+.footer-links a:hover,
+.footer-contact a:hover,
+.footer-sosmed a:hover {
+  color: var(--accent-gold);
+}
+
+.footer-contact span,
+.footer-sosmed span {
+  color: #f5f3ee;
+  font-size: 1rem;
+}
+
+.footer-sosmed {
+  flex-direction: row;
+  gap: 1.2rem;
+  align-items: center;
+  margin-top: 0.6rem;
+}
+
+.footer-bottom {
+  text-align: center;
+  padding-top: 1.2rem;
+  color: #e8e6de;
+  font-size: 0.98rem;
+  letter-spacing: 0.2px;
+  border-top: 1px solid #fff2;
+  margin-top: 2rem;
+}
+
+/* Responsive Footer */
+@media (max-width: 900px) {
+  .footer-wrapper {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.7rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .footer-logo img {
+    width: 42px;
+    height: 42px;
+  }
+  .footer-wrapper {
+    gap: 1rem;
+    padding: 0 0.5rem;
+  }
+  .footer-bottom {
+    font-size: 0.92rem;
+  }
+}
+
+/* END Footer Styles */
