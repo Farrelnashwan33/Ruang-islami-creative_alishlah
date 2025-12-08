@@ -1,0 +1,15 @@
+# Security Policy untuk Masjid Al-Ishlah
+# File ini mengikuti RFC 9116 untuk security.txt
+
+Contact: mailto:security@example.com
+Expires: 2026-12-31T23:59:59.000Z
+Preferred-Languages: id, en
+Canonical: https://yourdomain.com/.well-known/security.txt
+
+# Kebijakan Keamanan
+# Jika Anda menemukan kerentanan keamanan, silakan hubungi kami melalui email di atas.
+# Kami akan merespons dalam waktu 48 jam.
+
+# Penghargaan
+# Kami menghargai laporan keamanan yang bertanggung jawab dan akan memberikan kredit jika diizinkan.
+

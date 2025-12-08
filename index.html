@@ -45,6 +45,25 @@
     
     <!-- Google Search Console Verification -->
     <meta name="google-site-verification" content="kode-unik-anda" />
+    
+    <!-- Security Headers & SSL Protection -->
+    <!-- Content Security Policy - Melindungi dari XSS attacks -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https:; connect-src 'self' https:; frame-ancestors 'self'; base-uri 'self'; form-action 'self';">
+    
+    <!-- X-Frame-Options - Melindungi dari Clickjacking -->
+    <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
+    
+    <!-- X-Content-Type-Options - Mencegah MIME type sniffing -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    
+    <!-- Referrer Policy - Kontrol informasi referrer -->
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    
+    <!-- Permissions Policy - Kontrol fitur browser -->
+    <meta http-equiv="Permissions-Policy" content="geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()">
+    
+    <!-- HTTP Strict Transport Security (HSTS) - Memaksa HTTPS -->
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
 </head>
 <body class="bg-cream text-gray-800">
     
