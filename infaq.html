@@ -42,58 +42,97 @@
             font-family: 'Poppins', sans-serif;
         }
     </style>
+    
+    <!-- Inline script to prevent flash of unstyled content for dark mode -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            if (isDark) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.body.classList.add('dark');
+            }
+        })();
+    </script>
 </head>
-<body class="bg-cream text-gray-800">
+<body class="bg-cream text-gray-800 transition-colors duration-300">
     
     <!-- Navigation Bar -->
-    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-all duration-300" role="navigation" aria-label="Navigasi Utama">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="index.html" class="flex items-center space-x-3">
-                        <img src="logo al-ishlah.png" alt="Logo Masjid Al-Ishlah" class="h-12 w-12 md:h-14 md:w-14 object-contain rounded-full bg-white p-1">
+                    <a href="index.html" class="flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded-lg" aria-label="Beranda - Masjid Al-Ishlah">
+                        <img src="logo al-ishlah.png" alt="Logo Masjid Al-Ishlah" class="h-12 w-12 md:h-14 md:w-14 object-contain rounded-full bg-white p-1" width="56" height="56" loading="eager">
                         <span class="font-heading font-bold text-lg md:text-xl text-primary-green hidden sm:block">Masjid Al-Ishlah</span>
                     </a>
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <div class="hidden lg:flex lg:items-center lg:space-x-1">
-                    <a href="index.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Beranda</a>
-                    <a href="infaq.html" class="px-4 py-2 rounded-lg text-primary-green font-medium hover:bg-green-50 transition-colors">Program</a>
-                    <a href="gallery.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Galeri</a>
-                    <a href="kontak.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Kontak</a>
-                    <a href="pendidikan.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Pendidikan</a>
-                    <a href="rishlah.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Risalah</a>
-                    <a href="infaq.html" class="ml-4 px-6 py-2 bg-primary-green text-white rounded-lg font-medium hover:bg-primary-green-dark transition-colors shadow-md">Donasi</a>
+                <div class="hidden lg:flex lg:items-center lg:space-x-1" role="menubar">
+                    <a href="index.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Beranda</a>
+                    <a href="infaq.html" class="px-4 py-2 rounded-lg text-primary-green font-medium hover:bg-green-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem" aria-current="page">Program</a>
+                    <a href="gallery.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Galeri</a>
+                    <a href="kontak.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Kontak</a>
+                    <a href="pendidikan.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Pendidikan</a>
+                    <a href="rishlah.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Rislah</a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="dark-mode-toggle" class="ml-4 dark-mode-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                        <svg class="icon icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg class="icon icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    
+                    <a href="infaq.html" class="ml-4 px-6 py-2 bg-primary-green text-white rounded-lg font-medium hover:bg-primary-green-dark transition-all duration-200 shadow-md btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
                 </div>
                 
-                <!-- Mobile Hamburger Menu -->
-                <button id="hamburger-menu" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none">
-                    <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
-                    <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
-                    <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
-                </button>
+                <!-- Mobile Menu Buttons -->
+                <div class="lg:hidden flex items-center space-x-2">
+                    <!-- Dark Mode Toggle Button Mobile -->
+                    <button id="dark-mode-toggle-mobile" class="dark-mode-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                        <svg class="icon icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg class="icon icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    <!-- Hamburger Menu -->
+                    <button id="hamburger-menu" class="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded-lg" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu">
+                        <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
+                        <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
+                        <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
+                    </button>
+                </div>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-xl border-t">
+        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-xl border-t" role="menu" aria-label="Menu Mobile">
             <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="index.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Beranda</a>
-                <a href="infaq.html" class="block px-4 py-3 text-primary-green font-medium rounded-lg bg-green-50">Program</a>
-                <a href="gallery.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Galeri</a>
-                <a href="kontak.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Kontak</a>
-                <a href="pendidikan.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Pendidikan</a>
-                <a href="rishlah.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Risalah</a>
-                <a href="infaq.html" class="block px-4 py-3 bg-primary-green text-white font-medium rounded-lg text-center mt-2">Donasi</a>
+                <a href="index.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Beranda</a>
+                <a href="infaq.html" class="block px-4 py-3 text-primary-green font-medium rounded-lg bg-green-50 focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem" aria-current="page">Program</a>
+                <a href="gallery.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Galeri</a>
+                <a href="kontak.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Kontak</a>
+                <a href="pendidikan.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Pendidikan</a>
+                <a href="rishlah.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Rislah</a>
+                <a href="infaq.html" class="block px-4 py-3 bg-primary-green text-white font-medium rounded-lg text-center mt-2 btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
             </div>
         </div>
     </nav>
     
     <!-- Page Header -->
-    <section class="pt-32 pb-16 bg-gradient-to-r from-primary-green-dark to-primary-green text-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section class="pt-32 pb-16 bg-gradient-to-r from-primary-green-dark to-primary-green text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <img src="dokum/al-sihalh.png" alt="Background" class="w-full h-full object-cover">
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center max-w-3xl mx-auto">
                 <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4">Program & Donasi</h1>
                 <p class="text-lg md:text-xl text-green-50">
@@ -343,7 +382,7 @@
                   <a href="pendidikan.html" class="text-green-100 hover:text-white transition-colors">Pendidikan</a>
                 </li>
                 <li>
-                  <a href="rishlah.html" class="text-green-100 hover:text-white transition-colors">Risalah</a>
+                  <a href="rishlah.html" class="text-green-100 hover:text-white transition-colors">Rislah</a>
                 </li>
                 <li>
                   <a href="kontak.html" class="text-green-100 hover:text-white transition-colors">Kontak</a>

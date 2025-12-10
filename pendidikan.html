@@ -42,11 +42,24 @@
             font-family: 'Poppins', sans-serif;
         }
     </style>
+    
+    <!-- Inline script to prevent flash of unstyled content for dark mode -->
+    <script>
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const isDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+            if (isDark) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.body.classList.add('dark');
+            }
+        })();
+    </script>
 </head>
-<body class="bg-cream text-gray-800">
+<body class="bg-cream text-gray-800 transition-colors duration-300">
     
     <!-- Navigation Bar -->
-    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-all duration-300" role="navigation" aria-label="Navigasi Utama">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
@@ -58,397 +71,104 @@
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <div class="hidden lg:flex lg:items-center lg:space-x-1">
-                    <a href="index.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Beranda</a>
-                    <a href="infaq.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Program</a>
-                    <a href="gallery.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Galeri</a>
-                    <a href="kontak.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Kontak</a>
-                    <a href="pendidikan.html" class="px-4 py-2 rounded-lg text-primary-green font-medium hover:bg-green-50 transition-colors">Pendidikan</a>
-                    <a href="rishlah.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-colors">Risalah</a>
-                    <a href="infaq.html" class="ml-4 px-6 py-2 bg-primary-green text-white rounded-lg font-medium hover:bg-primary-green-dark transition-colors shadow-md">Donasi</a>
+                <div class="hidden lg:flex lg:items-center lg:space-x-1" role="menubar">
+                    <a href="index.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Beranda</a>
+                    <a href="infaq.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Program</a>
+                    <a href="gallery.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Galeri</a>
+                    <a href="kontak.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Kontak</a>
+                    <a href="pendidikan.html" class="px-4 py-2 rounded-lg text-primary-green font-medium hover:bg-green-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem" aria-current="page">Pendidikan</a>
+                    <a href="rishlah.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Rislah</a>
+                    
+                    <!-- Dark Mode Toggle -->
+                    <button id="dark-mode-toggle" class="ml-4 dark-mode-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                        <svg class="icon icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg class="icon icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    
+                    <a href="infaq.html" class="ml-4 px-6 py-2 bg-primary-green text-white rounded-lg font-medium hover:bg-primary-green-dark transition-all duration-200 shadow-md btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
                 </div>
                 
-                <!-- Mobile Hamburger Menu -->
-                <button id="hamburger-menu" class="lg:hidden flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none">
+                <!-- Mobile Menu Buttons -->
+                <div class="lg:hidden flex items-center space-x-2">
+                    <!-- Dark Mode Toggle Button Mobile -->
+                    <button id="dark-mode-toggle-mobile" class="dark-mode-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
+                        <svg class="icon icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                        </svg>
+                        <svg class="icon icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    <!-- Hamburger Menu -->
+                    <button id="hamburger-menu" class="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded-lg" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu">
                     <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
                     <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
                     <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
                 </button>
+                </div>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-xl border-t">
+        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-xl border-t" role="menu" aria-label="Menu Mobile">
             <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="index.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Beranda</a>
-                <a href="infaq.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Program</a>
-                <a href="gallery.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Galeri</a>
-                <a href="kontak.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Kontak</a>
-                <a href="pendidikan.html" class="block px-4 py-3 text-primary-green font-medium rounded-lg bg-green-50">Pendidikan</a>
-                <a href="rishlah.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50">Risalah</a>
-                <a href="infaq.html" class="block px-4 py-3 bg-primary-green text-white font-medium rounded-lg text-center mt-2">Donasi</a>
+                <a href="index.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Beranda</a>
+                <a href="infaq.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Program</a>
+                <a href="gallery.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Galeri</a>
+                <a href="kontak.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Kontak</a>
+                <a href="pendidikan.html" class="block px-4 py-3 text-primary-green font-medium rounded-lg bg-green-50 focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem" aria-current="page">Pendidikan</a>
+                <a href="rishlah.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Rislah</a>
+                <a href="infaq.html" class="block px-4 py-3 bg-primary-green text-white font-medium rounded-lg text-center mt-2 btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
             </div>
         </div>
     </nav>
     
-    <!-- Page Header -->
-    <section class="pt-32 pb-16 bg-gradient-to-r from-primary-green-dark to-primary-green text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <img src="dokum/Premium Vector _ Muslim Prayer Islamic Vector Illustration.jpeg" alt="Background" class="w-full h-full object-cover">
-        </div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto">
-                <div class="inline-block mb-6">
-                    <svg class="w-24 h-24 md:w-28 md:h-28 text-white mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                    </svg>
-                </div>
-                <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4">Program Pendidikan</h1>
-                <p class="text-lg md:text-xl text-green-50">
-                    Membangun generasi yang berilmu, berakhlak mulia, dan beriman melalui pendidikan Islam yang berkualitas
-                </p>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Introduction Section -->
-    <section class="py-12 md:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
-                <div>
-                    <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-green mb-6">Pendidikan Berkualitas untuk Semua</h2>
-                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
-                        Masjid Al-Ishlah menyelenggarakan berbagai program pendidikan agama Islam yang berkualitas untuk semua kalangan, mulai dari anak-anak, remaja, hingga dewasa. Program-program kami dirancang untuk memfasilitasi pembelajaran yang menyenangkan, efektif, dan sesuai dengan kebutuhan peserta.
-                    </p>
-                    <p class="text-gray-700 text-lg leading-relaxed mb-4">
-                        Dengan metode pembelajaran yang inovatif dan pengajar yang berpengalaman, kami berkomitmen untuk membantu umat memperdalam ilmu agama dan mengamalkannya dalam kehidupan sehari-hari.
-                    </p>
-                    <div class="flex flex-wrap gap-4 mt-6">
-                        <div class="bg-primary-green/10 px-6 py-3 rounded-lg">
-                            <p class="text-primary-green font-bold text-2xl">500+</p>
-                            <p class="text-gray-600 text-sm">Siswa Aktif</p>
-                        </div>
-                        <div class="bg-accent-gold/10 px-6 py-3 rounded-lg">
-                            <p class="text-accent-gold font-bold text-2xl">20+</p>
-                    <p class="text-gray-600 text-sm">Kelas Tersedia</p>
-                        </div>
-                        <div class="bg-primary-green-light/10 px-6 py-3 rounded-lg">
-                            <p class="text-primary-green-light font-bold text-2xl">15+</p>
-                            <p class="text-gray-600 text-sm">Pengajar Berpengalaman</p>
-                        </div>
-                    </div>
-                </div>
+    <!-- Locked Page Content -->
+    <section class="pt-32 pb-20 min-h-screen flex items-center justify-center bg-cream">
+        <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <!-- Lock Icon -->
+            <div class="mb-8 flex justify-center">
                 <div class="relative">
-                    <div class="aspect-square rounded-2xl overflow-hidden shadow-xl">
-                        <img src="dokum/picture 2.jpg" alt="Kegiatan Pendidikan" class="w-full h-full object-cover">
+                    <div class="w-32 h-32 md:w-40 md:h-40 bg-gradient-to-br from-primary-green to-primary-green-dark rounded-full flex items-center justify-center shadow-2xl animate-pulse">
+                        <svg class="w-16 h-16 md:w-20 md:h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+                        </svg>
                     </div>
-                    <div class="absolute -bottom-6 -left-6 bg-accent-gold text-white p-6 rounded-xl shadow-lg hidden md:block max-w-xs">
-                        <p class="font-bold text-xl">Pendidikan Seumur Hidup</p>
-                        <p class="text-sm mt-1">Program untuk semua usia dan level</p>
-                    </div>
+                    <!-- Animated Ring -->
+                    <div class="absolute inset-0 rounded-full border-4 border-accent-gold border-t-transparent animate-spin" style="animation-duration: 3s;"></div>
                 </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Program Categories -->
-    <section class="py-12 md:py-20 bg-cream">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-green mb-4">Program Unggulan</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Berbagai program pendidikan yang tersedia untuk Anda
-                </p>
             </div>
             
-            <!-- Program Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                
-                <!-- Program 1: Tahfidz Al-Qur'an -->
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-primary-green to-primary-green-dark flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/Zakat_Clipart_Hd_PNG__Hand_Ilustration_For_Zakat__Raster__Hand__Ramadan_PNG_Image_For_Free_Download-removebg-preview.png" alt="Tahfidz" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Tahfidz Al-Qur'an</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Program menghafal Al-Qur'an untuk semua usia dengan metode yang sistematis dan menyenangkan. Tersedia kelas pemula hingga lanjutan.
-                        </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Senin, Rabu, Jumat | 16:00 - 18:00 WIB</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                <span>Usia: 7 tahun ke atas</span>
-                            </div>
-                        </div>
-                        <a href="kontak.html" class="inline-block w-full text-center py-2 border-2 border-primary-green text-primary-green font-medium rounded-lg hover:bg-primary-green hover:text-white transition-colors">
-                            Daftar Sekarang
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Program 2: Bahasa Arab -->
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-accent-gold to-accent-gold-light flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/logo pengajian .jpg" alt="Bahasa Arab" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Bahasa Arab</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Kelas bahasa Arab untuk pemahaman Al-Qur'an dan Hadits. Belajar membaca, menulis, dan memahami bahasa Arab dengan metode yang praktis.
-                        </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Selasa & Kamis | 19:00 - 20:30 WIB</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                <span>Usia: 12 tahun ke atas</span>
-                            </div>
-                        </div>
-                        <a href="kontak.html" class="inline-block w-full text-center py-2 border-2 border-primary-green text-primary-green font-medium rounded-lg hover:bg-primary-green hover:text-white transition-colors">
-                            Daftar Sekarang
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Program 3: Fiqih & Akidah -->
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-primary-green-light to-primary-green flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/picture 3.jpg" alt="Fiqih" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Fiqih & Akidah</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Pembelajaran Fiqih (hukum Islam) dan Akidah (tauhid) untuk memahami praktik ibadah yang benar dan pemahaman aqidah yang lurus.
-                        </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Minggu | 09:00 - 11:00 WIB</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                <span>Usia: 15 tahun ke atas</span>
-                            </div>
-                        </div>
-                        <a href="kontak.html" class="inline-block w-full text-center py-2 border-2 border-primary-green text-primary-green font-medium rounded-lg hover:bg-primary-green hover:text-white transition-colors">
-                            Daftar Sekarang
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Program 4: Pendidikan Anak -->
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/Premium Vector _ Hand drawn cute muslim boy cartoon with mosque and megaphone.jpeg" alt="Pendidikan Anak" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Pendidikan Anak (TPA/TPQ)</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Taman Pendidikan Al-Qur'an untuk anak-anak usia 4-12 tahun. Pembelajaran membaca Al-Qur'an, dasar-dasar Islam, dan pembentukan akhlak dengan metode yang menyenangkan.
-                        </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Senin - Jumat | 15:00 - 17:00 WIB</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                <span>Usia: 4 - 12 tahun</span>
-                            </div>
-                        </div>
-                        <a href="kontak.html" class="inline-block w-full text-center py-2 border-2 border-primary-green text-primary-green font-medium rounded-lg hover:bg-primary-green hover:text-white transition-colors">
-                            Daftar Sekarang
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Program 5: Kajian Rutin -->
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/picture 4.jpg" alt="Kajian" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Kajian Rutin</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Kajian rutin mingguan dan bulanan dengan tema-tema aktual seputar Islam, kehidupan sehari-hari, dan solusi masalah kontemporer.
-                        </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span>Jumat | Ba'da Maghrib</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                <span>Terbuka untuk umum</span>
-                            </div>
-                        </div>
-                        <a href="kontak.html" class="inline-block w-full text-center py-2 border-2 border-primary-green text-primary-green font-medium rounded-lg hover:bg-primary-green hover:text-white transition-colors">
-                            Daftar Sekarang
-                        </a>
-                    </div>
-                </div>
-                
-                <!-- Program 6: Program Khusus Ramadhan -->
-                <div class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/logo ramadhan .jpg" alt="Ramadhan" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading font-bold text-xl text-primary-green mb-3">Program Ramadhan</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Program khusus selama bulan Ramadhan, termasuk Pesantren Kilat, Tadarus Al-Qur'an, dan berbagai kajian tematik untuk memaksimalkan ibadah di bulan suci.
-                        </p>
-                        <div class="space-y-2 mb-4">
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                                </svg>
-                                <span>Bulan Ramadhan</span>
-                            </div>
-                            <div class="flex items-center text-sm text-gray-500">
-                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                <span>Semua usia</span>
-                            </div>
-                        </div>
-                        <a href="kontak.html" class="inline-block w-full text-center py-2 border-2 border-primary-green text-primary-green font-medium rounded-lg hover:bg-primary-green hover:text-white transition-colors">
-                            Daftar Sekarang
-                        </a>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </section>
-    
-    <!-- Why Choose Us Section -->
-    <section class="py-12 md:py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-green mb-4">Mengapa Memilih Kami?</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Keunggulan program pendidikan di Masjid Al-Ishlah
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
-                <div class="text-center p-6 rounded-xl bg-cream hover:shadow-lg transition-shadow">
-                    <div class="w-16 h-16 bg-primary-green rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading font-bold text-lg text-primary-green mb-2">Pengajar Berpengalaman</h3>
-                    <p class="text-gray-600 text-sm">Ustadz/Ustadzah yang kompeten dan berpengalaman dalam bidangnya</p>
-                </div>
-                
-                <div class="text-center p-6 rounded-xl bg-cream hover:shadow-lg transition-shadow">
-                    <div class="w-16 h-16 bg-accent-gold rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading font-bold text-lg text-primary-green mb-2">Metode Modern</h3>
-                    <p class="text-gray-600 text-sm">Pembelajaran dengan metode yang efektif dan menyenangkan</p>
-                </div>
-                
-                <div class="text-center p-6 rounded-xl bg-cream hover:shadow-lg transition-shadow">
-                    <div class="w-16 h-16 bg-primary-green-light rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading font-bold text-lg text-primary-green mb-2">Fasilitas Lengkap</h3>
-                    <p class="text-gray-600 text-sm">Ruang kelas yang nyaman dan fasilitas pendukung yang memadai</p>
-                </div>
-                
-                <div class="text-center p-6 rounded-xl bg-cream hover:shadow-lg transition-shadow">
-                    <div class="w-16 h-16 bg-primary-green rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                    </div>
-                    <h3 class="font-heading font-bold text-lg text-primary-green mb-2">Terjangkau</h3>
-                    <p class="text-gray-600 text-sm">Biaya pendidikan yang terjangkau dengan kualitas terbaik</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- CTA Section -->
-    <section class="py-12 md:py-20 bg-gradient-to-r from-primary-green-dark to-primary-green text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <img src="dokum/picture 5.jpg" alt="Background" class="w-full h-full object-cover">
-        </div>
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-            <h2 class="font-heading font-bold text-3xl md:text-4xl mb-6">Bergabung dengan Program Pendidikan Kami</h2>
-            <p class="text-lg md:text-xl text-green-50 mb-8 max-w-2xl mx-auto">
-                Mulai perjalanan pembelajaran agama Anda bersama kami. Daftar sekarang dan jadilah bagian dari komunitas pembelajar yang berdedikasi.
+            <!-- Lock Message -->
+            <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl text-primary-green mb-6">
+                Halaman Terkunci
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-700 mb-4">
+                Program Pendidikan
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="kontak.html" class="px-8 py-4 bg-white text-primary-green font-semibold rounded-lg hover:bg-green-50 transition-all duration-300 shadow-lg transform hover:scale-105">
+            <p class="text-lg text-gray-600 mb-8 max-w-xl mx-auto leading-relaxed">
+                Halaman ini sedang dalam pengembangan atau memerlukan akses khusus. 
+                Kami sedang mempersiapkan konten terbaik untuk Anda.
+            </p>
+            
+            <!-- Action Buttons -->
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="index.html" class="px-8 py-4 bg-primary-green text-white font-semibold rounded-lg hover:bg-primary-green-dark transition-all duration-300 shadow-lg transform hover:scale-105 btn-hover">
+                    Kembali ke Beranda
+                </a>
+                <a href="kontak.html" class="px-8 py-4 border-2 border-primary-green text-primary-green font-semibold rounded-lg hover:bg-primary-green hover:text-white transition-all duration-300 btn-hover">
                     Hubungi Kami
                 </a>
-                <a href="rishlah.html" class="px-8 py-4 bg-accent-gold text-white font-semibold rounded-lg hover:bg-accent-gold-light transition-all duration-300 shadow-lg transform hover:scale-105">
-                    Lihat Program Remaja
-                </a>
+            </div>
+            
+            <!-- Additional Info -->
+            <div class="mt-12 p-6 bg-white rounded-xl shadow-md max-w-md mx-auto">
+                <p class="text-sm text-gray-500 mb-2">Untuk informasi lebih lanjut tentang program pendidikan:</p>
+                <p class="text-primary-green font-medium">Silakan hubungi kami melalui halaman kontak</p>
             </div>
         </div>
     </section>
@@ -501,7 +221,7 @@
                         <li><a href="infaq.html" class="text-green-100 hover:text-white transition-colors">Program & Donasi</a></li>
                         <li><a href="gallery.html" class="text-green-100 hover:text-white transition-colors">Galeri</a></li>
                         <li><a href="pendidikan.html" class="text-green-100 hover:text-white transition-colors">Pendidikan</a></li>
-                        <li><a href="rishlah.html" class="text-green-100 hover:text-white transition-colors">Risalah</a></li>
+                        <li><a href="rishlah.html" class="text-green-100 hover:text-white transition-colors">Rislah</a></li>
                         <li><a href="kontak.html" class="text-green-100 hover:text-white transition-colors">Kontak</a></li>
                     </ul>
                 </div>
