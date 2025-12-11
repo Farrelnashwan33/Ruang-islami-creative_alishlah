@@ -142,6 +142,112 @@
         </div>
     </section>
     
+    <!-- Jadwal Sholat & Kalender Hijriah Section -->
+    <section class="py-12 md:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-green mb-4">Jadwal Sholat</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    Jadwal sholat harian untuk wilayah Bandung dan sekitarnya
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Jadwal Sholat Card -->
+                <div class="bg-gradient-to-br from-primary-green/5 to-primary-green/10 rounded-xl p-6 md:p-8 border-l-4 border-primary-green">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="flex items-center">
+                            <div class="w-12 h-12 bg-primary-green rounded-full flex items-center justify-center mr-4">
+                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-heading font-bold text-xl md:text-2xl text-primary-green">Jadwal Sholat</h3>
+                                <p class="text-gray-600 text-sm" id="jadwal-date-gallery">Loading...</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3" id="jadwal-sholat-container-gallery">
+                        <div class="flex items-center justify-between p-3 bg-white rounded-lg shadow-sm">
+                            <div class="flex items-center">
+                                <span class="text-primary-green font-semibold mr-3">⏳</span>
+                                <span class="text-gray-700 font-medium">Memuat jadwal...</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-300">
+                        <p class="text-xs text-gray-500 text-center">
+                            Sumber: Kemenag RI • Update otomatis setiap hari
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Kalender Masehi Card -->
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 md:p-8 border-l-4 border-blue-500">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-xl md:text-2xl text-primary-green">Kalender Masehi</h3>
+                            <p class="text-gray-600 text-sm" id="masehi-date-gallery">Loading...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-sm text-center" id="masehi-calendar-container-gallery">
+                        <div class="text-4xl md:text-5xl font-bold text-blue-600 mb-2" id="masehi-day-gallery">--</div>
+                        <div class="text-xl md:text-2xl font-semibold text-gray-700 mb-1" id="masehi-month-gallery">--</div>
+                        <div class="text-lg text-gray-600" id="masehi-year-gallery">--</div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-sm text-gray-500" id="masehi-full-gallery">--</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-300">
+                        <p class="text-xs text-gray-500 text-center">
+                            Tanggal saat ini
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Kalender Hijriah Card -->
+                <div class="bg-gradient-to-br from-accent-gold/10 to-accent-gold/5 rounded-xl p-6 md:p-8 border-l-4 border-accent-gold">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center mr-4">
+                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="font-heading font-bold text-xl md:text-2xl text-primary-green">Kalender Hijriah</h3>
+                            <p class="text-gray-600 text-sm" id="hijriah-date-gallery">Loading...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white rounded-lg p-6 shadow-sm text-center" id="hijriah-calendar-container-gallery">
+                        <div class="text-4xl md:text-5xl font-bold text-primary-green mb-2" id="hijriah-day-gallery">--</div>
+                        <div class="text-xl md:text-2xl font-semibold text-gray-700 mb-1" id="hijriah-month-gallery">--</div>
+                        <div class="text-lg text-gray-600" id="hijriah-year-gallery">--</div>
+                        <div class="mt-4 pt-4 border-t border-gray-200">
+                            <p class="text-sm text-gray-500" id="hijriah-full-gallery">--</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 pt-6 border-t border-gray-300">
+                        <p class="text-xs text-gray-500 text-center">
+                            Konversi otomatis dari kalender Masehi
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Gallery Google Drive Link -->
     <section class="py-20 bg-cream">
         <div class="max-w-xl mx-auto px-6 text-center">
@@ -240,5 +346,50 @@
     
     <!-- JavaScript -->
     <script src="main.js"></script>
+    <script src="jadwal-sholat.js"></script>
+    <script>
+        // Update kalender Masehi segera (tidak perlu menunggu API)
+        (function() {
+            const today = new Date();
+            const day = today.getDate();
+            const month = today.getMonth();
+            const year = today.getFullYear();
+            const monthNames = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            const dayNames = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const dayName = dayNames[today.getDay()];
+            const monthName = monthNames[month];
+            
+            function updateMasehi() {
+                const dayEl = document.getElementById('masehi-day-gallery');
+                const monthEl = document.getElementById('masehi-month-gallery');
+                const yearEl = document.getElementById('masehi-year-gallery');
+                const fullEl = document.getElementById('masehi-full-gallery');
+                const dateEl = document.getElementById('masehi-date-gallery');
+                
+                if (dayEl) dayEl.textContent = day;
+                if (monthEl) monthEl.textContent = monthName;
+                if (yearEl) yearEl.textContent = year;
+                if (fullEl) fullEl.textContent = `${dayName}, ${day} ${monthName} ${year}`;
+                if (dateEl) {
+                    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+                    dateEl.textContent = today.toLocaleDateString('id-ID', options);
+                }
+            }
+            
+            // Update segera jika DOM sudah ready, atau tunggu DOM ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', updateMasehi);
+            } else {
+                updateMasehi();
+            }
+        })();
+        
+        // Initialize jadwal sholat untuk halaman gallery
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof initJadwalSholat === 'function') {
+                initJadwalSholat('gallery');
+            }
+        });
+    </script>
 </body>
 </html>
