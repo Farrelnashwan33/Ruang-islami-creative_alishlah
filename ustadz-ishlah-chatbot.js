@@ -9,12 +9,20 @@ class UstadzIshlahChatbot {
         this.messages = [];
         this.soundEnabled = true; // Default enabled
         this.ttsEnabled = true; // Text-to-speech enabled
-        this.synth = window.speechSynthesis;
+        this.synth = window.speechSynthesis || window.webkitSpeechSynthesis;
         this.voicesLoaded = false;
         this.voices = [];
         this.audioContext = null;
         this.userInteracted = false;
+        this.isSamsung = this.detectSamsung();
         this.init();
+    }
+    
+    detectSamsung() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        return /samsung|SM-|SAMSUNG/i.test(userAgent) || 
+               /Android.*Samsung/i.test(userAgent) ||
+               /SamsungBrowser/i.test(userAgent);
     }
 
     init() {
@@ -73,16 +81,25 @@ class UstadzIshlahChatbot {
     }
 
     loadVoices() {
-        if (!this.synth) return;
+        if (!this.synth) {
+            console.log('Speech synthesis not available');
+            return;
+        }
         
-        // Get voices with retry mechanism for mobile
+        // Get voices with retry mechanism for mobile (especially Samsung)
         const getVoices = () => {
             try {
                 const voices = this.synth.getVoices();
                 if (voices && voices.length > 0) {
                     this.voices = voices;
                     this.voicesLoaded = true;
+                    console.log('Voices loaded:', voices.length);
+                    if (this.isSamsung) {
+                        console.log('Samsung device detected, using special handling');
+                    }
                     return true;
+                } else {
+                    console.log('No voices available yet');
                 }
             } catch (e) {
                 console.log('Error loading voices:', e);
@@ -95,19 +112,26 @@ class UstadzIshlahChatbot {
             return;
         }
         
-        // For mobile, try multiple times with longer delays
+        // For Samsung and mobile, try multiple times with longer delays
         let retryCount = 0;
-        const maxRetries = 5;
+        const maxRetries = this.isSamsung ? 15 : 10; // More retries for Samsung
         
         const retryLoad = () => {
             if (getVoices() || retryCount >= maxRetries) {
+                if (retryCount >= maxRetries) {
+                    console.log('Max retries reached, will use default voice');
+                    this.voicesLoaded = true; // Mark as loaded even if no voices found (for mobile)
+                }
                 return;
             }
             retryCount++;
-            setTimeout(retryLoad, 200 * retryCount); // Increasing delay: 200ms, 400ms, 600ms, etc.
+            // Longer delays for Samsung
+            const delay = this.isSamsung ? 400 * retryCount : 300 * retryCount;
+            setTimeout(retryLoad, delay);
         };
         
-        setTimeout(retryLoad, 100);
+        // Longer initial delay for Samsung
+        setTimeout(retryLoad, this.isSamsung ? 500 : 200);
     }
 
     updateSoundIcon() {
@@ -128,28 +152,28 @@ class UstadzIshlahChatbot {
     createChatbotHTML() {
         const chatbotHTML = `
             <!-- Chatbot Widget -->
-            <div id="ustadz-ishlah-chatbot" class="fixed bottom-6 right-6 z-50">
+            <div id="ustadz-ishlah-chatbot" class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[9999]">
                 <!-- Chat Button -->
-                <button id="chatbot-toggle" class="w-16 h-16 bg-primary-green rounded-full shadow-2xl flex items-center justify-center hover:bg-primary-green-dark transition-colors duration-300 focus:outline-none focus:ring-4 focus:ring-primary-green/50 overflow-hidden relative">
+                <button id="chatbot-toggle" class="w-14 h-14 md:w-16 md:h-16 bg-primary-green rounded-full shadow-2xl flex items-center justify-center hover:bg-primary-green-dark transition-colors duration-300 focus:outline-none focus:ring-4 focus:ring-primary-green/50 overflow-hidden relative">
                     <img id="chat-icon" src="dokum/ustadz ishlah.jpg" alt="Ustadz Ishlah" class="w-full h-full object-cover rounded-full">
-                    <svg id="close-icon" class="w-8 h-8 text-white hidden absolute z-10 bg-primary-green-dark rounded-full p-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                    <svg id="close-icon" class="w-7 h-7 md:w-8 md:h-8 text-white hidden absolute z-10 bg-primary-green-dark rounded-full p-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
 
                 <!-- Chat Window -->
-                <div id="chatbot-window" class="hidden absolute bottom-20 right-0 w-96 h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col border-2 border-primary-green/20">
+                <div id="chatbot-window" class="hidden absolute bottom-16 right-0 md:bottom-20 w-[calc(100vw-2rem)] md:w-96 max-w-md h-[calc(100vh-8rem)] md:h-[600px] max-h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col border-2 border-primary-green/20">
                     <!-- Header -->
-                    <div class="bg-gradient-to-r from-primary-green to-primary-green-dark rounded-t-2xl p-4 flex items-center gap-3">
-                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden">
+                    <div class="bg-gradient-to-r from-primary-green to-primary-green-dark rounded-t-2xl p-3 md:p-4 flex items-center gap-2 md:gap-3 flex-shrink-0">
+                        <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0">
                             <img src="dokum/ustadz ishlah.jpg" alt="Ustadz Ishlah" class="w-full h-full object-cover rounded-full">
                         </div>
-                        <div class="flex-1">
-                            <h3 class="text-white font-bold text-lg">Ustadz Ishlah</h3>
-                            <p class="text-green-100 text-xs">Asisten Virtual Masjid Al-Ishlah</p>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="text-white font-bold text-base md:text-lg truncate">Ustadz Ishlah</h3>
+                            <p class="text-green-100 text-xs truncate">Asisten Virtual Masjid Al-Ishlah</p>
                         </div>
                         <!-- Sound Toggle Button -->
-                        <button id="sound-toggle" onclick="chatbot.toggleSound()" class="p-2 rounded-lg hover:bg-white/20 transition-colors focus:outline-none" title="Toggle Suara">
+                        <button id="sound-toggle" onclick="chatbot.toggleSound()" class="p-2 rounded-lg hover:bg-white/20 transition-colors focus:outline-none flex-shrink-0" title="Toggle Suara">
                             <svg id="sound-on-icon" class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path>
                             </svg>
@@ -161,33 +185,33 @@ class UstadzIshlahChatbot {
                     </div>
 
                     <!-- Messages Container -->
-                    <div id="chatbot-messages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-cream">
+                    <div id="chatbot-messages" class="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4 bg-cream min-h-0">
                         <!-- Messages will be inserted here -->
                     </div>
 
                     <!-- Quick Actions -->
-                    <div id="quick-actions" class="px-4 pb-2 border-t border-gray-200 bg-white">
+                    <div id="quick-actions" class="px-3 md:px-4 pb-2 border-t border-gray-200 bg-white flex-shrink-0">
                         <div class="flex gap-2 pt-2">
-                            <button onclick="chatbot.sendQuickMessage('program')" class="flex-1 px-3 py-2 bg-primary-green text-white text-sm rounded-lg hover:bg-primary-green-dark transition-colors">
+                            <button onclick="chatbot.sendQuickMessage('program')" class="flex-1 px-2 md:px-3 py-1.5 md:py-2 bg-primary-green text-white text-xs md:text-sm rounded-lg hover:bg-primary-green-dark transition-colors">
                                 📋 Program
                             </button>
-                            <button onclick="chatbot.sendQuickMessage('rishlah')" class="flex-1 px-3 py-2 bg-accent-gold text-white text-sm rounded-lg hover:bg-accent-gold-light transition-colors">
+                            <button onclick="chatbot.sendQuickMessage('rishlah')" class="flex-1 px-2 md:px-3 py-1.5 md:py-2 bg-accent-gold text-white text-xs md:text-sm rounded-lg hover:bg-accent-gold-light transition-colors">
                                 🌟 Tentang Rislah
                             </button>
                         </div>
                     </div>
 
                     <!-- Input Area -->
-                    <div class="p-4 border-t border-gray-200 bg-white rounded-b-2xl">
+                    <div class="p-3 md:p-4 border-t border-gray-200 bg-white rounded-b-2xl flex-shrink-0">
                         <div class="flex gap-2">
                             <input 
                                 type="text" 
                                 id="chatbot-input" 
                                 placeholder="Tulis pesan Anda..." 
-                                class="flex-1 px-4 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary-green focus:ring-2 focus:ring-primary-green/20"
+                                class="flex-1 px-3 md:px-4 py-2 text-sm md:text-base border-2 border-gray-300 rounded-lg focus:outline-none focus:border-primary-green focus:ring-2 focus:ring-primary-green/20"
                                 onkeypress="if(event.key === 'Enter') chatbot.sendMessage()"
                             >
-                            <button onclick="chatbot.sendMessage()" class="px-4 py-2 bg-primary-green text-white rounded-lg hover:bg-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green">
+                            <button onclick="chatbot.sendMessage()" class="px-3 md:px-4 py-2 bg-primary-green text-white rounded-lg hover:bg-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green flex-shrink-0">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                                 </svg>
@@ -401,20 +425,51 @@ class UstadzIshlahChatbot {
         // Create utterance immediately (don't wait for voices on mobile)
         const utterance = new SpeechSynthesisUtterance(cleanText);
         utterance.lang = 'id-ID'; // Indonesian language
-        utterance.rate = 0.9; // Slightly slower for mobile compatibility
+        
+        // Slower rate for better comprehension (especially for Samsung)
+        if (this.isSamsung) {
+            utterance.rate = 0.75; // Slower for Samsung devices
+        } else {
+            utterance.rate = 0.8; // Slower than before for better comprehension
+        }
+        
         utterance.pitch = 0.7; // Much lower pitch for male voice
         utterance.volume = 1.0; // Full volume
         
-        // Add error handlers
+        // Add error handlers with Samsung-specific handling
         utterance.onerror = (event) => {
             console.log('TTS Error:', event.error);
-            // Try again with default settings if error occurs
+            
+            // Samsung-specific error handling
+            if (this.isSamsung) {
+                // For Samsung, try with simpler settings
+                if (event.error === 'not-allowed' || event.error === 'synthesis-failed' || event.error === 'network') {
+                    setTimeout(() => {
+                        try {
+                            const retryUtterance = new SpeechSynthesisUtterance(utterance.text);
+                            retryUtterance.lang = 'id-ID';
+                            retryUtterance.rate = 0.7; // Even slower for Samsung
+                            retryUtterance.pitch = 1.0; // Default pitch
+                            retryUtterance.volume = 1.0;
+                            this.synth.speak(retryUtterance);
+                        } catch (e) {
+                            console.log('TTS Samsung retry failed:', e);
+                        }
+                    }, 500);
+                    return;
+                }
+            }
+            
+            // General retry for other devices
             if (event.error === 'not-allowed' || event.error === 'synthesis-failed') {
                 setTimeout(() => {
                     try {
-                        utterance.rate = 1.0;
-                        utterance.pitch = 1.0;
-                        this.synth.speak(utterance);
+                        const retryUtterance = new SpeechSynthesisUtterance(utterance.text);
+                        retryUtterance.lang = 'id-ID';
+                        retryUtterance.rate = 0.8;
+                        retryUtterance.pitch = 1.0;
+                        retryUtterance.volume = 1.0;
+                        this.synth.speak(retryUtterance);
                     } catch (e) {
                         console.log('TTS retry failed:', e);
                     }
@@ -526,32 +581,45 @@ class UstadzIshlahChatbot {
             utterance.pitch = 0.5;
         }
         
-        // Try to speak with error handling and delay for mobile
+        // Try to speak with error handling and delay for mobile (especially Samsung)
         try {
             // For mobile browsers, ensure we're not in suspended state
             if (this.synth.speaking) {
                 this.synth.cancel();
+                // Wait a bit longer for Samsung
+                const delay = this.isSamsung ? 300 : 150;
+                setTimeout(() => this.attemptSpeak(utterance), delay);
+            } else {
+                // Small delay to ensure everything is ready (longer for Samsung)
+                const delay = this.isSamsung ? 300 : 150;
+                setTimeout(() => this.attemptSpeak(utterance), delay);
             }
-            
-            // Small delay to ensure everything is ready (especially for mobile)
-            setTimeout(() => {
-                try {
-                    this.synth.speak(utterance);
-                    console.log('TTS speak called successfully');
-                } catch (e) {
-                    console.log('TTS speak error:', e);
-                    // Retry once after a short delay
-                    setTimeout(() => {
-                        try {
-                            this.synth.speak(utterance);
-                        } catch (e2) {
-                            console.log('TTS retry failed:', e2);
-                        }
-                    }, 500);
-                }
-            }, 150);
         } catch (e) {
             console.log('TTS setup error:', e);
+        }
+    }
+    
+    attemptSpeak(utterance) {
+        try {
+            this.synth.speak(utterance);
+            console.log('TTS speak called successfully');
+        } catch (e) {
+            console.log('TTS speak error:', e);
+            // Retry once after a short delay (longer for Samsung)
+            const retryDelay = this.isSamsung ? 800 : 500;
+            setTimeout(() => {
+                try {
+                    // Create new utterance for retry with simpler settings for Samsung
+                    const retryUtterance = new SpeechSynthesisUtterance(utterance.text);
+                    retryUtterance.lang = utterance.lang;
+                    retryUtterance.rate = this.isSamsung ? 0.7 : 0.8;
+                    retryUtterance.pitch = this.isSamsung ? 1.0 : utterance.pitch;
+                    retryUtterance.volume = utterance.volume;
+                    this.synth.speak(retryUtterance);
+                } catch (e2) {
+                    console.log('TTS retry failed:', e2);
+                }
+            }, retryDelay);
         }
     }
 
@@ -577,7 +645,7 @@ class UstadzIshlahChatbot {
         // Tampilkan notifikasi bubble
         const notification = document.createElement('div');
         notification.id = 'chatbot-notification';
-        notification.className = 'fixed bottom-24 right-6 bg-primary-green text-white p-4 rounded-lg shadow-2xl max-w-xs z-50';
+        notification.className = 'fixed bottom-20 right-4 md:bottom-24 md:right-6 bg-primary-green text-white p-4 rounded-lg shadow-2xl max-w-[calc(100vw-2rem)] md:max-w-xs z-[9998]';
         notification.style.opacity = '0';
         notification.style.transform = 'translateY(20px)';
         notification.style.transition = 'opacity 0.3s ease-out, transform 0.3s ease-out';
@@ -845,7 +913,7 @@ Setelah melihat semua program di atas, jika Anda ingin berdonasi untuk mendukung
         messageDiv.className = `flex ${message.type === 'user' ? 'justify-end' : 'justify-start'}`;
         
         const messageContent = document.createElement('div');
-        messageContent.className = `max-w-[80%] rounded-2xl p-3 ${
+        messageContent.className = `max-w-[85%] md:max-w-[80%] rounded-2xl p-2.5 md:p-3 ${
             message.type === 'user' 
                 ? 'bg-primary-green text-white' 
                 : 'bg-white text-gray-800 shadow-sm border border-gray-200'
@@ -860,7 +928,7 @@ Setelah melihat semua program di atas, jika Anda ingin berdonasi untuk mendukung
             return `<a href="${url}" class="underline font-semibold hover:opacity-80" target="_blank">${linkText}</a>`;
         });
         
-        messageContent.innerHTML = `<p class="text-sm leading-relaxed">${text}</p>`;
+        messageContent.innerHTML = `<p class="text-xs md:text-sm leading-relaxed break-words">${text}</p>`;
         messageDiv.appendChild(messageContent);
         messagesContainer.appendChild(messageDiv);
         
