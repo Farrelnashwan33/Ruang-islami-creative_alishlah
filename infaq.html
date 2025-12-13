@@ -41,6 +41,24 @@
         .font-heading {
             font-family: 'Poppins', sans-serif;
         }
+        
+        /* Styling untuk dropdown kategori donasi */
+        #kategori-donasi {
+            color: white !important;
+            font-weight: bold;
+            font-size: 1.125rem;
+        }
+        
+        #kategori-donasi option {
+            background-color: #1a6b4a;
+            color: white;
+            font-weight: bold;
+            padding: 12px;
+        }
+        
+        #kategori-donasi:focus {
+            background-color: rgba(255, 255, 255, 0.35);
+        }
     </style>
     
     <!-- Inline script to prevent flash of unstyled content for dark mode -->
@@ -252,179 +270,487 @@
     <section class="py-12 md:py-20 bg-cream">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
+            <!-- Section Title -->
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-primary-green mb-4">
+                    Program & Kegiatan Masjid Al-Ishlah
+                </h2>
+                <p class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
+                    Berbagai program keagamaan, pendidikan, dan sosial untuk kemaslahatan umat
+                </p>
+            </div>
+            
             <!-- Program Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <div class="space-y-12 md:space-y-16">
                 
-                <!-- Program 1: Zakat Fitrah -->
-                <div id="zakat-fitrah" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-primary-green to-primary-green-dark flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/zakat2.jpg" alt="Zakat Fitrah" class="absolute inset-0 object-cover w-full h-full opacity-30" style="max-height:100%;max-width:100%;">
+                <!-- 1. Bidang ZIS -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-primary-green rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xl">1</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Bidang ZIS</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6 text-lg">
+                        <strong class="text-primary-green">Zakat, Infaq, dan Shodaqoh</strong> - Mengelola zakat yang ada di Masjid Al-Ishlah
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-6 h-6 text-primary-green mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="font-semibold text-primary-green">Zakat Penghasilan</span>
+                            </div>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-6 h-6 text-primary-green mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span class="font-semibold text-primary-green">Zakat Fitrah</span>
+                            </div>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
+                            <div class="flex items-center mb-2">
+                                <svg class="w-6 h-6 text-primary-green mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                                <span class="font-semibold text-primary-green">Donatur Shodaqoh Rutin</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 2. Program Sosial Keumatan -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xl">2</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Program Sosial Keumatan</h3>
+                    </div>
+                    <p class="text-gray-600 mb-6 text-lg">
+                        Program bantuan sosial untuk jemaah dan masyarakat yang membutuhkan
+                    </p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-accent-gold/10 rounded-lg p-4 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800">• Beras Perelek</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-4 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800">• Beras Bersubsidi untuk jemaah</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-4 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800">• Beras Gratis untuk jemaah</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-4 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800">• Sembako bagi jemaah yang sakit</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-4 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800">• Konsultasi masalah rumah tangga</p>
+                        </div>
+                        <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
+                            <p class="font-semibold text-gray-800">• Konsultasi bagi waris (Fara'id)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 3. Program Pendidikan -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xl">3</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Program Pendidikan</h3>
+                    </div>
+                    
+                    <!-- Pendidikan Formal -->
+                    <div class="mb-6">
+                        <h4 class="font-heading font-semibold text-xl text-primary-green mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                            </svg>
+                            Pendidikan Formal
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
+                                <p class="font-semibold text-gray-800">• KOBER/PAUD Al-Ishlah</p>
+                            </div>
+                            <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
+                                <p class="font-semibold text-gray-800">• DTA (Diniyah Takmiliyah Awaliyah Al-Ishlah)</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pendidikan Non-Formal -->
+                    <div>
+                        <h4 class="font-heading font-semibold text-xl text-primary-green mb-4 flex items-center">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+                            </svg>
+                            Pendidikan Non-Formal
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
+                                <p class="font-semibold text-gray-800">• Maghrib Mengaji</p>
+                            </div>
+                            <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
+                                <p class="font-semibold text-gray-800">• Tahsin bagi jama'ah</p>
+                            </div>
+                            <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
+                                <p class="font-semibold text-gray-800">• Materi Pembelajaran:</p>
+                                <p class="text-sm text-gray-600 mt-1 ml-4">- Metode Iqra</p>
+                                <p class="text-sm text-gray-600 ml-4">- Tahsin Al-Quran</p>
+                                <p class="text-sm text-gray-600 ml-4">- Akhlaq</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 4. Pembangunan dan Pemeliharaan Gedung Masjid -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-primary-green-dark rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xl">4</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Pembangunan dan Pemeliharaan Gedung Masjid</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800">• Penambahan fasilitas</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800">• Memelihara fasilitas yang ada</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 5. Kegiatan Bulan Ramadhan -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xl">5</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Kegiatan Bulan Ramadhan</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• Sholat Tarawih</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• Tadarus Al-Quran (Bapak-bapak dan Ibu-ibu)</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• Takjil</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• Pesantren Ramadhan bagi anak-anak</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• Program Imam bagi para remaja masjid</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• Menerima Infaq dan Shodaqoh</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• Khultum Ba'da Tarawih</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• Kajian Subuh</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• I'tikaf 10 hari terakhir</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• Menerima dan Menyalur Zakat Fitrah</p>
+                        </div>
+                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
+                            <p class="font-semibold text-gray-800 text-sm">• Menyelenggarakan Sholat Id</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 6. Pengajian Majelis Ta'lim Al-Ishlah (Rutin) -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-primary-green rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xl">6</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Pengajian Majelis Ta'lim Al-Ishlah (Rutin)</h3>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Kajian Rutin Gerakan Sholat Subuh Berjamaah</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Majelis Ta'lim Al-Fadilah Senin</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Majelis Ta'lim Selasa Sore</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Majelis Ta'lim Al-Fadilah Kamis</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Kajian Bapak-bapak Malam Kamis</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Kajian Jumat Sore</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Majelis Dzikir Al-Ishlah Maljum</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Pengajian Ibu-ibu Majelis Ta'lim Gabungan</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Kajian Khusus Bulanan</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Tahsin Rabu Sore</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Pengajian Rabu Malam</p>
+                        </div>
+                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
+                            <p class="font-semibold text-gray-800 text-sm">• Kajian Hadits Malam Ahad</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 7. Program Tambahan -->
+                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold text-xl">7</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Program Tambahan</h3>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
+                            <p class="font-semibold text-gray-800 mb-2">• Konsultansi Masalah Rumah Tangga</p>
+                        </div>
+                        <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
+                            <p class="font-semibold text-gray-800 mb-2">• Tabungan Fasilitator Qurban</p>
+                            <p class="text-sm text-gray-600 ml-4">(untuk memfasilitasi jamaah yang hendak berqurban dengan cara menabung)</p>
+                        </div>
+                        <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
+                            <p class="font-semibold text-gray-800 mb-2">• KPJ (Kelompok Pemulasaran Husnul Khotimah Al-Ishlah)</p>
+                            <div class="ml-4 mt-2 space-y-1">
+                                <p class="text-sm text-gray-600">- Pemulasaran Jenazah</p>
+                                <p class="text-sm text-gray-600">- Iuran Kematian</p>
+                                <p class="text-sm text-gray-600">- Santunan bagi Ahli Waris</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Informasi Donasi Global -->
+                <div class="bg-gradient-to-br from-primary-green to-primary-green-dark rounded-2xl shadow-2xl p-8 md:p-12 text-white">
+                    <div class="text-center mb-8">
+                        <div class="flex items-center justify-center gap-4 mb-4">
+                            <h3 class="font-heading font-bold text-3xl md:text-4xl">Informasi Donasi</h3>
+                            <button id="toggle-donasi-info" onclick="toggleDonasiInfo()" class="p-2 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white" aria-label="Tampilkan/Sembunyikan Informasi">
+                                <svg id="eye-icon-open" class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                </svg>
+                                <svg id="eye-icon-closed" class="w-6 h-6 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <p class="text-lg text-green-50">Dukung program-program Masjid Al-Ishlah melalui donasi Anda</p>
+                    </div>
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 md:p-8">
+                        <!-- Dropdown Kategori Donasi -->
+                        <div class="mb-6">
+                            <label class="block text-white text-base font-bold mb-3">Pilih Kategori Donasi:</label>
+                            <select id="kategori-donasi" onchange="ubahKategoriDonasi()" class="w-full p-4 bg-white/30 backdrop-blur-sm border-2 border-white/40 rounded-lg text-white font-bold text-lg focus:outline-none focus:ring-2 focus:ring-white cursor-pointer shadow-lg">
+                                <option value="zis" class="bg-primary-green text-white">1. Bidang ZIS</option>
+                                <option value="sosial" class="bg-primary-green text-white">2. Program Sosial Keumatan</option>
+                                <option value="pendidikan" class="bg-primary-green text-white">3. Program Pendidikan</option>
+                                <option value="pembangunan" class="bg-primary-green text-white">4. Pembangunan dan Pemeliharaan Gedung Masjid</option>
+                                <option value="ramadhan" class="bg-primary-green text-white">5. Kegiatan Bulan Ramadhan</option>
+                                <option value="pengajian" class="bg-primary-green text-white">6. Pengajian Majelis Ta'lim Al-Ishlah (Rutin)</option>
+                                <option value="tambahan" class="bg-primary-green text-white">7. Tabungan Fasilitator Qurban</option>
+                                <option value="tambahan" class="bg-primary-green text-white">8. KPJ (Kelompok Pemulasaran Husnul Khotimah Al-Ishlah)</option>
+                            </select>
+                        </div>
+                        
+                        <!-- Input Nama Donatur -->
+                        <div class="mb-6">
+                            <label class="block text-white text-base font-bold mb-3">Nama Donatur:</label>
+                            <input type="text" id="nama-donatur" oninput="updateBankInfoTextarea()" placeholder="Masukkan nama Anda" class="w-full p-4 bg-white/30 backdrop-blur-sm border-2 border-white/40 rounded-lg text-white font-medium text-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:bg-white/40 shadow-lg">
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" id="donasi-info-grid">
+                            <!-- Bank -->
+                            <div class="text-center relative">
+                                <div class="flex items-center justify-center gap-2 mb-2">
+                                    <p class="text-green-200 text-sm">Bank</p>
+                                    <button onclick="toggleBankInfo()" class="p-1 rounded-full hover:bg-white/20 transition-colors focus:outline-none" aria-label="Tampilkan/Sembunyikan Bank">
+                                        <svg id="eye-bank-open" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                        <svg id="eye-bank-closed" class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p id="bank-value" class="font-bold text-2xl blur-sm select-none">BJB</p>
+                                <p id="bank-value-hidden" class="font-bold text-2xl hidden">BJB</p>
+                            </div>
+                            
+                            <!-- No. Rekening -->
+                            <div class="text-center relative">
+                                <div class="flex items-center justify-center gap-2 mb-2">
+                                    <p class="text-green-200 text-sm">No. Rekening</p>
+                                    <button onclick="toggleRekeningInfo()" class="p-1 rounded-full hover:bg-white/20 transition-colors focus:outline-none" aria-label="Tampilkan/Sembunyikan Rekening">
+                                        <svg id="eye-rekening-open" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                        <svg id="eye-rekening-closed" class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p id="rekening-value" class="font-mono font-bold text-2xl blur-sm select-none">0000007021959</p>
+                                <p id="rekening-value-hidden" class="font-mono font-bold text-2xl hidden">0000007021959</p>
+                            </div>
+                            
+                            <!-- Atas Nama -->
+                            <div class="text-center relative">
+                                <div class="flex items-center justify-center gap-2 mb-2">
+                                    <p class="text-green-200 text-sm">Atas Nama</p>
+                                    <button onclick="toggleNamaInfo()" class="p-1 rounded-full hover:bg-white/20 transition-colors focus:outline-none" aria-label="Tampilkan/Sembunyikan Nama">
+                                        <svg id="eye-nama-open" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                        </svg>
+                                        <svg id="eye-nama-closed" class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p id="nama-value" class="font-bold text-xl blur-sm select-none">DODDY SUFRI ADIAT</p>
+                                <p id="nama-value-hidden" class="font-bold text-xl hidden">DODDY SUFRI ADIAT</p>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="block text-green-100 text-sm font-semibold">Salin informasi:</label>
+                                <button onclick="toggleTextareaInfo()" class="p-1 rounded-full hover:bg-white/20 transition-colors focus:outline-none" aria-label="Tampilkan/Sembunyikan Textarea">
+                                    <svg id="eye-textarea-open" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                                    </svg>
+                                    <svg id="eye-textarea-closed" class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <textarea id="bank-info-textarea-global" readonly class="w-full p-4 bg-white/20 backdrop-blur-sm border-2 border-white/30 rounded-lg text-sm font-mono text-white resize-none focus:outline-none focus:ring-2 focus:ring-white blur-sm select-none" rows="5" onclick="selectBankInfoGlobal()"></textarea>
+                            <textarea id="bank-info-textarea-global-hidden" readonly class="w-full p-4 bg-white/20 backdrop-blur-sm border-2 border-white/30 rounded-lg text-sm font-mono text-white resize-none focus:outline-none focus:ring-2 focus:ring-white hidden" rows="5" onclick="selectBankInfoGlobal()"></textarea>
+                        </div>
+                        <button onclick="copyBankInfoGlobal()" id="copy-button" class="w-full py-4 bg-accent-gold text-white font-bold text-lg rounded-lg hover:bg-accent-gold-light transition-colors shadow-lg">
+                            Salin Informasi Rekening
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- OLD CARDS TO BE REMOVED -->
+                <div class="hidden">
+                    <!-- Header Image -->
+                    <div class="h-40 bg-gradient-to-br from-primary-green to-primary-green-dark flex items-center justify-center relative overflow-hidden">
+                        <img src="dokum/zakat2.jpg" alt="Zakat Fitrah" class="absolute inset-0 object-cover w-full h-full opacity-30">
                         <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                             </svg>
                         </div>
                     </div>
+                    
+                    <!-- Content -->
                     <div class="p-6">
-                        <h3 class="font-heading font-bold text-2xl text-primary-green mb-3">Zakat Fitrah</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Zakat fitrah adalah zakat yang wajib dikeluarkan setiap muslim pada bulan Ramadhan sebelum shalat Idul Fitri. Zakat ini bertujuan untuk membersihkan harta dan jiwa, serta membantu fakir miskin merayakan hari raya dengan layak.
-                        </p>
-                        <div class="mb-4">
-                            <p class="text-sm text-gray-500 mb-1">Besaran Zakat:</p>
-                            <p class="font-semibold text-primary-green">-</p>
-                        </div>
-                        <button onclick="handleDonation('Zakat Fitrah')" class="w-full py-3 bg-primary-green text-white font-semibold rounded-lg hover:bg-primary-green-dark transition-colors shadow-md transform hover:scale-105">
-                            Donasi Sekarang
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Program 2: Beras Perelek -->
-                <div id="beras-perelek" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-accent-gold to-accent-gold-light flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/beras perelek.jpg" alt="Beras Perelek" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading font-bold text-2xl text-primary-green mb-3">Beras Perelek</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Program bantuan beras untuk keluarga yang membutuhkan dalam masyarakat. Program ini membantu meringankan beban ekonomi keluarga prasejahtera dan memastikan kebutuhan pokok mereka terpenuhi.
-                        </p>
-                        <div class="mb-4">
-                            <p class="text-sm text-gray-500 mb-1">Target Bantuan:</p>
-                            <p class="font-semibold text-primary-green">50 - 100 keluarga setiap bulan</p>
-                        </div>
-                        <button onclick="handleDonation('Beras Perelek')" class="w-full py-3 bg-primary-green text-white font-semibold rounded-lg hover:bg-primary-green-dark transition-colors shadow-md transform hover:scale-105">
-                            Donasi Sekarang
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Program 3: Jumat Berkah -->
-                <div id="jumat-berkah" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-primary-green-light to-primary-green flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/jumat berkah.jpg" alt="Jumat Berkah" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading font-bold text-2xl text-primary-green mb-3">Jumat Berkah</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Program donasi rutin setiap hari Jumat untuk mendukung kegiatan keagamaan dan operasional masjid. Donasi Anda akan digunakan untuk kegiatan ibadah, pendidikan, dan kegiatan sosial masjid.
-                        </p>
-                        <div class="mb-4">
-                            <p class="text-sm text-gray-500 mb-1">Donasi Rutin:</p>
-                            <p class="font-semibold text-primary-green">Kapan saja, setiap hari Jumat</p>
-                        </div>
-                        <button onclick="handleDonation('Jumat Berkah')" class="w-full py-3 bg-primary-green text-white font-semibold rounded-lg hover:bg-primary-green-dark transition-colors shadow-md transform hover:scale-105">
-                            Donasi Sekarang
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Program 4: Pendidikan Anak -->
-                <div id="pendidikan-anak" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-accent-gold to-yellow-500 flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/pendidikan.jpg" alt="Pendidikan Anak" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
+                        <!-- Title -->
+                        <h3 class="font-heading font-bold text-2xl text-primary-green mb-4">Zakat Fitrah</h3>
                         
-                        <h3 class="font-heading font-bold text-2xl text-primary-green mb-3">Program Pendidikan Anak</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Program pendidikan agama untuk anak-anak dan remaja, termasuk Tahfidz Al-Qur'an, pembelajaran dasar Islam, dan pengembangan karakter Islami. Membentuk generasi yang berakhlak mulia dan berilmu.
-                        </p>
+                        <!-- Pengelola -->
                         <div class="mb-4">
-                            <p class="text-sm text-gray-500 mb-1">Kelas Tersedia:</p>
-                            <p class="font-semibold text-primary-green">Hafalan Al-QUran,Tahsin Qur'an,dll</p>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-3">
+                                Zakat yang ada di Masjid Al-Ishlah dikelola oleh <strong class="text-primary-green">Bidang Zis (Zakat, Infaq, dan Shodaqoh)</strong> yang membawahi:
+                            </p>
+                            <div class="bg-primary-green/5 rounded-lg p-3 space-y-2">
+                                <div class="flex items-center text-sm">
+                                    <span class="w-6 h-6 bg-primary-green text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">1</span>
+                                    <span class="text-gray-700 font-medium">Zakat Penghasilan</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <span class="w-6 h-6 bg-primary-green text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">2</span>
+                                    <span class="text-gray-700 font-medium">Zakat Fitrah</span>
+                                </div>
+                                <div class="flex items-center text-sm">
+                                    <span class="w-6 h-6 bg-primary-green text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">3</span>
+                                    <span class="text-gray-700 font-medium">Donator Shodaqoh Rutin</span>
+                                </div>
+                            </div>
                         </div>
-                        <button onclick="handleDonation('Program Pendidikan Anak')" class="w-full py-3 bg-primary-green text-white font-semibold rounded-lg hover:bg-primary-green-dark transition-colors shadow-md transform hover:scale-105">
-                            Donasi Sekarang
+                        
+                        <!-- Deskripsi -->
+                        <div class="mb-4 pb-4 border-b border-gray-200">
+                            <p class="text-gray-600 text-sm leading-relaxed">
+                                Zakat fitrah adalah zakat yang wajib dikeluarkan setiap muslim pada bulan Ramadhan sebelum shalat Idul Fitri. Zakat ini bertujuan untuk membersihkan harta dan jiwa, serta membantu fakir miskin merayakan hari raya dengan layak.
+                            </p>
+                        </div>
+                        
+                        <!-- Informasi Donasi -->
+                        <div class="bg-gradient-to-br from-primary-green/5 to-primary-green/10 rounded-lg p-4 border-l-4 border-primary-green mb-4">
+                            <div class="flex items-center mb-3">
+                                <svg class="w-5 h-5 text-primary-green mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
+                                </svg>
+                                <h4 class="font-heading font-bold text-lg text-primary-green">Informasi Donasi</h4>
+                            </div>
+                            
+                            <div class="space-y-2 mb-3">
+                                <div class="flex items-center justify-between bg-white rounded-lg p-2">
+                                    <span class="text-sm text-gray-600 font-medium">Bank:</span>
+                                    <span class="text-sm font-semibold text-primary-green">BJB</span>
+                                </div>
+                                <div class="flex items-center justify-between bg-white rounded-lg p-2">
+                                    <span class="text-sm text-gray-600 font-medium">No. Rekening:</span>
+                                    <span class="text-sm font-mono font-bold text-primary-green">0000007021959</span>
+                                </div>
+                                <div class="flex items-center justify-between bg-white rounded-lg p-2">
+                                    <span class="text-sm text-gray-600 font-medium">Atas Nama:</span>
+                                    <span class="text-sm font-semibold text-primary-green">DODDY SUFRI ADIAT</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Textarea untuk copy -->
+                            <div>
+                                <label class="block text-xs font-semibold text-gray-600 mb-2">Salin informasi:</label>
+                                <textarea id="bank-info-textarea" readonly class="w-full p-2.5 bg-white border-2 border-primary-green rounded-lg text-xs font-mono text-gray-800 resize-none focus:outline-none focus:ring-2 focus:ring-primary-green" rows="3" onclick="selectBankInfo()">Bank BJB
+No. Rekening: 0000007021959
+Atas Nama: DODDY SUFRI ADIAT</textarea>
+                            </div>
+                        </div>
+                        
+                        <!-- Button Copy -->
+                        <button onclick="copyBankInfo()" class="w-full py-2.5 bg-accent-gold text-white font-semibold rounded-lg hover:bg-accent-gold-light transition-colors shadow-md transform hover:scale-105 text-sm">
+                            Salin Informasi Rekening
                         </button>
                     </div>
                 </div>
                 
-                <!-- Program 5: Pembangunan Masjid -->
-                <div id="pembangunan-masjid" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-primary-green to-primary-green-dark flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/pembangunan.jpg" alt="Pembangunan Masjid" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading font-bold text-2xl text-primary-green mb-3">Pembangunan & Renovasi Masjid</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Program pengembangan infrastruktur masjid, termasuk renovasi, penambahan fasilitas, dan perawatan bangunan. Menciptakan lingkungan ibadah yang nyaman dan memadai untuk seluruh jamaah.
-                        </p>
-                        <div class="mb-4">
-                            <p class="text-sm text-gray-500 mb-1">Prioritas:</p>
-                            <p class="font-semibold text-primary-green">Perbaikan & penambahan fasilitas</p>
-                        </div>
-                        <button onclick="handleDonation('Pembangunan & Renovasi Masjid')" class="w-full py-3 bg-primary-green text-white font-semibold rounded-lg hover:bg-primary-green-dark transition-colors shadow-md transform hover:scale-105">
-                            Donasi Sekarang
-                        </button>
-                    </div>
                 </div>
+                <!-- END OLD CARDS -->
                 
-                <!-- Program 6: Program Ramadhan -->
-                <div id="program-ramadhan" class="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-2">
-                    <div class="h-48 bg-gradient-to-br from-accent-gold to-orange-400 flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/program ramadhan.jpg" alt="Program Ramadhan" class="w-full h-full object-cover opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-20 h-20 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="font-heading font-bold text-2xl text-primary-green mb-3">Program Bulan Ramadhan</h3>
-                        <p class="text-gray-600 mb-4 leading-relaxed">
-                            Berbagai kegiatan khusus selama bulan Ramadhan, termasuk buka puasa bersama, tadarus Al-Qur'an, ceramah tarawih, dan bantuan iftar untuk jamaah. Menghidupkan bulan suci dengan amal ibadah yang berkualitas.
-                        </p>
-                        <div class="mb-4">
-                            <p class="text-sm text-gray-500 mb-1">Kegiatan:</p>
-                            <p class="font-semibold text-primary-green">Buka puasa bersama, tadarus, ceramah</p>
-                        </div>
-                        <button onclick="handleDonation('Program Bulan Ramadhan')" class="w-full py-3 bg-primary-green text-white font-semibold rounded-lg hover:bg-primary-green-dark transition-colors shadow-md transform hover:scale-105">
-                            Donasi Sekarang
-                        </button>
-                    </div>
-                </div>
-                
-            </div>
-            
-            <!-- Call to Action -->
-            <div class="mt-16 bg-white rounded-xl shadow-lg p-8 md:p-12 text-center">
-                <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-green mb-4">
-                    Mari Bersama Membangun Kebaikan
-                </h2>
-                <p class="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
-                    Setiap donasi Anda sangat berarti dan akan dikelola secara transparan untuk kemaslahatan umat. 
-                    Semoga Allah SWT menerima amal ibadah kita semua.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="kontak.html" class="px-8 py-3 border-2 border-primary-green text-primary-green font-semibold rounded-lg hover:bg-primary-green hover:text-white transition-all duration-300">
-                        Hubungi Kami
-                    </a>
-                    <a href="index.html" class="px-8 py-3 bg-accent-gold text-white font-semibold rounded-lg hover:bg-accent-gold-light transition-all duration-300 shadow-md">
-                        Kembali ke Beranda
-                    </a>
-                </div>
             </div>
             
         </div>
@@ -523,6 +849,541 @@
                 initJadwalSholat('infaq');
             }
         });
+        
+        // Select Bank Info Textarea (Zakat)
+        function selectBankInfo() {
+            const textarea = document.getElementById('bank-info-textarea');
+            if (textarea) {
+                textarea.select();
+                textarea.setSelectionRange(0, 99999); // Untuk mobile
+            }
+        }
+        
+        // Select Bank Info Textarea (Program Sosial)
+        function selectBankInfoSosial() {
+            const textarea = document.getElementById('bank-info-textarea-sosial');
+            if (textarea) {
+                textarea.select();
+                textarea.setSelectionRange(0, 99999); // Untuk mobile
+            }
+        }
+        
+        // Copy Bank Info dengan multiple fallback methods (Zakat)
+        function copyBankInfo() {
+            const bankInfo = `Bank BJB
+No. Rekening: 0000007021959
+Atas Nama: DODDY SUFRI ADIAT`;
+            
+            const button = event.target;
+            const originalText = button.textContent;
+            
+            // Method 1: Modern Clipboard API (untuk HTTPS)
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(bankInfo).then(function() {
+                    showCopySuccess(button, originalText);
+                }).catch(function(err) {
+                    // Fallback ke method 2
+                    tryCopyFallback(bankInfo, button, originalText);
+                });
+            } else {
+                // Fallback langsung jika clipboard API tidak tersedia
+                tryCopyFallback(bankInfo, button, originalText);
+            }
+        }
+        
+        // Fallback copy method menggunakan textarea
+        function tryCopyFallback(bankInfo, button, originalText) {
+            // Method 2: Menggunakan textarea yang sudah ada
+            const textarea = document.getElementById('bank-info-textarea');
+            if (textarea) {
+                textarea.select();
+                textarea.setSelectionRange(0, 99999); // Untuk mobile
+                
+                try {
+                    // Method 2a: execCommand (untuk browser lama)
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        showCopySuccess(button, originalText);
+                        return;
+                    }
+                } catch (err) {
+                    // Method 2b: Textarea sudah ter-select, user bisa copy manual
+                    showCopyManual(button, originalText);
+                    return;
+                }
+            }
+            
+            // Method 3: Buat textarea sementara
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = bankInfo;
+            tempTextarea.style.position = 'fixed';
+            tempTextarea.style.left = '-999999px';
+            tempTextarea.style.top = '-999999px';
+            document.body.appendChild(tempTextarea);
+            tempTextarea.focus();
+            tempTextarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                document.body.removeChild(tempTextarea);
+                
+                if (successful) {
+                    showCopySuccess(button, originalText);
+                } else {
+                    showCopyManual(button, originalText);
+                }
+            } catch (err) {
+                document.body.removeChild(tempTextarea);
+                showCopyManual(button, originalText);
+            }
+        }
+        
+        // Show success message
+        function showCopySuccess(button, originalText) {
+            button.textContent = '✓ Berhasil Disalin!';
+            button.classList.add('bg-green-500');
+            button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
+            
+            setTimeout(function() {
+                button.textContent = originalText;
+                button.classList.remove('bg-green-500');
+                button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
+            }, 2000);
+        }
+        
+        // Show manual copy instruction
+        function showCopyManual(button, originalText) {
+            const textarea = document.getElementById('bank-info-textarea');
+            if (textarea) {
+                // Select textarea untuk user
+                textarea.select();
+                textarea.setSelectionRange(0, 99999);
+                
+                button.textContent = '✓ Pilih & Salin Manual (Ctrl+C / Cmd+C)';
+                button.classList.add('bg-blue-500');
+                button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
+                
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.classList.remove('bg-blue-500');
+                    button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
+                }, 3000);
+            } else {
+                alert('Silakan salin manual:\n\n' + bankInfo);
+            }
+        }
+        
+        // Copy Bank Info untuk Program Sosial dengan multiple fallback methods
+        function copyBankInfoSosial() {
+            const bankInfo = `Bank BJB
+No. Rekening: 0000007021959
+Atas Nama: DODDY SUFRI ADIAT`;
+            
+            const button = event.target;
+            const originalText = button.textContent;
+            
+            // Method 1: Modern Clipboard API (untuk HTTPS)
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(bankInfo).then(function() {
+                    showCopySuccessSosial(button, originalText);
+                }).catch(function(err) {
+                    // Fallback ke method 2
+                    tryCopyFallbackSosial(bankInfo, button, originalText);
+                });
+            } else {
+                // Fallback langsung jika clipboard API tidak tersedia
+                tryCopyFallbackSosial(bankInfo, button, originalText);
+            }
+        }
+        
+        // Fallback copy method untuk Program Sosial
+        function tryCopyFallbackSosial(bankInfo, button, originalText) {
+            // Method 2: Menggunakan textarea yang sudah ada
+            const textarea = document.getElementById('bank-info-textarea-sosial');
+            if (textarea) {
+                textarea.select();
+                textarea.setSelectionRange(0, 99999); // Untuk mobile
+                
+                try {
+                    // Method 2a: execCommand (untuk browser lama)
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        showCopySuccessSosial(button, originalText);
+                        return;
+                    }
+                } catch (err) {
+                    // Method 2b: Textarea sudah ter-select, user bisa copy manual
+                    showCopyManualSosial(button, originalText);
+                    return;
+                }
+            }
+            
+            // Method 3: Buat textarea sementara
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = bankInfo;
+            tempTextarea.style.position = 'fixed';
+            tempTextarea.style.left = '-999999px';
+            tempTextarea.style.top = '-999999px';
+            document.body.appendChild(tempTextarea);
+            tempTextarea.focus();
+            tempTextarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                document.body.removeChild(tempTextarea);
+                
+                if (successful) {
+                    showCopySuccessSosial(button, originalText);
+                } else {
+                    showCopyManualSosial(button, originalText);
+                }
+            } catch (err) {
+                document.body.removeChild(tempTextarea);
+                showCopyManualSosial(button, originalText);
+            }
+        }
+        
+        // Show success message untuk Program Sosial
+        function showCopySuccessSosial(button, originalText) {
+            button.textContent = '✓ Berhasil Disalin!';
+            button.classList.add('bg-green-500');
+            button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
+            
+            setTimeout(function() {
+                button.textContent = originalText;
+                button.classList.remove('bg-green-500');
+                button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
+            }, 2000);
+        }
+        
+        // Show manual copy instruction untuk Program Sosial
+        function showCopyManualSosial(button, originalText) {
+            const textarea = document.getElementById('bank-info-textarea-sosial');
+            if (textarea) {
+                // Select textarea untuk user
+                textarea.select();
+                textarea.setSelectionRange(0, 99999);
+                
+                button.textContent = '✓ Pilih & Salin Manual (Ctrl+C / Cmd+C)';
+                button.classList.add('bg-blue-500');
+                button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
+                
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.classList.remove('bg-blue-500');
+                    button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
+                }, 3000);
+            } else {
+                const bankInfo = `Bank BJB
+No. Rekening: 0000007021959
+Atas Nama: DODDY SUFRI ADIAT`;
+                alert('Silakan salin manual:\n\n' + bankInfo);
+            }
+        }
+        
+        // Toggle Bank Info
+        function toggleBankInfo() {
+            const bankValue = document.getElementById('bank-value');
+            const bankValueHidden = document.getElementById('bank-value-hidden');
+            const eyeOpen = document.getElementById('eye-bank-open');
+            const eyeClosed = document.getElementById('eye-bank-closed');
+            
+            if (bankValue.classList.contains('blur-sm')) {
+                bankValue.classList.add('hidden');
+                bankValue.classList.remove('blur-sm', 'select-none');
+                bankValueHidden.classList.remove('hidden');
+                eyeOpen.classList.add('hidden');
+                eyeClosed.classList.remove('hidden');
+            } else {
+                bankValueHidden.classList.add('hidden');
+                bankValue.classList.remove('hidden');
+                bankValue.classList.add('blur-sm', 'select-none');
+                eyeClosed.classList.add('hidden');
+                eyeOpen.classList.remove('hidden');
+            }
+        }
+        
+        // Toggle Rekening Info
+        function toggleRekeningInfo() {
+            const rekeningValue = document.getElementById('rekening-value');
+            const rekeningValueHidden = document.getElementById('rekening-value-hidden');
+            const eyeOpen = document.getElementById('eye-rekening-open');
+            const eyeClosed = document.getElementById('eye-rekening-closed');
+            
+            if (rekeningValue.classList.contains('blur-sm')) {
+                rekeningValue.classList.add('hidden');
+                rekeningValue.classList.remove('blur-sm', 'select-none');
+                rekeningValueHidden.classList.remove('hidden');
+                eyeOpen.classList.add('hidden');
+                eyeClosed.classList.remove('hidden');
+            } else {
+                rekeningValueHidden.classList.add('hidden');
+                rekeningValue.classList.remove('hidden');
+                rekeningValue.classList.add('blur-sm', 'select-none');
+                eyeClosed.classList.add('hidden');
+                eyeOpen.classList.remove('hidden');
+            }
+        }
+        
+        // Toggle Nama Info
+        function toggleNamaInfo() {
+            const namaValue = document.getElementById('nama-value');
+            const namaValueHidden = document.getElementById('nama-value-hidden');
+            const eyeOpen = document.getElementById('eye-nama-open');
+            const eyeClosed = document.getElementById('eye-nama-closed');
+            
+            if (namaValue.classList.contains('blur-sm')) {
+                namaValue.classList.add('hidden');
+                namaValue.classList.remove('blur-sm', 'select-none');
+                namaValueHidden.classList.remove('hidden');
+                eyeOpen.classList.add('hidden');
+                eyeClosed.classList.remove('hidden');
+            } else {
+                namaValueHidden.classList.add('hidden');
+                namaValue.classList.remove('hidden');
+                namaValue.classList.add('blur-sm', 'select-none');
+                eyeClosed.classList.add('hidden');
+                eyeOpen.classList.remove('hidden');
+            }
+        }
+        
+        // Toggle Textarea Info
+        function toggleTextareaInfo() {
+            const textarea = document.getElementById('bank-info-textarea-global');
+            const textareaHidden = document.getElementById('bank-info-textarea-global-hidden');
+            const eyeOpen = document.getElementById('eye-textarea-open');
+            const eyeClosed = document.getElementById('eye-textarea-closed');
+            
+            if (textarea.classList.contains('blur-sm')) {
+                textarea.classList.add('hidden');
+                textarea.classList.remove('blur-sm', 'select-none');
+                textareaHidden.classList.remove('hidden');
+                eyeOpen.classList.add('hidden');
+                eyeClosed.classList.remove('hidden');
+            } else {
+                textareaHidden.classList.add('hidden');
+                textarea.classList.remove('hidden');
+                textarea.classList.add('blur-sm', 'select-none');
+                eyeClosed.classList.add('hidden');
+                eyeOpen.classList.remove('hidden');
+            }
+        }
+        
+        // Data Kategori Donasi
+        const kategoriDonasiData = {
+            zis: [
+                'Zakat Penghasilan',
+                'Zakat Fitrah',
+                'Donatur Shodaqoh Rutin'
+            ],
+            sosial: [
+                'Beras Perelek',
+                'Beras Bersubsidi untuk jemaah',
+                'Beras Gratis untuk jemaah',
+                'Sembako bagi jemaah yang sakit',
+                'Konsultasi masalah rumah tangga',
+                'Konsultasi bagi waris (Fara\'id)'
+            ],
+            pendidikan: [
+                'KOBER/PAUD Al-Ishlah',
+                'DTA (Diniyah Takmiliyah Awaliyah Al-Ishlah)',
+                'Maghrib Mengaji',
+                'Tahsin bagi jama\'ah'
+            ],
+            pembangunan: [
+                'Penambahan fasilitas',
+                'Memelihara fasilitas yang ada'
+            ],
+            ramadhan: [
+                'Kegiatan Bulan Ramadhan'
+            ],
+            pengajian: [
+                'Pengajian Majelis Ta\'lim Al-Ishlah (Rutin)'
+            ],
+            tambahan: [
+                'Konsultansi Masalah Rumah Tangga',
+                'Tabungan Fasilitator Qurban (untuk memfasilitasi jamaah yang hendak berqurban dengan cara menabung)',
+                'KPJ (Kelompok Pemulasaran Husnul Khotimah Al-Ishlah)',
+                '  - Pemulasaran Jenazah',
+                '  - Iuran Kematian',
+                '  - Santunan bagi Ahli Waris'
+            ]
+        };
+        
+        // Fungsi untuk mengubah kategori donasi dan update textarea
+        function ubahKategoriDonasi() {
+            updateBankInfoTextarea();
+        }
+        
+        // Fungsi untuk update textarea dengan informasi lengkap
+        function updateBankInfoTextarea() {
+            const kategoriSelect = document.getElementById('kategori-donasi');
+            const namaDonatur = document.getElementById('nama-donatur');
+            const kategoriText = kategoriSelect.options[kategoriSelect.selectedIndex].text;
+            const namaDonaturValue = namaDonatur.value.trim() || '(Nama Donatur)';
+            
+            const bankInfo = `Kategori Donasi: ${kategoriText}
+Nama Donatur: ${namaDonaturValue}
+
+Bank BJB
+No. Rekening: 0000007021959
+Atas Nama: DODDY SUFRI ADIAT`;
+            
+            const textarea = document.getElementById('bank-info-textarea-global');
+            const textareaHidden = document.getElementById('bank-info-textarea-global-hidden');
+            
+            if (textarea) textarea.value = bankInfo;
+            if (textareaHidden) textareaHidden.value = bankInfo;
+        }
+        
+        // Event listener untuk update textarea saat nama donatur berubah
+        document.addEventListener('DOMContentLoaded', function() {
+            const namaDonatur = document.getElementById('nama-donatur');
+            const kategoriSelect = document.getElementById('kategori-donasi');
+            
+            if (namaDonatur) {
+                namaDonatur.addEventListener('input', updateBankInfoTextarea);
+            }
+            if (kategoriSelect) {
+                kategoriSelect.addEventListener('change', updateBankInfoTextarea);
+            }
+            
+            // Inisialisasi textarea saat halaman dimuat
+            updateBankInfoTextarea();
+        });
+        
+        // Toggle Show/Hide Donasi Info (Global - untuk icon di header)
+        function toggleDonasiInfo() {
+            toggleBankInfo();
+            toggleRekeningInfo();
+            toggleNamaInfo();
+            toggleTextareaInfo();
+        }
+        
+        // Select Bank Info Textarea (Global)
+        function selectBankInfoGlobal() {
+            const textarea = document.getElementById('bank-info-textarea-global-hidden');
+            const textareaBlur = document.getElementById('bank-info-textarea-global');
+            
+            // Use visible textarea
+            const activeTextarea = textarea && !textarea.classList.contains('hidden') ? textarea : textareaBlur;
+            
+            if (activeTextarea) {
+                activeTextarea.select();
+                activeTextarea.setSelectionRange(0, 99999);
+            }
+        }
+        
+        // Copy Bank Info Global
+        function copyBankInfoGlobal() {
+            const kategoriSelect = document.getElementById('kategori-donasi');
+            const namaDonatur = document.getElementById('nama-donatur');
+            const kategoriText = kategoriSelect.options[kategoriSelect.selectedIndex].text;
+            const namaDonaturValue = namaDonatur.value.trim() || '(Nama Donatur)';
+            
+            const bankInfo = `Kategori Donasi: ${kategoriText}
+Nama Donatur: ${namaDonaturValue}
+
+Bank BJB
+No. Rekening: 0000007021959
+Atas Nama: DODDY SUFRI ADIAT`;
+            
+            const button = event.target;
+            const originalText = button.textContent;
+            
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(bankInfo).then(function() {
+                    showCopySuccessGlobal(button, originalText);
+                }).catch(function(err) {
+                    tryCopyFallbackGlobal(bankInfo, button, originalText);
+                });
+            } else {
+                tryCopyFallbackGlobal(bankInfo, button, originalText);
+            }
+        }
+        
+        function tryCopyFallbackGlobal(bankInfo, button, originalText) {
+            const textarea = document.getElementById('bank-info-textarea-global-hidden');
+            const textareaBlur = document.getElementById('bank-info-textarea-global');
+            
+            // Use visible textarea
+            const activeTextarea = textarea && !textarea.classList.contains('hidden') ? textarea : textareaBlur;
+            
+            if (activeTextarea) {
+                activeTextarea.select();
+                activeTextarea.setSelectionRange(0, 99999);
+                
+                try {
+                    const successful = document.execCommand('copy');
+                    if (successful) {
+                        showCopySuccessGlobal(button, originalText);
+                        return;
+                    }
+                } catch (err) {
+                    showCopyManualGlobal(button, originalText);
+                    return;
+                }
+            }
+            
+            const tempTextarea = document.createElement('textarea');
+            tempTextarea.value = bankInfo;
+            tempTextarea.style.position = 'fixed';
+            tempTextarea.style.left = '-999999px';
+            tempTextarea.style.top = '-999999px';
+            document.body.appendChild(tempTextarea);
+            tempTextarea.focus();
+            tempTextarea.select();
+            
+            try {
+                const successful = document.execCommand('copy');
+                document.body.removeChild(tempTextarea);
+                if (successful) {
+                    showCopySuccessGlobal(button, originalText);
+                } else {
+                    showCopyManualGlobal(button, originalText);
+                }
+            } catch (err) {
+                document.body.removeChild(tempTextarea);
+                showCopyManualGlobal(button, originalText);
+            }
+        }
+        
+        function showCopySuccessGlobal(button, originalText) {
+            button.textContent = '✓ Berhasil Disalin!';
+            button.classList.add('bg-green-500');
+            button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
+            setTimeout(function() {
+                button.textContent = originalText;
+                button.classList.remove('bg-green-500');
+                button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
+            }, 2000);
+        }
+        
+        function showCopyManualGlobal(button, originalText) {
+            const textarea = document.getElementById('bank-info-textarea-global-hidden');
+            const textareaBlur = document.getElementById('bank-info-textarea-global');
+            
+            // Use visible textarea
+            const activeTextarea = textarea && !textarea.classList.contains('hidden') ? textarea : textareaBlur;
+            
+            if (activeTextarea) {
+                activeTextarea.select();
+                activeTextarea.setSelectionRange(0, 99999);
+                button.textContent = '✓ Pilih & Salin Manual (Ctrl+C / Cmd+C)';
+                button.classList.add('bg-blue-500');
+                button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
+                setTimeout(function() {
+                    button.textContent = originalText;
+                    button.classList.remove('bg-blue-500');
+                    button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
+                }, 3000);
+            } else {
+                const bankInfo = `Bank BJB
+No. Rekening: 0000007021959
+Atas Nama: DODDY SUFRI ADIAT`;
+                alert('Silakan salin manual:\n\n' + bankInfo);
+            }
+        }
     </script>
 </body>
 </html>
