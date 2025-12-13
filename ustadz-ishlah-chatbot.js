@@ -77,11 +77,15 @@ class UstadzIshlahChatbot {
         
         // Get voices with retry mechanism for mobile
         const getVoices = () => {
-            const voices = this.synth.getVoices();
-            if (voices && voices.length > 0) {
-                this.voices = voices;
-                this.voicesLoaded = true;
-                return true;
+            try {
+                const voices = this.synth.getVoices();
+                if (voices && voices.length > 0) {
+                    this.voices = voices;
+                    this.voicesLoaded = true;
+                    return true;
+                }
+            } catch (e) {
+                console.log('Error loading voices:', e);
             }
             return false;
         };
@@ -91,16 +95,19 @@ class UstadzIshlahChatbot {
             return;
         }
         
-        // If voices not available, wait a bit and try again (for mobile)
-        setTimeout(() => {
-            if (getVoices()) {
+        // For mobile, try multiple times with longer delays
+        let retryCount = 0;
+        const maxRetries = 5;
+        
+        const retryLoad = () => {
+            if (getVoices() || retryCount >= maxRetries) {
                 return;
             }
-            // Last retry after 1 second
-            setTimeout(() => {
-                getVoices();
-            }, 1000);
-        }, 100);
+            retryCount++;
+            setTimeout(retryLoad, 200 * retryCount); // Increasing delay: 200ms, 400ms, 600ms, etc.
+        };
+        
+        setTimeout(retryLoad, 100);
     }
 
     updateSoundIcon() {
@@ -331,7 +338,18 @@ class UstadzIshlahChatbot {
     }
 
     speakText(text) {
-        if (!this.ttsEnabled || !this.synth) return;
+        if (!this.ttsEnabled) {
+            console.log('TTS disabled');
+            return;
+        }
+        
+        // Check if speech synthesis is available
+        if (!this.synth) {
+            console.log('Speech synthesis not available');
+            return;
+        }
+        
+        console.log('speakText called with text length:', text.length);
         
         // For mobile browsers, ensure user has interacted first
         if (!this.userInteracted) {
@@ -375,35 +393,56 @@ class UstadzIshlahChatbot {
         
         if (!cleanText) return;
         
-        // Ensure voices are loaded (especially for mobile)
+        // Try to load voices if not loaded yet
         if (!this.voicesLoaded || this.voices.length === 0) {
             this.loadVoices();
-            // If voices still not loaded, wait a bit and retry
-            if (!this.voicesLoaded || this.voices.length === 0) {
-                setTimeout(() => {
-                    this.speakText(text);
-                }, 500);
-                return;
-            }
         }
         
+        // Create utterance immediately (don't wait for voices on mobile)
         const utterance = new SpeechSynthesisUtterance(cleanText);
         utterance.lang = 'id-ID'; // Indonesian language
-        utterance.rate = 1.0; // Normal speech rate (adjusted for mobile compatibility)
-        utterance.pitch = 0.7; // Much lower pitch for male voice (0.5-2.0 range, lower = more masculine)
+        utterance.rate = 0.9; // Slightly slower for mobile compatibility
+        utterance.pitch = 0.7; // Much lower pitch for male voice
         utterance.volume = 1.0; // Full volume
         
         // Add error handlers
         utterance.onerror = (event) => {
             console.log('TTS Error:', event.error);
+            // Try again with default settings if error occurs
+            if (event.error === 'not-allowed' || event.error === 'synthesis-failed') {
+                setTimeout(() => {
+                    try {
+                        utterance.rate = 1.0;
+                        utterance.pitch = 1.0;
+                        this.synth.speak(utterance);
+                    } catch (e) {
+                        console.log('TTS retry failed:', e);
+                    }
+                }, 500);
+            }
+        };
+        
+        utterance.onstart = () => {
+            console.log('TTS started');
         };
         
         utterance.onend = () => {
-            // Speech finished
+            console.log('TTS ended');
         };
         
-        // Get all available voices (use cached voices)
-        const voices = this.voices.length > 0 ? this.voices : this.synth.getVoices();
+        // Get all available voices (use cached voices or get fresh)
+        let voices = [];
+        try {
+            voices = this.voices.length > 0 ? this.voices : this.synth.getVoices();
+            // If still no voices, try loading again
+            if (voices.length === 0) {
+                this.loadVoices();
+                voices = this.synth.getVoices();
+            }
+        } catch (e) {
+            console.log('Error getting voices:', e);
+            voices = [];
+        }
         
         // List of known male voice names (common across browsers)
         const maleVoiceNames = [
@@ -472,18 +511,48 @@ class UstadzIshlahChatbot {
         }
         
         // Apply the selected voice
-        if (selectedVoice) {
-            utterance.voice = selectedVoice;
-            // If we couldn't find a clear male voice, lower the pitch even more
-            if (femaleVoiceNames.some(femaleName => selectedVoice.name.toLowerCase().includes(femaleName))) {
-                utterance.pitch = 0.5; // Very low pitch to make it sound more masculine
+        if (selectedVoice && voices.length > 0) {
+            try {
+                utterance.voice = selectedVoice;
+                // If we couldn't find a clear male voice, lower the pitch even more
+                if (femaleVoiceNames.some(femaleName => selectedVoice.name.toLowerCase().includes(femaleName))) {
+                    utterance.pitch = 0.5; // Very low pitch to make it sound more masculine
+                }
+            } catch (e) {
+                console.log('Error setting voice:', e);
             }
         } else {
             // If no voice found, use default but with very low pitch
             utterance.pitch = 0.5;
         }
         
-        this.synth.speak(utterance);
+        // Try to speak with error handling and delay for mobile
+        try {
+            // For mobile browsers, ensure we're not in suspended state
+            if (this.synth.speaking) {
+                this.synth.cancel();
+            }
+            
+            // Small delay to ensure everything is ready (especially for mobile)
+            setTimeout(() => {
+                try {
+                    this.synth.speak(utterance);
+                    console.log('TTS speak called successfully');
+                } catch (e) {
+                    console.log('TTS speak error:', e);
+                    // Retry once after a short delay
+                    setTimeout(() => {
+                        try {
+                            this.synth.speak(utterance);
+                        } catch (e2) {
+                            console.log('TTS retry failed:', e2);
+                        }
+                    }, 500);
+                }
+            }, 150);
+        } catch (e) {
+            console.log('TTS setup error:', e);
+        }
     }
 
     stopSpeaking() {
@@ -580,10 +649,10 @@ class UstadzIshlahChatbot {
         };
         this.addMessage(welcomeMsg);
         
-        // Speak welcome message
+        // Speak welcome message (longer delay for mobile compatibility)
         setTimeout(() => {
             this.speakText(welcomeMsg.text);
-        }, 500);
+        }, 1000);
     }
 
     sendQuickMessage(topic) {
@@ -620,10 +689,10 @@ class UstadzIshlahChatbot {
         let response = this.getResponse(message);
         this.addMessage({ type: 'bot', text: response, timestamp: new Date() });
         
-        // Speak the response
+        // Speak the response (longer delay for mobile compatibility)
         setTimeout(() => {
             this.speakText(response);
-        }, 300);
+        }, 800);
     }
 
     getResponse(message) {
