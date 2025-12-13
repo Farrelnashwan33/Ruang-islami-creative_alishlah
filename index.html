@@ -192,6 +192,34 @@
             background-color: #0d3a25;
         }
         
+        /* Chatbot Animation */
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        .animate-bounce {
+            animation: bounce 2s infinite;
+        }
+        
+        /* Chatbot responsive */
+        @media (max-width: 640px) {
+            #ustadz-ishlah-chatbot {
+                bottom: 1rem;
+                right: 1rem;
+            }
+            
+            #chatbot-window {
+                width: calc(100vw - 2rem) !important;
+                right: 0 !important;
+                max-width: 400px;
+            }
+        }
+        
         .dark .text-green-100,
         .dark .text-green-200 {
             color: #b0d4c4;
@@ -259,10 +287,9 @@
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex lg:items-center lg:space-x-1" role="menubar">
                     <a href="index.html" class="px-4 py-2 rounded-lg text-primary-green font-medium hover:bg-green-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link dark:hover:bg-gray-800" role="menuitem" aria-current="page">Beranda</a>
-                    <a href="infaq.html" class="px-4 py-2 rounded-lg text-white font-medium hover:bg-white/10 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link dark:text-gray-200 dark:hover:bg-gray-800" role="menuitem">Program</a>
+                    <a href="program.html" class="px-4 py-2 rounded-lg text-white font-medium hover:bg-white/10 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link dark:text-gray-200 dark:hover:bg-gray-800" role="menuitem">Program</a>
                     <a href="gallery.html" class="px-4 py-2 rounded-lg text-white font-medium hover:bg-white/10 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link dark:text-gray-200 dark:hover:bg-gray-800" role="menuitem">Galeri</a>
                     <a href="kontak.html" class="px-4 py-2 rounded-lg text-white font-medium hover:bg-white/10 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link dark:text-gray-200 dark:hover:bg-gray-800" role="menuitem">Kontak</a>
-                    <a href="pendidikan.html" class="px-4 py-2 rounded-lg text-white font-medium hover:bg-white/10 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link dark:text-gray-200 dark:hover:bg-gray-800" role="menuitem">Pendidikan</a>
                     <a href="rishlah.html" class="px-4 py-2 rounded-lg text-white font-medium hover:bg-white/10 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link dark:text-gray-200 dark:hover:bg-gray-800" role="menuitem">Rislah</a>
                     <!-- Dark Mode Toggle Button -->
                     <button id="dark-mode-toggle" class="ml-4 dark-mode-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
@@ -273,7 +300,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                         </svg>
                     </button>
-                    <a href="infaq.html" class="ml-4 px-6 py-2 bg-primary-green text-white rounded-lg font-medium hover:bg-primary-green-dark transition-all duration-200 shadow-md btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
+                    <a href="program.html" class="ml-4 px-6 py-2 bg-primary-green text-white rounded-lg font-medium hover:bg-primary-green-dark transition-all duration-200 shadow-md btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
                 </div>
                 
                 <!-- Mobile Menu Buttons -->
@@ -301,12 +328,11 @@
         <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-xl border-t" role="menu" aria-label="Menu Mobile">
             <div class="px-4 pt-2 pb-4 space-y-1">
                 <a href="index.html" class="block px-4 py-3 text-primary-green font-medium rounded-lg bg-green-50 focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem" aria-current="page">Beranda</a>
-                <a href="infaq.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Program</a>
+                <a href="program.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Program</a>
                 <a href="gallery.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Galeri</a>
                 <a href="kontak.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Kontak</a>
-                <a href="pendidikan.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Pendidikan</a>
                 <a href="rishlah.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Rislah</a>
-                <a href="infaq.html" class="block px-4 py-3 bg-primary-green text-white font-medium rounded-lg text-center mt-2 btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
+                <a href="program.html" class="block px-4 py-3 bg-primary-green text-white font-medium rounded-lg text-center mt-2 btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
             </div>
         </div>
     </nav>
@@ -331,7 +357,7 @@
                 <p class="text-base md:text-lg text-green-100 mb-8 md:mb-10 max-w-2xl mx-auto">
                     Menyatukan umat melalui pendidikan, kegiatan sosial, dan program keagamaan yang bermakna untuk kemajuan bersama.
                 </p>
-                <a href="infaq.html" class="inline-block px-8 py-4 bg-accent-gold text-white font-semibold rounded-lg shadow-lg btn-hover text-lg focus:outline-none focus:ring-2 focus:ring-accent-gold focus:ring-offset-2 focus:ring-offset-primary-green-dark" aria-label="Lihat Program Kami">
+                <a href="program.html" class="inline-block px-8 py-4 bg-accent-gold text-white font-semibold rounded-lg shadow-lg btn-hover text-lg focus:outline-none focus:ring-2 focus:ring-accent-gold focus:ring-offset-2 focus:ring-offset-primary-green-dark" aria-label="Lihat Program Kami">
                     Lihat Program Kami
                 </a>
             </div>
@@ -366,7 +392,7 @@
                         <p class="text-gray-600 mb-4 leading-relaxed" itemprop="description">
                             Program zakat fitrah untuk membersihkan harta dan jiwa di bulan suci Ramadhan. Dikelola secara profesional dan transparan.
                         </p>
-                        <a href="infaq.html#zakat-fitrah" class="inline-block text-primary-green font-medium hover:text-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded">
+                        <a href="program.html#zakat-fitrah" class="inline-block text-primary-green font-medium hover:text-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded">
                             Pelajari Lebih Lanjut →
                         </a>
                     </div>
@@ -384,7 +410,7 @@
                         <p class="text-gray-600 mb-4 leading-relaxed" itemprop="description">
                             Program bantuan beras untuk keluarga yang membutuhkan, membantu meringankan beban ekonomi dalam menjaga kesejahteraan umat.
                         </p>
-                        <a href="infaq.html#beras-perelek" class="inline-block text-primary-green font-medium hover:text-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded">
+                        <a href="program.html#beras-perelek" class="inline-block text-primary-green font-medium hover:text-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded">
                             Pelajari Lebih Lanjut →
                         </a>
                     </div>
@@ -402,7 +428,7 @@
                         <p class="text-gray-600 mb-4 leading-relaxed" itemprop="description">
                             Program donasi rutin setiap hari Jumat untuk mendukung kegiatan keagamaan dan sosial masjid secara berkelanjutan.
                         </p>
-                        <a href="infaq.html#jumat-berkah" class="inline-block text-primary-green font-medium hover:text-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded">
+                        <a href="program.html#jumat-berkah" class="inline-block text-primary-green font-medium hover:text-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded">
                             Pelajari Lebih Lanjut →
                         </a>
                     </div>
@@ -410,7 +436,7 @@
             </div>
             
             <div class="text-center mt-10">
-                <a href="infaq.html" class="inline-block px-8 py-3 border-2 border-primary-green text-primary-green font-semibold rounded-lg hover:bg-primary-green hover:text-white transition-all duration-300 btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2">
+                <a href="program.html" class="inline-block px-8 py-3 border-2 border-primary-green text-primary-green font-semibold rounded-lg hover:bg-primary-green hover:text-white transition-all duration-300 btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2">
                     Lihat Semua Program
                 </a>
             </div>
@@ -606,7 +632,7 @@
                         <p class="text-gray-600 mb-4 leading-relaxed" itemprop="description">
                          program tahfidz Al-Qur'an untuk anak-anak dan remaja telah dibuka. Segera daftarkan diri Anda...
                         </p>
-                        <a href="pendidikan.html" class="text-primary-green font-medium hover:text-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded" aria-label="Baca selengkapnya tentang Program Tahfidz Al-Qur'an">
+                        <a href="program.html" class="text-primary-green font-medium hover:text-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded" aria-label="Baca selengkapnya tentang Program Tahfidz Al-Qur'an">
                             Baca Selengkapnya →
                         </a>
                     </div>
@@ -650,7 +676,7 @@
                         <p class="text-gray-600 mb-4 leading-relaxed" itemprop="description">
                             Pendistribusian bantuan beras untuk keluarga yang membutuhkan telah dilaksanakan dengan baik...
                         </p>
-                        <a href="infaq.html#beras-perelek" class="text-primary-green font-medium hover:text-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded" aria-label="Baca selengkapnya tentang Program Beras Perelek">
+                        <a href="program.html#beras-perelek" class="text-primary-green font-medium hover:text-primary-green-dark transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded" aria-label="Baca selengkapnya tentang Program Beras Perelek">
                             Baca Selengkapnya →
                         </a>
                     </div>
@@ -711,9 +737,8 @@
                     <nav aria-label="Footer Navigation">
                         <ul class="space-y-2 text-green-100">
                             <li><a href="index.html" class="hover:text-white transition-colors text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-accent-gold rounded" aria-label="Beranda">Beranda</a></li>
-                            <li><a href="infaq.html" class="hover:text-white transition-colors text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-accent-gold rounded" aria-label="Program dan Donasi">Program & Donasi</a></li>
+                            <li><a href="program.html" class="hover:text-white transition-colors text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-accent-gold rounded" aria-label="Program dan Donasi">Program & Donasi</a></li>
                             <li><a href="gallery.html" class="hover:text-white transition-colors text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-accent-gold rounded" aria-label="Galeri">Galeri</a></li>
-                            <li><a href="pendidikan.html" class="hover:text-white transition-colors text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-accent-gold rounded" aria-label="Pendidikan">Pendidikan</a></li>
                             <li><a href="rishlah.html" class="hover:text-white transition-colors text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-accent-gold rounded" aria-label="Rislah">Rislah</a></li>
                             <li><a href="kontak.html" class="hover:text-white transition-colors text-sm md:text-base focus:outline-none focus:ring-2 focus:ring-accent-gold rounded" aria-label="Kontak">Kontak</a></li>
                         </ul>
@@ -1152,5 +1177,8 @@
             setInterval(updateMasehiCalendar, 60000);
         });
     </script>
+    
+    <!-- Ustadz Ishlah Chatbot -->
+    <script src="ustadz-ishlah-chatbot.js"></script>
 </body>
 </html>

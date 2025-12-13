@@ -240,5 +240,5 @@ document.addEventListener('DOMContentLoaded', function() {
 // Donation Button Handler (Placeholder)
 function handleDonation(programName) {
     // Smooth redirect to donation page
-    window.location.href = `infaq.html#${encodeURIComponent(programName.toLowerCase().replace(/\s+/g, '-'))}`;
+    window.location.href = `program.html#${encodeURIComponent(programName.toLowerCase().replace(/\s+/g, '-'))}`;
 }
