@@ -15,6 +15,7 @@ class UstadzIshlahChatbot {
         this.audioContext = null;
         this.userInteracted = false;
         this.isSamsung = this.detectSamsung();
+        this.samsungAudioActivated = localStorage.getItem('samsung-audio-activated') === 'true';
         this.init();
     }
     
@@ -186,6 +187,25 @@ class UstadzIshlahChatbot {
 
                     <!-- Messages Container -->
                     <div id="chatbot-messages" class="flex-1 overflow-y-auto p-3 md:p-4 space-y-3 md:space-y-4 bg-cream min-h-0">
+                        <!-- Samsung Audio Activation Banner -->
+                        ${this.isSamsung && !this.samsungAudioActivated ? `
+                        <div id="samsung-audio-banner" class="bg-yellow-50 border-2 border-yellow-400 rounded-lg p-4 mb-4">
+                            <div class="flex items-start gap-3">
+                                <div class="flex-shrink-0">
+                                    <svg class="w-6 h-6 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <h4 class="font-semibold text-yellow-800 mb-1">Aktifkan Suara untuk Samsung</h4>
+                                    <p class="text-sm text-yellow-700 mb-3">Browser Samsung memerlukan izin untuk memutar suara. Klik tombol di bawah untuk mengaktifkan.</p>
+                                    <button onclick="chatbot.activateSamsungAudio()" class="w-full px-4 py-2 bg-yellow-500 hover:bg-yellow-600 text-white font-semibold rounded-lg transition-colors">
+                                        🔊 Aktifkan Suara
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        ` : ''}
                         <!-- Messages will be inserted here -->
                     </div>
 
@@ -282,6 +302,108 @@ class UstadzIshlahChatbot {
         
         // Simpan preferensi ke localStorage
         localStorage.setItem('chatbot-sound-enabled', this.soundEnabled);
+    }
+
+    activateSamsungAudio() {
+        // Mark user interaction
+        this.userInteracted = true;
+        
+        // Setup audio context
+        this.setupAudioContext();
+        
+        // Resume audio context if suspended
+        if (this.audioContext && this.audioContext.state === 'suspended') {
+            this.audioContext.resume().then(() => {
+                console.log('Audio context resumed for Samsung');
+            }).catch(e => {
+                console.log('Failed to resume audio context:', e);
+            });
+        }
+        
+        // Test TTS with a short message
+        if (this.synth) {
+            try {
+                const testUtterance = new SpeechSynthesisUtterance('Suara telah diaktifkan');
+                testUtterance.lang = 'id-ID';
+                testUtterance.rate = 1.0;
+                testUtterance.volume = 1.0;
+                
+                testUtterance.onend = () => {
+                    // Hide banner and show success message
+                    const banner = document.getElementById('samsung-audio-banner');
+                    if (banner) {
+                        banner.style.transition = 'opacity 0.3s';
+                        banner.style.opacity = '0';
+                        setTimeout(() => banner.remove(), 300);
+                    }
+                    
+                    // Add success message
+                    this.addMessage({
+                        type: 'bot',
+                        text: '✅ Suara telah berhasil diaktifkan! Sekarang chatbot dapat berbicara dengan lancar.',
+                        timestamp: new Date()
+                    });
+                };
+                
+                testUtterance.onerror = (event) => {
+                    console.log('TTS test error:', event.error);
+                    // Still mark as activated even if test fails
+                    this.samsungAudioActivated = true;
+                    localStorage.setItem('samsung-audio-activated', 'true');
+                    
+                    const banner = document.getElementById('samsung-audio-banner');
+                    if (banner) {
+                        banner.style.transition = 'opacity 0.3s';
+                        banner.style.opacity = '0';
+                        setTimeout(() => banner.remove(), 300);
+                    }
+                    
+                    this.addMessage({
+                        type: 'bot',
+                        text: '⚠️ Suara telah diaktifkan. Jika masih tidak terdengar, pastikan izin audio diaktifkan di pengaturan browser.',
+                        timestamp: new Date()
+                    });
+                };
+                
+                this.synth.speak(testUtterance);
+                
+                // Mark as activated
+                this.samsungAudioActivated = true;
+                localStorage.setItem('samsung-audio-activated', 'true');
+                
+            } catch (e) {
+                console.log('Error activating Samsung audio:', e);
+                // Still mark as activated
+                this.samsungAudioActivated = true;
+                localStorage.setItem('samsung-audio-activated', 'true');
+                
+                const banner = document.getElementById('samsung-audio-banner');
+                if (banner) {
+                    banner.remove();
+                }
+                
+                this.addMessage({
+                    type: 'bot',
+                    text: 'Suara telah diaktifkan. Silakan coba kirim pesan untuk mendengar respons chatbot.',
+                    timestamp: new Date()
+                });
+            }
+        } else {
+            // No TTS available, but still mark as activated
+            this.samsungAudioActivated = true;
+            localStorage.setItem('samsung-audio-activated', 'true');
+            
+            const banner = document.getElementById('samsung-audio-banner');
+            if (banner) {
+                banner.remove();
+            }
+            
+            this.addMessage({
+                type: 'bot',
+                text: 'Maaf, fitur suara tidak tersedia di perangkat ini.',
+                timestamp: new Date()
+            });
+        }
     }
 
     playSound(type = 'notification') {
@@ -426,11 +548,11 @@ class UstadzIshlahChatbot {
         const utterance = new SpeechSynthesisUtterance(cleanText);
         utterance.lang = 'id-ID'; // Indonesian language
         
-        // Slower rate for better comprehension (especially for Samsung)
+        // Faster rate for quicker speech
         if (this.isSamsung) {
-            utterance.rate = 0.75; // Slower for Samsung devices
+            utterance.rate = 1.0; // Faster for Samsung devices
         } else {
-            utterance.rate = 0.8; // Slower than before for better comprehension
+            utterance.rate = 1.1; // Faster speech rate
         }
         
         utterance.pitch = 0.7; // Much lower pitch for male voice
@@ -448,7 +570,7 @@ class UstadzIshlahChatbot {
                         try {
                             const retryUtterance = new SpeechSynthesisUtterance(utterance.text);
                             retryUtterance.lang = 'id-ID';
-                            retryUtterance.rate = 0.7; // Even slower for Samsung
+                            retryUtterance.rate = 1.0; // Faster for Samsung retry
                             retryUtterance.pitch = 1.0; // Default pitch
                             retryUtterance.volume = 1.0;
                             this.synth.speak(retryUtterance);
@@ -466,7 +588,7 @@ class UstadzIshlahChatbot {
                     try {
                         const retryUtterance = new SpeechSynthesisUtterance(utterance.text);
                         retryUtterance.lang = 'id-ID';
-                        retryUtterance.rate = 0.8;
+                        retryUtterance.rate = 1.1;
                         retryUtterance.pitch = 1.0;
                         retryUtterance.volume = 1.0;
                         this.synth.speak(retryUtterance);
@@ -612,7 +734,7 @@ class UstadzIshlahChatbot {
                     // Create new utterance for retry with simpler settings for Samsung
                     const retryUtterance = new SpeechSynthesisUtterance(utterance.text);
                     retryUtterance.lang = utterance.lang;
-                    retryUtterance.rate = this.isSamsung ? 0.7 : 0.8;
+                    retryUtterance.rate = this.isSamsung ? 1.0 : 1.1;
                     retryUtterance.pitch = this.isSamsung ? 1.0 : utterance.pitch;
                     retryUtterance.volume = utterance.volume;
                     this.synth.speak(retryUtterance);
