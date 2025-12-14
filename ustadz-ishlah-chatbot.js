@@ -1031,9 +1031,9 @@ class UstadzIshlahChatbot {
         }
     }
 
-    processMessage(userMessage) {
+    async processMessage(userMessage) {
         const message = userMessage.toLowerCase();
-        let response = this.getResponse(message);
+        let response = await this.getResponse(message);
         this.addMessage({ type: 'bot', text: response, timestamp: new Date() });
         
         // Speak the response (longer delay for mobile compatibility)
@@ -1042,7 +1042,72 @@ class UstadzIshlahChatbot {
         }, 800);
     }
 
-    getResponse(message) {
+    async getVisitorCount() {
+        // Coba ambil dari API
+        try {
+            const currentHost = window.location.hostname;
+            let apiUrl = '/api/visitors?action=getCount';
+            if (!currentHost.includes('vercel.app') && !currentHost.includes('localhost')) {
+                apiUrl = 'https://ruang-islami-creative-alishlah.vercel.app/api/visitors?action=getCount';
+            }
+            
+            const response = await fetch(apiUrl, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            });
+            
+            if (response.ok) {
+                const data = await response.json();
+                return data.onlineCount || 0;
+            }
+        } catch (error) {
+            console.log('Error fetching visitor count from API:', error);
+        }
+        
+        // Fallback: coba ambil dari DOM element
+        const counterElement = document.getElementById('visitor-online-count');
+        if (counterElement && counterElement.textContent) {
+            const count = parseInt(counterElement.textContent);
+            if (!isNaN(count) && count > 0) {
+                return count;
+            }
+        }
+        
+        // Fallback: coba dari mobile counter
+        const counterElementMobile = document.getElementById('visitor-online-count-mobile');
+        if (counterElementMobile && counterElementMobile.textContent) {
+            const count = parseInt(counterElementMobile.textContent);
+            if (!isNaN(count) && count > 0) {
+                return count;
+            }
+        }
+        
+        return 0;
+    }
+
+    async getResponse(message) {
+        // Cek pertanyaan tentang visitor counter / pengunjung
+        const visitorKeywords = [
+            'pengunjung', 'pengakses', 'kunjungan', 'visitor', 'online', 
+            'berapa orang', 'berapa banyak', 'jumlah pengunjung', 'jumlah pengakses', 
+            'berapa kali kunjungan', 'berapa kali jamaah', 'jamaah yang online', 
+            'pengunjung online', 'berapa pengunjung', 'berapa pengakses',
+            'ada berapa', 'berapa yang', 'berapa banyak pengunjung', 'berapa banyak pengakses',
+            'statistik', 'statistik pengunjung', 'data pengunjung'
+        ];
+        const isVisitorQuestion = visitorKeywords.some(keyword => message.includes(keyword));
+        
+        if (isVisitorQuestion) {
+            const count = await this.getVisitorCount();
+            if (count > 0) {
+                return `Alhamdulillah, saat ini ada **${count} pengunjung** yang sedang online mengakses website Masjid Al-Ishlah. 🎉\n\nIni menunjukkan antusiasme jama'ah terhadap informasi dan program masjid. Semoga website ini dapat terus memberikan manfaat untuk umat.\n\nJika Anda ingin melihat informasi lebih lengkap tentang program masjid, silakan kunjungi halaman Program atau hubungi pengurus melalui halaman Kontak.\n\n🔗 [Lihat Program](program.html) | [Kontak Pengurus](kontak.html)`;
+            } else {
+                return `Saat ini sedang tidak ada pengunjung online yang terdeteksi. Namun, website Masjid Al-Ishlah selalu siap memberikan informasi kepada jama'ah kapan saja.\n\nSilakan jelajahi berbagai menu yang tersedia untuk mendapatkan informasi tentang program, kegiatan, dan kontak masjid.\n\n🔗 [Lihat Program](program.html) | [Kontak Pengurus](kontak.html)`;
+            }
+        }
+        
         // Cek pertanyaan tentang program/kegiatan jamaah
         const programKeywords = ['jamaah apa', 'program apa', 'kegiatan apa', 'ada program', 'ada kegiatan', 'kegiatan jamaah', 'program jamaah', 'apa saja program', 'apa saja kegiatan'];
         const isProgramQuestion = programKeywords.some(keyword => message.includes(keyword));
@@ -1143,8 +1208,101 @@ class UstadzIshlahChatbot {
             }
         }
 
-        // Jika tidak ditemukan, gunakan default
-        return responses.default.text;
+        // Jika tidak ditemukan, cek pertanyaan umum/Islami
+        return this.getGeneralResponse(message);
+    }
+
+    getGeneralResponse(message) {
+        // Respons untuk pertanyaan umum/Islami yang tidak terkait website
+        const generalResponses = {
+            // Salam & Greeting
+            'assalamualaikum': "Waalaikumsalam Warahmatullahi Wabarakatuh. 👋\n\nAlhamdulillah, saya Ustadz Ishlah siap membantu Anda. Ada yang bisa saya bantu hari ini?",
+            'salam': "Waalaikumsalam Warahmatullahi Wabarakatuh. 👋\n\nAlhamdulillah, saya Ustadz Ishlah siap membantu Anda. Ada yang bisa saya bantu hari ini?",
+            'halo': "Assalamualaikum Warahmatullahi Wabarakatuh. 👋\n\nAlhamdulillah, saya Ustadz Ishlah siap membantu Anda. Ada yang bisa saya bantu hari ini?",
+            'hai': "Assalamualaikum Warahmatullahi Wabarakatuh. 👋\n\nAlhamdulillah, saya Ustadz Ishlah siap membantu Anda. Ada yang bisa saya bantu hari ini?",
+            'hi': "Assalamualaikum Warahmatullahi Wabarakatuh. 👋\n\nAlhamdulillah, saya Ustadz Ishlah siap membantu Anda. Ada yang bisa saya bantu hari ini?",
+            
+            // Pertanyaan tentang Islam umum
+            'sholat': "Sholat adalah ibadah wajib bagi setiap muslim. Sholat merupakan tiang agama dan merupakan rukun Islam yang kedua setelah syahadat.\n\nUntuk informasi tentang jadwal sholat, Anda dapat melihat di halaman Beranda website ini. Jika ada pertanyaan lebih spesifik tentang sholat, silakan hubungi pengurus masjid melalui halaman Kontak.",
+            'puasa': "Puasa adalah ibadah yang sangat mulia dalam Islam. Puasa Ramadhan adalah salah satu rukun Islam yang wajib dilaksanakan.\n\nMasjid Al-Ishlah memiliki berbagai program khusus di bulan Ramadhan. Untuk informasi lebih lanjut, silakan kunjungi halaman Program atau hubungi pengurus masjid.",
+            'zakat': "Zakat adalah salah satu rukun Islam yang wajib. Masjid Al-Ishlah mengelola zakat melalui Bidang ZIS.\n\nUntuk informasi lengkap tentang zakat dan cara membayarnya, silakan kunjungi halaman Program kami.",
+            'haji': "Haji adalah rukun Islam yang kelima dan wajib bagi yang mampu. Haji dilaksanakan di bulan Dzulhijjah di Mekkah.\n\nUntuk informasi lebih detail tentang haji, silakan hubungi pengurus masjid atau lembaga resmi penyelenggara haji.",
+            'umroh': "Umroh adalah ibadah sunnah yang dapat dilaksanakan kapan saja (kecuali hari-hari tertentu). Umroh juga dilaksanakan di Mekkah.\n\nUntuk informasi lebih detail tentang umroh, silakan hubungi pengurus masjid atau travel umroh terpercaya.",
+            
+            // Pertanyaan tentang Al-Quran
+            'al quran': "Al-Quran adalah kitab suci umat Islam yang diturunkan kepada Nabi Muhammad SAW. Membaca dan mempelajari Al-Quran adalah ibadah yang sangat mulia.\n\nMasjid Al-Ishlah memiliki program Tahfidz Al-Quran untuk menghafalkan Al-Quran. Informasi lengkap dapat Anda temukan di halaman Program.",
+            'quran': "Al-Quran adalah kitab suci umat Islam. Masjid Al-Ishlah memiliki program Tahfidz Al-Quran untuk menghafalkan Al-Quran.\n\nUntuk informasi lebih lanjut, silakan kunjungi halaman Program kami.",
+            'tahfidz': "Program Tahfidz Al-Qur'an adalah salah satu program unggulan Masjid Al-Ishlah untuk menghafalkan Al-Qur'an.\n\nInformasi lengkap tentang program Tahfidz, jadwal, dan pendaftaran dapat Anda temukan di halaman Program.",
+            
+            // Pertanyaan tentang Masjid
+            'masjid': "Masjid Al-Ishlah adalah pusat pendidikan dan dakwah yang berada di Komplek Perumahan Soreang Indah, Blok J1, Cingcin, Soreang, Bandung Regency, West Java 40921.\n\nMasjid ini menyediakan berbagai program pendidikan dan dakwah untuk umat. Untuk informasi lebih lengkap, silakan jelajahi menu-menu yang tersedia di website ini.",
+            'masjid al ishlah': "Masjid Al-Ishlah adalah pusat pendidikan dan dakwah yang menyediakan berbagai program untuk umat.\n\nUntuk informasi lengkap tentang masjid, program, dan kegiatan, silakan jelajahi website ini atau hubungi pengurus melalui halaman Kontak.",
+            
+            // Pertanyaan tentang Soreang
+            'soreang': "Masjid Al-Ishlah berada di Soreang, Bandung, Jawa Barat. Tepatnya di Komplek Perumahan Soreang Indah, Blok J1, Cingcin, Soreang, Bandung Regency, West Java 40921.\n\nUntuk informasi alamat lengkap dan kontak, silakan kunjungi halaman Kontak kami.",
+            'bandung': "Masjid Al-Ishlah berada di Soreang, Kabupaten Bandung, Jawa Barat.\n\nUntuk informasi alamat lengkap dan kontak, silakan kunjungi halaman Kontak kami.",
+            
+            // Pertanyaan tentang waktu/jadwal
+            'jadwal': "Untuk jadwal sholat harian, Anda dapat melihatnya di halaman Beranda website ini. Jadwal sholat diupdate otomatis setiap hari.\n\nUntuk jadwal kegiatan atau kajian, silakan hubungi pengurus masjid melalui halaman Kontak.",
+            'waktu': "Untuk jadwal sholat, Anda dapat melihatnya di halaman Beranda. Untuk informasi waktu kegiatan lainnya, silakan hubungi pengurus masjid.",
+            
+            // Pertanyaan tentang donasi/infaq
+            'infaq': "Infaq adalah sedekah yang diberikan secara sukarela. Masjid Al-Ishlah mengelola infaq melalui Bidang ZIS.\n\nUntuk informasi lengkap tentang cara berinfaq, silakan kunjungi halaman Program kami.",
+            'sedekah': "Sedekah adalah amal yang sangat mulia dalam Islam. Masjid Al-Ishlah mengelola sedekah melalui Bidang ZIS.\n\nUntuk informasi lengkap tentang cara bersedekah, silakan kunjungi halaman Program kami.",
+            'sodaqoh': "Shodaqoh adalah sedekah yang sangat dianjurkan dalam Islam. Masjid Al-Ishlah mengelola shodaqoh melalui Bidang ZIS.\n\nUntuk informasi lengkap, silakan kunjungi halaman Program kami.",
+            
+            // Pertanyaan tentang pendidikan
+            'pendidikan': "Masjid Al-Ishlah memiliki berbagai program pendidikan:\n\n1. Pendidikan Formal: KOBER/PAUD Al-Ishlah, DTA (Diniyah Takmiliyah Awaliyah Al-Ishlah)\n2. Pendidikan Non-Formal: Maghrib Mengaji, Tahsin bagi jama'ah\n\nUntuk informasi lebih lengkap, silakan kunjungi halaman Program.",
+            'paud': "PAUD Al-Ishlah adalah program pendidikan formal untuk anak usia dini yang dikelola oleh Masjid Al-Ishlah.\n\nUntuk informasi lebih lengkap tentang PAUD Al-Ishlah, silakan hubungi pengurus masjid melalui halaman Kontak.",
+            'dta': "DTA (Diniyah Takmiliyah Awaliyah Al-Ishlah) adalah program pendidikan formal yang dikelola oleh Masjid Al-Ishlah.\n\nUntuk informasi lebih lengkap, silakan hubungi pengurus masjid melalui halaman Kontak.",
+            
+            // Pertanyaan tentang remaja/pemuda
+            'pemuda': "Untuk informasi tentang kegiatan remaja dan pemuda, silakan kunjungi halaman Rislah (Remaja Islam Masjid Al-Ishlah). Rislah memiliki berbagai program menarik untuk remaja.",
+            'remaja masjid': "Rislah adalah Remaja Islam Masjid Al-Ishlah yang aktif mengadakan berbagai kegiatan untuk remaja dan pemuda.\n\nUntuk informasi lengkap, silakan kunjungi halaman Rislah kami.",
+            
+            // Pertanyaan tentang bantuan/sosial
+            'bantuan': "Masjid Al-Ishlah memiliki Program Sosial Keumatan yang mencakup berbagai bantuan untuk jamaah yang membutuhkan, seperti Beras Perelek, Sembako, dan lainnya.\n\nUntuk informasi lebih lengkap, silakan kunjungi halaman Program atau hubungi pengurus masjid.",
+            'sosial': "Program Sosial Keumatan Masjid Al-Ishlah mencakup:\n• Beras Perelek\n• Sembako bagi jemaah yang sakit\n• Beras Bersubsidi untuk jemaah\n• Konsultasi masalah rumah tangga\n\nUntuk informasi lebih lengkap, silakan kunjungi halaman Program.",
+            
+            // Pertanyaan tentang cara/help
+            'cara': "Saya siap membantu Anda! Silakan jelaskan lebih spesifik apa yang ingin Anda ketahui:\n\n• Program & Donasi\n• Rislah (Kegiatan Remaja)\n• Kontak Pengurus\n• Galeri Kegiatan\n• Jumlah Pengunjung Online\n\nAtau tanyakan langsung pertanyaan Anda, saya akan berusaha membantu.",
+            'bantuan': "Saya Ustadz Ishlah siap membantu Anda! Silakan tanyakan apa yang ingin Anda ketahui tentang Masjid Al-Ishlah.\n\nAnda bisa bertanya tentang:\n• Program dan kegiatan masjid\n• Cara berdonasi\n• Kegiatan remaja (Rislah)\n• Kontak pengurus\n• Jumlah pengunjung website\n• Dan lainnya",
+            'help': "Saya siap membantu! Silakan tanyakan apa yang ingin Anda ketahui tentang Masjid Al-Ishlah.\n\nAnda bisa bertanya tentang program, donasi, kegiatan remaja, kontak, jumlah pengunjung, atau hal lainnya.",
+            'tolong': "Tentu, saya siap membantu! Silakan jelaskan apa yang Anda butuhkan atau tanyakan tentang Masjid Al-Ishlah.",
+            'bantu': "Tentu, saya siap membantu! Silakan tanyakan apa yang ingin Anda ketahui tentang Masjid Al-Ishlah.",
+            
+            // Pertanyaan tentang website/online
+            'website': "Website ini adalah Ruang Islami Kreatif Al-Ishlah, website resmi Masjid Al-Ishlah yang menyediakan informasi lengkap tentang program, kegiatan, dan kontak masjid.\n\nAnda dapat menjelajahi berbagai menu untuk mendapatkan informasi yang Anda butuhkan.",
+            'online': "Website Masjid Al-Ishlah selalu online dan siap memberikan informasi kepada jama'ah kapan saja.\n\nUntuk melihat berapa pengunjung yang sedang online, silakan tanyakan 'berapa pengunjung' atau 'jumlah pengunjung'.",
+            'fitur': "Website Masjid Al-Ishlah memiliki berbagai fitur:\n• Informasi Program & Donasi\n• Galeri Dokumentasi Kegiatan\n• Jadwal Sholat & Kalender Hijriah\n• Informasi Rislah (Kegiatan Remaja)\n• Kontak Pengurus\n• Chatbot Asisten Virtual (saya!)\n• Visitor Counter (lihat jumlah pengunjung online)\n\nSilakan jelajahi menu-menu yang tersedia!",
+            
+            // Pertanyaan tentang terima kasih
+            'terima kasih': "Sama-sama, semoga bermanfaat! 🙏\n\nJika ada pertanyaan lain, jangan ragu untuk bertanya. Semoga Allah SWT senantiasa memberikan keberkahan kepada kita semua.",
+            'makasih': "Sama-sama, semoga bermanfaat! 🙏\n\nJika ada pertanyaan lain, jangan ragu untuk bertanya. Semoga Allah SWT senantiasa memberikan keberkahan kepada kita semua.",
+            'thanks': "Sama-sama, semoga bermanfaat! 🙏\n\nJika ada pertanyaan lain, jangan ragu untuk bertanya. Semoga Allah SWT senantiasa memberikan keberkahan kepada kita semua.",
+        };
+
+        // Cek apakah ada kata kunci yang cocok dengan respons umum
+        for (const [keyword, response] of Object.entries(generalResponses)) {
+            if (message.includes(keyword)) {
+                return response;
+            }
+        }
+
+        // Jika tidak ada yang cocok, berikan respons yang lebih ramah dan membantu
+        return this.getHelpfulDefaultResponse(message);
+    }
+
+    getHelpfulDefaultResponse(message) {
+        // Analisis sederhana untuk memberikan respons yang lebih membantu
+        const questionWords = ['apa', 'siapa', 'dimana', 'kapan', 'kenapa', 'bagaimana', 'mengapa', 'berapa'];
+        const hasQuestionWord = questionWords.some(word => message.includes(word));
+        
+        if (hasQuestionWord) {
+            return `Terima kasih atas pertanyaan Anda. Saya Ustadz Ishlah, asisten digital Masjid Al-Ishlah.\n\nUntuk pertanyaan yang lebih spesifik tentang Masjid Al-Ishlah, silakan jelaskan lebih detail atau pilih salah satu topik berikut:\n\n• **Program & Donasi** - Informasi tentang program masjid dan cara berdonasi\n• **Rislah** - Kegiatan remaja masjid\n• **Kontak** - Hubungi pengurus DKM\n• **Galeri** - Dokumentasi kegiatan masjid\n\nJika pertanyaan Anda tentang topik Islam secara umum, saya sarankan untuk menghubungi pengurus masjid atau ustadz yang lebih kompeten melalui halaman Kontak untuk mendapatkan jawaban yang lebih detail dan akurat.\n\n🔗 [Halaman Kontak](kontak.html)`;
+        } else {
+            return `Terima kasih sudah menghubungi saya. Saya Ustadz Ishlah, asisten digital Masjid Al-Ishlah.\n\nSaya siap membantu Anda dengan informasi tentang:\n\n• **Program & Donasi** - Cara berdonasi dan program masjid\n• **Rislah** - Kegiatan remaja masjid\n• **Kontak** - Hubungi pengurus DKM\n• **Galeri** - Dokumentasi kegiatan\n• **Jumlah Pengunjung** - Lihat berapa pengunjung yang online\n\nSilakan tanyakan apa yang ingin Anda ketahui, atau kunjungi menu-menu yang tersedia di website ini.`;
+        }
     }
 
     getProgramListResponse() {

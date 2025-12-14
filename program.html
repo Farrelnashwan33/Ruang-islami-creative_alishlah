@@ -95,7 +95,13 @@
                     <a href="gallery.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Galeri</a>
                     <a href="kontak.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Kontak</a>
                     <a href="rishlah.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Rislah</a>
-                    
+                    <!-- Visitor Counter -->
+                    <div class="ml-4 px-3 py-1.5 bg-primary-green/20 rounded-lg flex items-center gap-2 border border-primary-green/30">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-xs sm:text-sm text-primary-green font-medium">
+                            <span id="visitor-online-count" class="font-bold">0</span> Online
+                        </span>
+                    </div>
                     <!-- Dark Mode Toggle -->
                     <button id="dark-mode-toggle" class="ml-4 dark-mode-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
                         <svg class="icon icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -138,6 +144,13 @@
                 <a href="gallery.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Galeri</a>
                 <a href="kontak.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Kontak</a>
                 <a href="rishlah.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Rislah</a>
+                <!-- Visitor Counter Mobile -->
+                <div class="px-4 py-2 bg-primary-green/10 rounded-lg flex items-center justify-center gap-2 border border-primary-green/20">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span class="text-xs text-primary-green font-medium">
+                        <span id="visitor-online-count-mobile" class="font-bold">0</span> Pengunjung Online
+                    </span>
+                </div>
                 <a href="program.html" class="block px-4 py-3 bg-primary-green text-white font-medium rounded-lg text-center mt-2 btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
             </div>
         </div>
@@ -1377,5 +1390,8 @@ Atas Nama: DODDY SUFRI ADIAT`;
     
     <!-- Ustadz Ishlah Chatbot -->
     <script src="ustadz-ishlah-chatbot.js"></script>
+    
+    <!-- Visitor Counter -->
+    <script src="visitor-counter.js"></script>
 </body>
 </html>

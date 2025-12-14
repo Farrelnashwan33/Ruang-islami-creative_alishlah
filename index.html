@@ -283,7 +283,7 @@
     
     <!-- Security Headers & SSL Protection -->
     <!-- Content Security Policy - Melindungi dari XSS attacks -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://fonts.googleapis.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https:; frame-src 'self' https://www.google.com https://maps.google.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://fonts.googleapis.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.tailwindcss.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https: https://ruang-islami-creative-alishlah.vercel.app; frame-src 'self' https://www.google.com https://maps.google.com; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
     
     <!-- X-Frame-Options - Melindungi dari Clickjacking -->
     <meta http-equiv="X-Frame-Options" content="SAMEORIGIN">
@@ -334,6 +334,13 @@
                     <a href="gallery.html" class="px-4 py-2 rounded-lg text-white font-medium hover:bg-white/10 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link dark:text-gray-200 dark:hover:bg-gray-800" role="menuitem">Galeri</a>
                     <a href="kontak.html" class="px-4 py-2 rounded-lg text-white font-medium hover:bg-white/10 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link dark:text-gray-200 dark:hover:bg-gray-800" role="menuitem">Kontak</a>
                     <a href="rishlah.html" class="px-4 py-2 rounded-lg text-white font-medium hover:bg-white/10 hover:text-white transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link dark:text-gray-200 dark:hover:bg-gray-800" role="menuitem">Rislah</a>
+                    <!-- Visitor Counter -->
+                    <div class="ml-4 px-3 py-1.5 bg-primary-green/20 rounded-lg flex items-center gap-2 border border-primary-green/30">
+                        <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-xs sm:text-sm text-white font-medium">
+                            <span id="visitor-online-count" class="font-bold">0</span> Online
+                        </span>
+                    </div>
                     <!-- Dark Mode Toggle Button -->
                     <button id="dark-mode-toggle" class="ml-4 dark-mode-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
                         <svg class="icon icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -375,6 +382,13 @@
                 <a href="gallery.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Galeri</a>
                 <a href="kontak.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Kontak</a>
                 <a href="rishlah.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Rislah</a>
+                <!-- Visitor Counter Mobile -->
+                <div class="px-4 py-2 bg-primary-green/10 rounded-lg flex items-center justify-center gap-2 border border-primary-green/20">
+                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span class="text-xs text-primary-green font-medium">
+                        <span id="visitor-online-count-mobile" class="font-bold">0</span> Pengunjung Online
+                    </span>
+                </div>
                 <a href="program.html" class="block px-4 py-3 bg-primary-green text-white font-medium rounded-lg text-center mt-2 btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
             </div>
         </div>
@@ -1217,5 +1231,8 @@
     
     <!-- Ustadz Ishlah Chatbot -->
     <script src="ustadz-ishlah-chatbot.js"></script>
+    
+    <!-- Visitor Counter -->
+    <script src="visitor-counter.js"></script>
 </body>
 </html>
