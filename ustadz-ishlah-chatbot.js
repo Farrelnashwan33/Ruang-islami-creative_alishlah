@@ -16,6 +16,8 @@ class UstadzIshlahChatbot {
         this.userInteracted = false;
         this.isSamsung = this.detectSamsung();
         this.samsungAudioActivated = localStorage.getItem('samsung-audio-activated') === 'true';
+        this.deviceType = this.detectDeviceType();
+        console.log('Device type detected:', this.deviceType);
         this.init();
     }
     
@@ -24,6 +26,47 @@ class UstadzIshlahChatbot {
         return /samsung|SM-|SAMSUNG/i.test(userAgent) || 
                /Android.*Samsung/i.test(userAgent) ||
                /SamsungBrowser/i.test(userAgent);
+    }
+    
+    detectDeviceType() {
+        const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        const platform = navigator.platform || '';
+        
+        // Deteksi Apple (iPhone, iPad, MacBook)
+        const isApple = /iPhone|iPad|iPod|Macintosh|Mac OS X/i.test(userAgent) || 
+                        /Mac|iPhone|iPad/i.test(platform);
+        
+        // Deteksi MacBook (Mac dengan layar besar, bukan mobile)
+        const isMacBook = /Macintosh|Mac OS X/i.test(userAgent) && 
+                          !/iPhone|iPad|iPod/i.test(userAgent) &&
+                          window.innerWidth >= 1024;
+        
+        // Deteksi iPhone/iPad
+        const isAppleMobile = /iPhone|iPad|iPod/i.test(userAgent) || 
+                             /iPhone|iPad/i.test(platform);
+        
+        // Deteksi Android
+        const isAndroid = /Android/i.test(userAgent) && !this.isSamsung;
+        
+        // Deteksi Laptop/Desktop (Windows, Linux, dll)
+        const isLaptop = !isApple && !isAndroid && 
+                        (window.innerWidth >= 1024 || 
+                         /Windows|Linux|Win32|Win64/i.test(userAgent));
+        
+        // Return device type
+        if (isMacBook) {
+            return 'macbook';
+        } else if (isAppleMobile) {
+            return 'apple-mobile';
+        } else if (isApple) {
+            return 'apple';
+        } else if (isAndroid) {
+            return 'android';
+        } else if (isLaptop) {
+            return 'laptop';
+        } else {
+            return 'unknown';
+        }
     }
 
     init() {
@@ -548,54 +591,31 @@ class UstadzIshlahChatbot {
         const utterance = new SpeechSynthesisUtterance(cleanText);
         utterance.lang = 'id-ID'; // Indonesian language
         
-        // Faster rate for quicker speech
-        if (this.isSamsung) {
-            utterance.rate = 1.0; // Faster for Samsung devices
-        } else {
-            utterance.rate = 1.1; // Faster speech rate
-        }
-        
-        utterance.pitch = 0.7; // Much lower pitch for male voice
-        utterance.volume = 1.0; // Full volume
+        // Set voice parameters based on device type
+        const voiceConfig = this.getVoiceConfigForDevice();
+        utterance.rate = voiceConfig.rate;
+        utterance.pitch = voiceConfig.pitch;
+        utterance.volume = voiceConfig.volume;
         
         // Add error handlers with Samsung-specific handling
         utterance.onerror = (event) => {
             console.log('TTS Error:', event.error);
             
-            // Samsung-specific error handling
-            if (this.isSamsung) {
-                // For Samsung, try with simpler settings
-                if (event.error === 'not-allowed' || event.error === 'synthesis-failed' || event.error === 'network') {
-                    setTimeout(() => {
-                        try {
-                            const retryUtterance = new SpeechSynthesisUtterance(utterance.text);
-                            retryUtterance.lang = 'id-ID';
-                            retryUtterance.rate = 1.0; // Faster for Samsung retry
-                            retryUtterance.pitch = 1.0; // Default pitch
-                            retryUtterance.volume = 1.0;
-                            this.synth.speak(retryUtterance);
-                        } catch (e) {
-                            console.log('TTS Samsung retry failed:', e);
-                        }
-                    }, 500);
-                    return;
-                }
-            }
-            
-            // General retry for other devices
-            if (event.error === 'not-allowed' || event.error === 'synthesis-failed') {
+            // Device-specific error handling
+            if (event.error === 'not-allowed' || event.error === 'synthesis-failed' || event.error === 'network') {
                 setTimeout(() => {
                     try {
                         const retryUtterance = new SpeechSynthesisUtterance(utterance.text);
                         retryUtterance.lang = 'id-ID';
-                        retryUtterance.rate = 1.1;
-                        retryUtterance.pitch = 1.0;
-                        retryUtterance.volume = 1.0;
+                        const voiceConfig = this.getVoiceConfigForDevice();
+                        retryUtterance.rate = voiceConfig.rate;
+                        retryUtterance.pitch = voiceConfig.pitch;
+                        retryUtterance.volume = voiceConfig.volume;
                         this.synth.speak(retryUtterance);
                     } catch (e) {
-                        console.log('TTS retry failed:', e);
+                        console.log('TTS device-specific retry failed:', e);
                     }
-                }, 500);
+                }, this.getRetryDelayForDevice());
             }
         };
         
@@ -691,16 +711,22 @@ class UstadzIshlahChatbot {
         if (selectedVoice && voices.length > 0) {
             try {
                 utterance.voice = selectedVoice;
-                // If we couldn't find a clear male voice, lower the pitch even more
+                // Adjust pitch based on device type and voice gender
+                const voiceConfig = this.getVoiceConfigForDevice();
                 if (femaleVoiceNames.some(femaleName => selectedVoice.name.toLowerCase().includes(femaleName))) {
-                    utterance.pitch = 0.5; // Very low pitch to make it sound more masculine
+                    // Lower pitch lebih banyak jika voice female
+                    utterance.pitch = Math.max(0.4, voiceConfig.pitch - 0.2);
+                } else {
+                    // Gunakan pitch sesuai device type
+                    utterance.pitch = voiceConfig.pitch;
                 }
             } catch (e) {
                 console.log('Error setting voice:', e);
             }
         } else {
-            // If no voice found, use default but with very low pitch
-            utterance.pitch = 0.5;
+            // If no voice found, use default with device-specific pitch
+            const voiceConfig = this.getVoiceConfigForDevice();
+            utterance.pitch = voiceConfig.pitch;
         }
         
         // Try to speak with error handling and delay for mobile (especially Samsung)
@@ -708,12 +734,12 @@ class UstadzIshlahChatbot {
             // For mobile browsers, ensure we're not in suspended state
             if (this.synth.speaking) {
                 this.synth.cancel();
-                // Wait a bit longer for Samsung
-                const delay = this.isSamsung ? 300 : 150;
+                // Wait delay based on device type
+                const delay = this.getDelayForDevice();
                 setTimeout(() => this.attemptSpeak(utterance), delay);
             } else {
-                // Small delay to ensure everything is ready (longer for Samsung)
-                const delay = this.isSamsung ? 300 : 150;
+                // Small delay to ensure everything is ready (based on device type)
+                const delay = this.getDelayForDevice();
                 setTimeout(() => this.attemptSpeak(utterance), delay);
             }
         } catch (e) {
@@ -721,27 +747,112 @@ class UstadzIshlahChatbot {
         }
     }
     
+    getDelayForDevice() {
+        // Delay berbeda untuk setiap device type
+        switch(this.deviceType) {
+            case 'apple-mobile': // iPhone/iPad
+                return 200;
+            case 'macbook': // MacBook
+                return 100;
+            case 'apple': // Mac desktop
+                return 120;
+            case 'android': // Android
+                return 250;
+            case 'laptop': // Laptop Windows/Linux
+                return 100;
+            default:
+                return 150;
+        }
+    }
+
     attemptSpeak(utterance) {
         try {
             this.synth.speak(utterance);
-            console.log('TTS speak called successfully');
+            console.log('TTS speak called successfully for device:', this.deviceType);
         } catch (e) {
             console.log('TTS speak error:', e);
-            // Retry once after a short delay (longer for Samsung)
-            const retryDelay = this.isSamsung ? 800 : 500;
+            // Retry once after a short delay (based on device type)
+            const retryDelay = this.getRetryDelayForDevice();
             setTimeout(() => {
                 try {
-                    // Create new utterance for retry with simpler settings for Samsung
+                    // Create new utterance for retry with device-specific settings
                     const retryUtterance = new SpeechSynthesisUtterance(utterance.text);
                     retryUtterance.lang = utterance.lang;
-                    retryUtterance.rate = this.isSamsung ? 1.0 : 1.1;
-                    retryUtterance.pitch = this.isSamsung ? 1.0 : utterance.pitch;
-                    retryUtterance.volume = utterance.volume;
+                    const voiceConfig = this.getVoiceConfigForDevice();
+                    retryUtterance.rate = voiceConfig.rate;
+                    retryUtterance.pitch = voiceConfig.pitch;
+                    retryUtterance.volume = voiceConfig.volume;
                     this.synth.speak(retryUtterance);
                 } catch (e2) {
                     console.log('TTS retry failed:', e2);
                 }
             }, retryDelay);
+        }
+    }
+    
+    getRetryDelayForDevice() {
+        // Retry delay berbeda untuk setiap device type
+        switch(this.deviceType) {
+            case 'apple-mobile': // iPhone/iPad
+                return 600;
+            case 'macbook': // MacBook
+                return 400;
+            case 'apple': // Mac desktop
+                return 450;
+            case 'android': // Android
+                return 700;
+            case 'laptop': // Laptop Windows/Linux
+                return 400;
+            default:
+                return 500;
+        }
+    }
+
+    getVoiceConfigForDevice() {
+        // Konfigurasi suara berbeda untuk setiap jenis perangkat
+        switch(this.deviceType) {
+            case 'apple-mobile': // iPhone/iPad
+                return {
+                    rate: 1.0,      // Sedikit lebih lambat untuk kejelasan
+                    pitch: 0.85,    // Pitch sedang-tinggi untuk suara yang jelas
+                    volume: 0.9     // Volume sedikit lebih rendah untuk mobile
+                };
+            
+            case 'macbook': // MacBook
+                return {
+                    rate: 1.15,     // Lebih cepat untuk MacBook
+                    pitch: 0.75,    // Pitch lebih rendah untuk suara lebih dalam
+                    volume: 1.0     // Volume penuh
+                };
+            
+            case 'apple': // Mac desktop lainnya
+                return {
+                    rate: 1.1,      // Sedang
+                    pitch: 0.8,     // Pitch sedang
+                    volume: 1.0     // Volume penuh
+                };
+            
+            case 'android': // Android (non-Samsung)
+                return {
+                    rate: 1.05,     // Sedikit lebih cepat
+                    pitch: 0.9,     // Pitch sedikit lebih tinggi
+                    volume: 0.95    // Volume hampir penuh
+                };
+            
+            case 'laptop': // Laptop Windows/Linux
+                return {
+                    rate: 1.2,      // Lebih cepat untuk laptop
+                    pitch: 0.7,     // Pitch rendah untuk suara lebih dalam
+                    volume: 1.0     // Volume penuh
+                };
+            
+            case 'unknown':
+            default:
+                return {
+                    rate: 1.1,     // Default
+                    pitch: 0.8,    // Default
+                    volume: 1.0    // Default
+                };
         }
     }
 
