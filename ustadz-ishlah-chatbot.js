@@ -646,7 +646,11 @@ class UstadzIshlahChatbot {
             'david', 'daniel', 'james', 'thomas', 'alex', 'mark', 'paul', 'george',
             'male', 'pria', 'laki', 'laki-laki', 'mas', 'pak', 'bapak',
             'google indonesian male', 'microsoft zira', 'microsoft mark',
-            'google bahasa indonesia male', 'indonesian male'
+            'google bahasa indonesia male', 'indonesian male',
+            // Android-specific male voices
+            'ar-SA', 'hi-IN', 'en-US male', 'en-GB male', 'id-ID male',
+            'google male', 'android male', 'samsung male', 'huawei male',
+            'xiaomi male', 'oppo male', 'vivo male', 'realme male'
         ];
         
         // List of known female voice names to avoid
@@ -659,24 +663,55 @@ class UstadzIshlahChatbot {
         
         let selectedVoice = null;
         
-        // Strategy 1: Find Indonesian male voice explicitly
-        selectedVoice = voices.find(voice => {
-            const name = voice.name.toLowerCase();
-            const lang = voice.lang.toLowerCase();
-            const isIndonesian = lang.includes('id') || lang.includes('indonesia');
-            const isMale = maleVoiceNames.some(maleName => name.includes(maleName));
-            const isNotFemale = !femaleVoiceNames.some(femaleName => name.includes(femaleName));
-            return isIndonesian && (isMale || isNotFemale);
-        });
-        
-        // Strategy 2: Find any male voice (prefer Indonesian but accept others)
-        if (!selectedVoice) {
+        // Special handling for Android: prioritize male voices more aggressively
+        if (this.deviceType === 'android') {
+            // Strategy 1 for Android: Find any male voice (highest priority for Android)
             selectedVoice = voices.find(voice => {
                 const name = voice.name.toLowerCase();
                 const isMale = maleVoiceNames.some(maleName => name.includes(maleName));
                 const isNotFemale = !femaleVoiceNames.some(femaleName => name.includes(femaleName));
                 return isMale && isNotFemale;
             });
+            
+            // Strategy 2 for Android: Find Indonesian male voice
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => {
+                    const name = voice.name.toLowerCase();
+                    const lang = voice.lang.toLowerCase();
+                    const isIndonesian = lang.includes('id') || lang.includes('indonesia');
+                    const isMale = maleVoiceNames.some(maleName => name.includes(maleName));
+                    const isNotFemale = !femaleVoiceNames.some(femaleName => name.includes(femaleName));
+                    return isIndonesian && (isMale || isNotFemale);
+                });
+            }
+            
+            // Strategy 3 for Android: Find any voice that's not explicitly female
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => {
+                    const name = voice.name.toLowerCase();
+                    return !femaleVoiceNames.some(femaleName => name.includes(femaleName));
+                });
+            }
+        } else {
+            // Strategy 1: Find Indonesian male voice explicitly (for other devices)
+            selectedVoice = voices.find(voice => {
+                const name = voice.name.toLowerCase();
+                const lang = voice.lang.toLowerCase();
+                const isIndonesian = lang.includes('id') || lang.includes('indonesia');
+                const isMale = maleVoiceNames.some(maleName => name.includes(maleName));
+                const isNotFemale = !femaleVoiceNames.some(femaleName => name.includes(femaleName));
+                return isIndonesian && (isMale || isNotFemale);
+            });
+            
+            // Strategy 2: Find any male voice (prefer Indonesian but accept others)
+            if (!selectedVoice) {
+                selectedVoice = voices.find(voice => {
+                    const name = voice.name.toLowerCase();
+                    const isMale = maleVoiceNames.some(maleName => name.includes(maleName));
+                    const isNotFemale = !femaleVoiceNames.some(femaleName => name.includes(femaleName));
+                    return isMale && isNotFemale;
+                });
+            }
         }
         
         // Strategy 3: Find Indonesian voice that's not explicitly female
@@ -713,9 +748,20 @@ class UstadzIshlahChatbot {
                 utterance.voice = selectedVoice;
                 // Adjust pitch based on device type and voice gender
                 const voiceConfig = this.getVoiceConfigForDevice();
-                if (femaleVoiceNames.some(femaleName => selectedVoice.name.toLowerCase().includes(femaleName))) {
+                const isFemale = femaleVoiceNames.some(femaleName => selectedVoice.name.toLowerCase().includes(femaleName));
+                const isMale = maleVoiceNames.some(maleName => selectedVoice.name.toLowerCase().includes(maleName));
+                
+                if (isFemale) {
                     // Lower pitch lebih banyak jika voice female
-                    utterance.pitch = Math.max(0.4, voiceConfig.pitch - 0.2);
+                    if (this.deviceType === 'android') {
+                        // Untuk Android, turunkan pitch lebih banyak untuk suara laki-laki
+                        utterance.pitch = Math.max(0.3, voiceConfig.pitch - 0.3);
+                    } else {
+                        utterance.pitch = Math.max(0.4, voiceConfig.pitch - 0.2);
+                    }
+                } else if (isMale && this.deviceType === 'android') {
+                    // Untuk Android dengan voice male, pastikan pitch rendah
+                    utterance.pitch = Math.min(voiceConfig.pitch, 0.65);
                 } else {
                     // Gunakan pitch sesuai device type
                     utterance.pitch = voiceConfig.pitch;
@@ -834,8 +880,8 @@ class UstadzIshlahChatbot {
             
             case 'android': // Android (non-Samsung)
                 return {
-                    rate: 1.05,     // Sedikit lebih cepat
-                    pitch: 0.9,     // Pitch sedikit lebih tinggi
+                    rate: 1.0,      // Rate normal untuk kejelasan
+                    pitch: 0.6,     // Pitch rendah untuk suara laki-laki yang dalam
                     volume: 0.95    // Volume hampir penuh
                 };
             
