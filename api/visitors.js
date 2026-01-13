@@ -31,7 +31,17 @@ export default async function handler(req, res) {
     
     try {
         if (req.method === 'POST') {
-            const { sessionId, action, timestamp, page, userAgent } = req.body;
+            // Parse body - handle both parsed JSON and string
+            let body = req.body;
+            if (typeof body === 'string') {
+                try {
+                    body = JSON.parse(body);
+                } catch (e) {
+                    return res.status(400).json({ error: 'Invalid JSON body' });
+                }
+            }
+            
+            const { sessionId, action, timestamp, page, userAgent } = body;
             
             if (!sessionId) {
                 return res.status(400).json({ error: 'Session ID required' });
@@ -42,14 +52,15 @@ export default async function handler(req, res) {
                 cleanupVisitors();
                 
                 // Register atau update visitor
+                const now = timestamp || Date.now();
                 visitors.set(sessionId, {
                     sessionId,
-                    lastSeen: timestamp || Date.now(),
+                    lastSeen: now,
                     page: page || 'unknown',
                     userAgent: userAgent || 'unknown',
                     registeredAt: visitors.has(sessionId) 
                         ? visitors.get(sessionId).registeredAt 
-                        : Date.now()
+                        : now
                 });
                 
                 return res.status(200).json({
@@ -58,8 +69,13 @@ export default async function handler(req, res) {
                     message: 'Visitor registered'
                 });
             } else if (action === 'unregister') {
+                // Cleanup old visitors first
+                cleanupVisitors();
+                
                 // Unregister visitor
-                visitors.delete(sessionId);
+                if (visitors.has(sessionId)) {
+                    visitors.delete(sessionId);
+                }
                 
                 return res.status(200).json({
                     success: true,

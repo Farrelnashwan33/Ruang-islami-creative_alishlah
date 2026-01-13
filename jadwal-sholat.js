@@ -29,24 +29,54 @@
         const suffix = pageId ? `-${pageId}` : '';
         
         try {
-            // Menggunakan API untuk konversi hijriah yang lebih akurat
-            const response = await fetch(`https://api.aladhan.com/v1/gToH/${date.day}-${date.month}-${date.year}`);
+            // Menggunakan API untuk konversi hijriah yang lebih akurat dengan timeout
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 5000); // 5 detik timeout
+            
+            const response = await fetch(`https://api.aladhan.com/v1/gToH/${date.day}-${date.month}-${date.year}`, {
+                signal: controller.signal
+            });
+            
+            clearTimeout(timeoutId);
             
             if (response.ok) {
                 const data = await response.json();
-                if (data.code === 200 && data.data) {
+                if (data.code === 200 && data.data && data.data.hijri) {
                     const hijriah = data.data.hijri;
-                    displayHijriah(hijriah, today, suffix);
+                    // Normalize data dari API
+                    const normalizedHijriah = {
+                        day: hijriah.date || hijriah.day,
+                        month: hijriah.month?.number || hijriah.month,
+                        year: hijriah.year,
+                        monthName: hijriah.month?.en || hijriah.month?.ar || hijriah.monthName
+                    };
+                    displayHijriah(normalizedHijriah, today, suffix);
                     return;
                 }
             }
         } catch (error) {
-            console.log('API hijriah tidak tersedia, menggunakan konversi lokal');
+            if (error.name !== 'AbortError') {
+                console.log('API hijriah tidak tersedia, menggunakan konversi lokal:', error);
+            }
         }
         
         // Fallback: Konversi lokal
-        const hijriah = toHijriahLocal(today);
-        displayHijriah(hijriah, today, suffix);
+        try {
+            const hijriah = toHijriahLocal(today);
+            displayHijriah(hijriah, today, suffix);
+        } catch (error) {
+            console.error('Error konversi lokal hijriah:', error);
+            // Fallback terakhir: tampilkan pesan error
+            const dayElement = document.getElementById(`hijriah-day${suffix}`);
+            const monthElement = document.getElementById(`hijriah-month${suffix}`);
+            const yearElement = document.getElementById(`hijriah-year${suffix}`);
+            const fullElement = document.getElementById(`hijriah-full${suffix}`);
+            
+            if (dayElement) dayElement.textContent = '--';
+            if (monthElement) monthElement.textContent = 'Error';
+            if (yearElement) yearElement.textContent = '-- H';
+            if (fullElement) fullElement.textContent = 'Gagal memuat';
+        }
     }
     
     // Konversi lokal (fallback)
@@ -73,7 +103,23 @@
     }
     
     function julianToHijriah(jd) {
+        // Normalize Julian Day
         jd = Math.floor(jd) + 0.5;
+        
+        // Validasi Julian Day
+        if (jd < 1948440) {
+            console.error('Invalid Julian Day:', jd);
+            // Fallback: gunakan tanggal hari ini sebagai referensi
+            const today = new Date();
+            return {
+                day: 1,
+                month: 1,
+                year: 1445,
+                monthName: 'Muharram',
+                full: '1 Muharram 1445 H'
+            };
+        }
+        
         const wjd = jd - 1948440 + 10632;
         const n = Math.floor((wjd - 1) / 10631);
         const wjd2 = wjd - 10631 * n + 354;
@@ -86,6 +132,20 @@
         const hijriahYear = 30 * n + j - 30;
         const hijriahMonth = m;
         const hijriahDay = Math.floor(d);
+        
+        // Validasi hasil
+        if (hijriahYear < 1 || hijriahYear > 1500 || hijriahMonth < 1 || hijriahMonth > 12 || hijriahDay < 1 || hijriahDay > 30) {
+            console.error('Invalid Hijriah date:', { year: hijriahYear, month: hijriahMonth, day: hijriahDay });
+            // Fallback
+            const today = new Date();
+            return {
+                day: 1,
+                month: 1,
+                year: 1445,
+                monthName: 'Muharram',
+                full: '1 Muharram 1445 H'
+            };
+        }
         
         const monthNames = {
             '1': 'Muharram', '2': 'Safar', '3': 'Rabi\'ul Awal', '4': 'Rabi\'ul Akhir',
@@ -166,16 +226,42 @@
         const fullElement = document.getElementById(`hijriah-full${suffix}`);
         
         // Handle jika hijriah dari API (format berbeda)
-        const day = hijriah.day || hijriah.date;
-        const month = hijriah.month || hijriah.month?.number;
-        const year = hijriah.year || hijriah.year;
-        const monthName = hijriah.monthName || hijriah.month?.en || hijriah.month?.ar;
+        let day = hijriah.day || hijriah.date;
+        let month = hijriah.month;
+        let year = hijriah.year;
+        let monthName = hijriah.monthName;
         
-        if (dayElement) dayElement.textContent = day || '--';
-        if (monthElement) monthElement.textContent = monthName || '--';
-        if (yearElement) yearElement.textContent = (year || '--') + ' H';
+        // Jika month adalah object (dari API Aladhan)
+        if (month && typeof month === 'object') {
+            month = month.number || month;
+            monthName = monthName || month.en || month.ar;
+        }
+        
+        // Validasi dan normalisasi
+        day = parseInt(day) || 1;
+        month = parseInt(month) || 1;
+        year = parseInt(year) || 1445;
+        
+        // Jika monthName tidak ada, cari dari month number
+        if (!monthName || monthName === 'Unknown') {
+            const monthNames = {
+                '1': 'Muharram', '2': 'Safar', '3': 'Rabi\'ul Awal', '4': 'Rabi\'ul Akhir',
+                '5': 'Jumadil Awal', '6': 'Jumadil Akhir', '7': 'Rajab', '8': 'Sya\'ban',
+                '9': 'Ramadhan', '10': 'Syawal', '11': 'Dzulqa\'dah', '12': 'Dzulhijjah'
+            };
+            monthName = monthNames[String(month)] || 'Unknown';
+        }
+        
+        // Validasi nilai
+        if (day < 1 || day > 30) day = 1;
+        if (month < 1 || month > 12) month = 1;
+        if (year < 1 || year > 2000) year = 1445;
+        
+        if (dayElement) dayElement.textContent = day;
+        if (monthElement) monthElement.textContent = monthName;
+        if (yearElement) yearElement.textContent = year + ' H';
         if (fullElement) {
-            fullElement.textContent = `${day || '--'} ${monthName || '--'} ${year || '--'} H`;
+            fullElement.textContent = `${day} ${monthName} ${year} H`;
         }
         
         // Update tanggal Masehi
@@ -192,15 +278,36 @@
         const date = formatDate(today);
         const suffix = pageId ? `-${pageId}` : '';
         
+        // Helper function untuk fetch dengan timeout
+        const fetchWithTimeout = async (url, options = {}, timeout = 5000) => {
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), timeout);
+            try {
+                const response = await fetch(url, {
+                    ...options,
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                return response;
+            } catch (error) {
+                clearTimeout(timeoutId);
+                throw error;
+            }
+        };
+        
         // Coba API 1: Banghasan (Kemenag) - Paling reliable
         try {
             const dateStr = `${date.year}/${date.month}/${date.day}`;
-            const response = await fetch(`https://api.banghasan.com/sholat/format/json/jadwal/kota/${KOTA_ID_BANGHASAN}/tanggal/${dateStr}`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+            const response = await fetchWithTimeout(
+                `https://api.banghasan.com/sholat/format/json/jadwal/kota/${KOTA_ID_BANGHASAN}/tanggal/${dateStr}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                },
+                5000
+            );
             
             if (response.ok) {
                 const data = await response.json();
@@ -218,17 +325,23 @@
                 }
             }
         } catch (error) {
-            console.log('API Banghasan gagal, mencoba API lain...', error);
+            if (error.name !== 'AbortError') {
+                console.log('API Banghasan gagal, mencoba API lain...', error);
+            }
         }
         
         // Coba API 2: MyQuran
         try {
-            const response = await fetch(`https://api.myquran.com/v1/sholat/jadwal/${KOTA_ID_MYQURAN}/${date.year}/${date.month}/${date.day}`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+            const response = await fetchWithTimeout(
+                `https://api.myquran.com/v1/sholat/jadwal/${KOTA_ID_MYQURAN}/${date.year}/${date.month}/${date.day}`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                },
+                5000
+            );
             
             if (response.ok) {
                 const data = await response.json();
@@ -239,17 +352,23 @@
                 }
             }
         } catch (error) {
-            console.log('API MyQuran gagal, mencoba API lain...', error);
+            if (error.name !== 'AbortError') {
+                console.log('API MyQuran gagal, mencoba API lain...', error);
+            }
         }
         
         // Coba API 3: Aladhan (fallback)
         try {
-            const response = await fetch(`https://api.aladhan.com/v1/timings/${date.day}-${date.month}-${date.year}?latitude=-6.9175&longitude=107.6191&method=11`, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
+            const response = await fetchWithTimeout(
+                `https://api.aladhan.com/v1/timings/${date.day}-${date.month}-${date.year}?latitude=-6.9175&longitude=107.6191&method=11`,
+                {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                },
+                5000
+            );
             
             if (response.ok) {
                 const data = await response.json();
@@ -267,7 +386,9 @@
                 }
             }
         } catch (error) {
-            console.log('API Aladhan gagal', error);
+            if (error.name !== 'AbortError') {
+                console.log('API Aladhan gagal', error);
+            }
         }
         
         // Jika semua API gagal

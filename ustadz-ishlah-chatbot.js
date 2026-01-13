@@ -198,9 +198,16 @@ class UstadzIshlahChatbot {
             <!-- Chatbot Widget -->
             <div id="ustadz-ishlah-chatbot" class="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-[9999]">
                 <!-- Chat Button -->
-                <button id="chatbot-toggle" class="w-14 h-14 md:w-16 md:h-16 bg-primary-green rounded-full shadow-2xl flex items-center justify-center hover:bg-primary-green-dark transition-colors duration-300 focus:outline-none focus:ring-4 focus:ring-primary-green/50 overflow-hidden relative">
-                    <img id="chat-icon" src="dokum/ustadz ishlah.jpg" alt="Ustadz Ishlah" class="w-full h-full object-cover rounded-full">
-                    <svg id="close-icon" class="w-7 h-7 md:w-8 md:h-8 text-white hidden absolute z-10 bg-primary-green-dark rounded-full p-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                <button id="chatbot-toggle" class="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-primary-green via-primary-green-dark to-primary-green rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:shadow-primary-green/50 transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-primary-green/50 overflow-hidden relative group border-4 border-white/20 hover:border-white/40">
+                    <!-- Pulse animation ring -->
+                    <div class="absolute inset-0 rounded-full bg-primary-green animate-ping opacity-20"></div>
+                    <!-- Glow effect -->
+                    <div class="absolute inset-0 rounded-full bg-gradient-to-br from-primary-green/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <!-- Logo image with better styling -->
+                    <div class="relative z-10 w-full h-full rounded-full overflow-hidden bg-gradient-to-br from-white/10 to-transparent p-1.5 md:p-2">
+                        <img id="chat-icon" src="dokum/ustadz-ishlah-3d.png" alt="Ustadz Ishlah" class="w-full h-full object-cover rounded-full shadow-lg border-2 border-white/30" onerror="this.onerror=null; this.src='dokum/ustadz ishlah.jpg';">
+                    </div>
+                    <svg id="close-icon" class="w-7 h-7 md:w-8 md:h-8 text-white hidden absolute z-20 bg-primary-green-dark rounded-full p-1.5 shadow-xl" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
@@ -208,12 +215,12 @@ class UstadzIshlahChatbot {
                 <!-- Chat Window -->
                 <div id="chatbot-window" class="hidden absolute bottom-16 right-0 md:bottom-20 w-[calc(100vw-2rem)] md:w-96 max-w-md h-[calc(100vh-8rem)] md:h-[600px] max-h-[600px] bg-white rounded-2xl shadow-2xl flex flex-col border-2 border-primary-green/20">
                     <!-- Header -->
-                    <div class="bg-gradient-to-r from-primary-green to-primary-green-dark rounded-t-2xl p-3 md:p-4 flex items-center gap-2 md:gap-3 flex-shrink-0">
-                        <div class="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full flex items-center justify-center shadow-lg overflow-hidden flex-shrink-0">
-                            <img src="dokum/ustadz ishlah.jpg" alt="Ustadz Ishlah" class="w-full h-full object-cover rounded-full">
+                    <div class="bg-gradient-to-r from-primary-green via-primary-green-dark to-primary-green rounded-t-2xl p-3 md:p-4 flex items-center gap-2 md:gap-3 flex-shrink-0 shadow-lg">
+                        <div class="w-12 h-12 md:w-14 md:h-14 bg-gradient-to-br from-white to-white/90 rounded-full flex items-center justify-center shadow-xl overflow-hidden flex-shrink-0 border-2 border-white/50 ring-2 ring-accent-gold/30">
+                            <img src="dokum/ustadz-ishlah-3d.png" alt="Ustadz Ishlah" class="w-full h-full object-cover rounded-full" onerror="this.onerror=null; this.src='dokum/ustadz ishlah.jpg';">
                         </div>
                         <div class="flex-1 min-w-0">
-                            <h3 class="text-white font-bold text-base md:text-lg truncate">Ustadz Ishlah</h3>
+                            <h3 class="text-white font-bold text-base md:text-lg truncate drop-shadow-sm">Ustadz Ishlah</h3>
                             <p class="text-green-100 text-xs truncate">Asisten Virtual Masjid Al-Ishlah</p>
                         </div>
                         <!-- Sound Toggle Button -->
@@ -936,8 +943,8 @@ class UstadzIshlahChatbot {
                     </svg>
                 </div>
                 <div class="flex-1">
-                    <p class="font-semibold mb-2">Assalamualaikum Warahmatullahi Wabarakatuh!</p>
-                    <p class="text-sm mb-3">Saya Ustadz Ishlah. Website ini adalah Ruang Islami Kreatif Al-Ishlah. Saya siap memandu jama'ah. Silakan pilih menu yang ingin Anda kunjungi atau tanyakan:</p>
+                    <p class="font-semibold mb-2">Assalamualaikum! 👋</p>
+                    <p class="text-sm mb-3">Saya Ustadz Ishlah, siap membantu Anda. Pilih menu di bawah:</p>
                     <div class="flex flex-col gap-2">
                         <button onclick="chatbot.openChatAndSend('program')" class="w-full px-3 py-1.5 bg-white text-primary-green text-xs rounded-lg hover:bg-green-50 font-semibold transition-colors text-left">
                             1. 📋 Program (Cara Donasi Zakat/Infak)
@@ -991,7 +998,7 @@ class UstadzIshlahChatbot {
     showWelcomeMessage() {
         const welcomeMsg = {
             type: 'bot',
-            text: "Assalamualaikum Warahmatullahi Wabarakatuh. 👋\n\nSaya Ustadz Ishlah, pemandu digital Masjid Al-Ishlah. Website ini adalah Ruang Islami Kreatif Al-Ishlah. Saya siap memandu jama'ah untuk menemukan informasi tentang Program, Rislah, Galeri, dan Kontak.\n\nSilakan tanyakan apa yang Anda butuhkan, atau klik tombol di bawah untuk akses cepat!",
+            text: "Assalamualaikum! 👋\n\nSaya Ustadz Ishlah, asisten digital Masjid Al-Ishlah. Saya siap membantu Anda menemukan informasi tentang Program, Rislah, Galeri, dan Kontak.\n\nSilakan tanyakan apa yang Anda butuhkan!",
             timestamp: new Date()
         };
         this.addMessage(welcomeMsg);
@@ -1216,11 +1223,11 @@ class UstadzIshlahChatbot {
         // Respons untuk pertanyaan umum/Islami yang tidak terkait website
         const generalResponses = {
             // Salam & Greeting
-            'assalamualaikum': "Waalaikumsalam Warahmatullahi Wabarakatuh. 👋\n\nAlhamdulillah, saya Ustadz Ishlah siap membantu Anda. Ada yang bisa saya bantu hari ini?",
-            'salam': "Waalaikumsalam Warahmatullahi Wabarakatuh. 👋\n\nAlhamdulillah, saya Ustadz Ishlah siap membantu Anda. Ada yang bisa saya bantu hari ini?",
-            'halo': "Assalamualaikum Warahmatullahi Wabarakatuh. 👋\n\nAlhamdulillah, saya Ustadz Ishlah siap membantu Anda. Ada yang bisa saya bantu hari ini?",
-            'hai': "Assalamualaikum Warahmatullahi Wabarakatuh. 👋\n\nAlhamdulillah, saya Ustadz Ishlah siap membantu Anda. Ada yang bisa saya bantu hari ini?",
-            'hi': "Assalamualaikum Warahmatullahi Wabarakatuh. 👋\n\nAlhamdulillah, saya Ustadz Ishlah siap membantu Anda. Ada yang bisa saya bantu hari ini?",
+            'assalamualaikum': "Waalaikumsalam! 👋\n\nAda yang bisa saya bantu?",
+            'salam': "Waalaikumsalam! 👋\n\nAda yang bisa saya bantu?",
+            'halo': "Assalamualaikum! 👋\n\nAda yang bisa saya bantu?",
+            'hai': "Assalamualaikum! 👋\n\nAda yang bisa saya bantu?",
+            'hi': "Assalamualaikum! 👋\n\nAda yang bisa saya bantu?",
             
             // Pertanyaan tentang Islam umum
             'sholat': "Sholat adalah ibadah wajib bagi setiap muslim. Sholat merupakan tiang agama dan merupakan rukun Islam yang kedua setelah syahadat.\n\nUntuk informasi tentang jadwal sholat, Anda dapat melihat di halaman Beranda website ini. Jika ada pertanyaan lebih spesifik tentang sholat, silakan hubungi pengurus masjid melalui halaman Kontak.",
@@ -1265,21 +1272,21 @@ class UstadzIshlahChatbot {
             'sosial': "Program Sosial Keumatan Masjid Al-Ishlah mencakup:\n• Beras Perelek\n• Sembako bagi jemaah yang sakit\n• Beras Bersubsidi untuk jemaah\n• Konsultasi masalah rumah tangga\n\nUntuk informasi lebih lengkap, silakan kunjungi halaman Program.",
             
             // Pertanyaan tentang cara/help
-            'cara': "Saya siap membantu Anda! Silakan jelaskan lebih spesifik apa yang ingin Anda ketahui:\n\n• Program & Donasi\n• Rislah (Kegiatan Remaja)\n• Kontak Pengurus\n• Galeri Kegiatan\n• Jumlah Pengunjung Online\n\nAtau tanyakan langsung pertanyaan Anda, saya akan berusaha membantu.",
-            'bantuan': "Saya Ustadz Ishlah siap membantu Anda! Silakan tanyakan apa yang ingin Anda ketahui tentang Masjid Al-Ishlah.\n\nAnda bisa bertanya tentang:\n• Program dan kegiatan masjid\n• Cara berdonasi\n• Kegiatan remaja (Rislah)\n• Kontak pengurus\n• Jumlah pengunjung website\n• Dan lainnya",
-            'help': "Saya siap membantu! Silakan tanyakan apa yang ingin Anda ketahui tentang Masjid Al-Ishlah.\n\nAnda bisa bertanya tentang program, donasi, kegiatan remaja, kontak, jumlah pengunjung, atau hal lainnya.",
-            'tolong': "Tentu, saya siap membantu! Silakan jelaskan apa yang Anda butuhkan atau tanyakan tentang Masjid Al-Ishlah.",
-            'bantu': "Tentu, saya siap membantu! Silakan tanyakan apa yang ingin Anda ketahui tentang Masjid Al-Ishlah.",
+            'cara': "Saya siap membantu! Silakan tanyakan:\n\n• Program & Donasi\n• Rislah\n• Kontak\n• Galeri\n• Pengunjung Online",
+            'bantuan': "Saya siap membantu! Tanyakan tentang:\n• Program & Donasi\n• Rislah\n• Kontak\n• Galeri",
+            'help': "Saya siap membantu! Tanyakan tentang program, donasi, Rislah, kontak, atau lainnya.",
+            'tolong': "Tentu, saya siap membantu! Silakan tanyakan apa yang Anda butuhkan.",
+            'bantu': "Tentu, saya siap membantu! Silakan tanyakan apa yang Anda butuhkan.",
             
             // Pertanyaan tentang website/online
-            'website': "Website ini adalah Ruang Islami Kreatif Al-Ishlah, website resmi Masjid Al-Ishlah yang menyediakan informasi lengkap tentang program, kegiatan, dan kontak masjid.\n\nAnda dapat menjelajahi berbagai menu untuk mendapatkan informasi yang Anda butuhkan.",
-            'online': "Website Masjid Al-Ishlah selalu online dan siap memberikan informasi kepada jama'ah kapan saja.\n\nUntuk melihat berapa pengunjung yang sedang online, silakan tanyakan 'berapa pengunjung' atau 'jumlah pengunjung'.",
-            'fitur': "Website Masjid Al-Ishlah memiliki berbagai fitur:\n• Informasi Program & Donasi\n• Galeri Dokumentasi Kegiatan\n• Jadwal Sholat & Kalender Hijriah\n• Informasi Rislah (Kegiatan Remaja)\n• Kontak Pengurus\n• Chatbot Asisten Virtual (saya!)\n• Visitor Counter (lihat jumlah pengunjung online)\n\nSilakan jelajahi menu-menu yang tersedia!",
+            'website': "Website resmi Masjid Al-Ishlah. Menyediakan informasi program, kegiatan, dan kontak masjid.",
+            'online': "Website selalu online. Tanyakan 'berapa pengunjung' untuk melihat jumlah pengunjung online.",
+            'fitur': "Fitur website:\n• Program & Donasi\n• Galeri\n• Jadwal Sholat\n• Rislah\n• Kontak\n• Chatbot\n• Visitor Counter",
             
             // Pertanyaan tentang terima kasih
-            'terima kasih': "Sama-sama, semoga bermanfaat! 🙏\n\nJika ada pertanyaan lain, jangan ragu untuk bertanya. Semoga Allah SWT senantiasa memberikan keberkahan kepada kita semua.",
-            'makasih': "Sama-sama, semoga bermanfaat! 🙏\n\nJika ada pertanyaan lain, jangan ragu untuk bertanya. Semoga Allah SWT senantiasa memberikan keberkahan kepada kita semua.",
-            'thanks': "Sama-sama, semoga bermanfaat! 🙏\n\nJika ada pertanyaan lain, jangan ragu untuk bertanya. Semoga Allah SWT senantiasa memberikan keberkahan kepada kita semua.",
+            'terima kasih': "Sama-sama, semoga bermanfaat! 🙏\n\nAda pertanyaan lain?",
+            'makasih': "Sama-sama, semoga bermanfaat! 🙏\n\nAda pertanyaan lain?",
+            'thanks': "Sama-sama, semoga bermanfaat! 🙏\n\nAda pertanyaan lain?",
         };
 
         // Cek apakah ada kata kunci yang cocok dengan respons umum
@@ -1299,9 +1306,9 @@ class UstadzIshlahChatbot {
         const hasQuestionWord = questionWords.some(word => message.includes(word));
         
         if (hasQuestionWord) {
-            return `Terima kasih atas pertanyaan Anda. Saya Ustadz Ishlah, asisten digital Masjid Al-Ishlah.\n\nUntuk pertanyaan yang lebih spesifik tentang Masjid Al-Ishlah, silakan jelaskan lebih detail atau pilih salah satu topik berikut:\n\n• **Program & Donasi** - Informasi tentang program masjid dan cara berdonasi\n• **Rislah** - Kegiatan remaja masjid\n• **Kontak** - Hubungi pengurus DKM\n• **Galeri** - Dokumentasi kegiatan masjid\n\nJika pertanyaan Anda tentang topik Islam secara umum, saya sarankan untuk menghubungi pengurus masjid atau ustadz yang lebih kompeten melalui halaman Kontak untuk mendapatkan jawaban yang lebih detail dan akurat.\n\n🔗 [Halaman Kontak](kontak.html)`;
+            return `Saya Ustadz Ishlah, asisten digital Masjid Al-Ishlah.\n\nSilakan jelaskan lebih detail atau pilih topik:\n\n• **Program & Donasi**\n• **Rislah**\n• **Kontak**\n• **Galeri**\n\nUntuk pertanyaan umum tentang Islam, hubungi pengurus melalui halaman Kontak.\n\n🔗 [Kontak](kontak.html)`;
         } else {
-            return `Terima kasih sudah menghubungi saya. Saya Ustadz Ishlah, asisten digital Masjid Al-Ishlah.\n\nSaya siap membantu Anda dengan informasi tentang:\n\n• **Program & Donasi** - Cara berdonasi dan program masjid\n• **Rislah** - Kegiatan remaja masjid\n• **Kontak** - Hubungi pengurus DKM\n• **Galeri** - Dokumentasi kegiatan\n• **Jumlah Pengunjung** - Lihat berapa pengunjung yang online\n\nSilakan tanyakan apa yang ingin Anda ketahui, atau kunjungi menu-menu yang tersedia di website ini.`;
+            return `Saya Ustadz Ishlah, asisten digital Masjid Al-Ishlah.\n\nSaya siap membantu dengan informasi:\n\n• **Program & Donasi**\n• **Rislah**\n• **Kontak**\n• **Galeri**\n• **Pengunjung Online**\n\nSilakan tanyakan apa yang Anda butuhkan!`;
         }
     }
 
