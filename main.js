@@ -9,11 +9,17 @@ document.addEventListener('DOMContentLoaded', function() {
     function id(name) { return document.getElementById(name); }
 
     if (hamburger && mobileMenu) {
-        hamburger.addEventListener('click', function() {
-            mobileMenu.classList.toggle('hidden');
-            // Add a slight delay for animation if needed
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('animate-fade-in-up');
+        hamburger.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.style.display = 'block';
+                console.log('Mobile menu shown');
+            } else {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.style.display = 'none';
+                console.log('Mobile menu hidden');
             }
         });
         
@@ -22,8 +28,37 @@ document.addEventListener('DOMContentLoaded', function() {
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                mobileMenu.style.display = 'none';
             });
         });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !hamburger.contains(e.target)) {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.style.display = 'none';
+            }
+        });
+    }
+
+    // Dark Mode Toggle
+    const darkModeToggle = id('dark-mode-toggle');
+    const darkModeToggleMobile = id('dark-mode-toggle-mobile');
+    const html = document.documentElement;
+
+    function toggleDarkMode() {
+        html.classList.toggle('dark');
+        const isDark = html.classList.contains('dark');
+        localStorage.setItem('darkMode', isDark);
+        console.log('Dark mode:', isDark);
+    }
+
+    if (darkModeToggle) darkModeToggle.addEventListener('click', toggleDarkMode);
+    if (darkModeToggleMobile) darkModeToggleMobile.addEventListener('click', toggleDarkMode);
+
+    // Load saved dark mode
+    if (localStorage.getItem('darkMode') === 'true') {
+        html.classList.add('dark');
     }
     
     // Navbar scroll effect

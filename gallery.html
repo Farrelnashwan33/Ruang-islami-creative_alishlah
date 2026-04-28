@@ -10,7 +10,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
-            theme: {
+            darkMode: 'class', theme: {
                 extend: {
                     colors: {
                         'primary-purple': '#6366f1',
@@ -32,17 +32,17 @@
 <body class="bg-slate-50 font-body text-slate-900 transition-colors duration-500 overflow-x-hidden">
 
     <!-- Navbar -->
-    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-6 py-4">
+    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-[100] transition-all duration-500 px-4 sm:px-6 py-4">
         <div class="max-w-7xl mx-auto">
-            <div class="glass-card-premium rounded-3xl px-6 py-4 flex justify-between items-center border border-white/20 shadow-2xl backdrop-blur-2xl">
-                <a href="index.html" class="flex items-center gap-4 group">
-                    <div class="relative w-12 h-12 flex items-center justify-center bg-white/10 rounded-2xl group-hover:rotate-12 transition-transform duration-500 border border-white/20 shadow-xl overflow-hidden">
+            <div class="glass-card-premium rounded-3xl px-6 py-4 flex justify-between items-center border border-white/20 shadow-2xl backdrop-blur-2xl h-20">
+                <a href="index.html" class="flex items-center gap-3 sm:gap-4 group">
+                    <div class="relative w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center bg-white/10 rounded-2xl group-hover:rotate-12 transition-transform duration-500 border border-white/20 shadow-xl overflow-hidden shrink-0">
                         <div class="absolute inset-0 bg-gradient-to-br from-primary-purple/20 to-accent-pink/20"></div>
-                        <img src="dokum/ishlah.png" alt="Logo" class="w-8 h-8 object-contain relative z-10">
+                        <img src="logo al-ishlah.png" alt="Logo" class="w-6 h-6 sm:w-8 sm:h-8 object-contain relative z-10">
                     </div>
-                    <div class="flex flex-col">
-                        <span class="font-heading font-black text-xl tracking-tight bg-gradient-to-r from-primary-purple to-accent-pink bg-clip-text text-transparent uppercase">Al-Ishlah</span>
-                        <span class="text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase">Pusat Dakwah</span>
+                    <div class="flex flex-col overflow-hidden">
+                        <span class="font-heading font-black text-lg sm:text-xl tracking-tight bg-gradient-to-r from-primary-purple to-accent-pink bg-clip-text text-transparent uppercase truncate">Al-Ishlah</span>
+                        <span class="text-[8px] sm:text-[10px] font-bold text-slate-400 tracking-[0.2em] uppercase truncate">Pusat Dakwah</span>
                     </div>
                 </a>
 
@@ -58,23 +58,31 @@
                     <a href="program.html#donasi" class="px-8 py-3 bg-gradient-to-r from-primary-purple to-accent-pink text-white rounded-2xl text-sm font-black shadow-lg shadow-primary-purple/25 hover:shadow-primary-purple/40 hover:-translate-y-1 transition-all duration-300 uppercase tracking-wider">Donasi</a>
                 </div>
 
-                <button id="hamburger-menu" class="lg:hidden w-12 h-12 flex flex-col justify-center items-center gap-1.5 bg-slate-100 rounded-2xl">
-                    <span class="w-6 h-0.5 bg-slate-900 rounded-full"></span>
-                    <span class="w-6 h-0.5 bg-slate-900 rounded-full"></span>
-                    <span class="w-4 h-0.5 bg-slate-900 rounded-full self-end mr-3"></span>
-                </button>
+                <div class="flex items-center gap-3">
+                    <button id="dark-mode-toggle-mobile" class="lg:hidden p-2.5 bg-slate-100 rounded-xl border border-slate-200" aria-label="Toggle Dark Mode">
+                        <svg class="w-5 h-5 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                        </svg>
+                    </button>
+                    <button id="hamburger-menu" class="lg:hidden w-12 h-12 flex flex-col justify-center items-center gap-1.5 bg-primary-purple text-white rounded-2xl shadow-lg">
+                        <span class="w-6 h-0.5 bg-white rounded-full"></span>
+                        <span class="w-6 h-0.5 bg-white rounded-full"></span>
+                        <span class="w-4 h-0.5 bg-white rounded-full self-end mr-3"></span>
+                    </button>
+                </div>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden mt-4 mx-auto max-w-sm glass-card-premium rounded-[2.5rem] p-8 border border-white/20 shadow-2xl animate-fade-in-up">
-            <div class="flex flex-col gap-4 text-center">
-                <a href="index.html" class="text-lg font-black text-slate-700">Beranda</a>
-                <a href="program.html" class="text-lg font-black text-slate-700">Program</a>
-                <a href="gallery.html" class="text-lg font-black text-primary-purple">Galeri</a>
-                <a href="kontak.html" class="text-lg font-black text-slate-700">Kontak</a>
-                <a href="rishlah.html" class="text-lg font-black text-slate-700">Rislah</a>
-                <a href="program.html#donasi" class="mt-4 px-8 py-5 bg-deep-purple text-white rounded-3xl font-black uppercase tracking-widest text-sm">Donasi Sekarang</a>
+        <div id="mobile-menu" class="hidden lg:hidden mt-4 mx-auto max-w-[90%] glass-card-premium rounded-[2.5rem] p-8 border border-white/20 shadow-2xl animate-fade-in-up">
+            <div class="flex flex-col gap-6 text-center">
+                <a href="index.html" class="text-xl font-black text-slate-700 hover:text-primary-purple py-2 transition-all">Beranda</a>
+                <a href="program.html" class="text-xl font-black text-slate-700 hover:text-primary-purple py-2 transition-all">Program</a>
+                <a href="gallery.html" class="text-xl font-black text-primary-purple bg-primary-purple/10 py-3 rounded-2xl">Galeri</a>
+                <a href="kontak.html" class="text-xl font-black text-slate-700 hover:text-primary-purple py-2 transition-all">Kontak</a>
+                <a href="rishlah.html" class="text-xl font-black text-slate-700 hover:text-primary-purple py-2 transition-all">Rislah</a>
+                <div class="h-px bg-slate-100 my-2"></div>
+                <a href="program.html#donasi" class="px-8 py-5 bg-gradient-to-r from-primary-purple to-accent-pink text-white rounded-3xl font-black uppercase tracking-widest text-sm shadow-lg shadow-primary-purple/25">Donasi Sekarang</a>
             </div>
         </div>
     </nav>
