@@ -1,0 +1,222 @@
+/* Premium Design System for Masjid Al-Ishlah */
+
+:root {
+    /* Core Colors */
+    --primary-purple: #6366f1;
+    --primary-purple-dark: #4338ca;
+    --primary-purple-light: #818cf8;
+    --accent-pink: #ec4899;
+    --accent-pink-light: #f472b6;
+    --deep-purple: #1e1b4b;
+    
+    /* Semantic Colors */
+    --bg-main: #f8fafc;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --glass-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+
+    /* Dark Mode Colors */
+    --bg-dark: #0f172a;
+    --glass-bg-dark: rgba(30, 41, 59, 0.8);
+    --glass-border-dark: rgba(255, 255, 255, 0.1);
+}
+
+.dark {
+    --bg-main: var(--bg-dark);
+    --glass-bg: var(--glass-bg-dark);
+    --glass-border: var(--glass-border-dark);
+    color: #f8fafc;
+}
+
+.dark .glass-card-premium {
+    background: var(--glass-bg-dark);
+    border-color: var(--glass-border-dark);
+}
+
+.dark h1, .dark h2, .dark h3, .dark .text-slate-900 {
+    color: #f8fafc !important;
+}
+
+.dark .text-slate-700, .dark .text-slate-600 {
+    color: #cbd5e1 !important;
+}
+
+/* Base Styles */
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg-main);
+}
+
+.font-heading {
+    font-family: 'Outfit', sans-serif;
+}
+
+/* Glassmorphism Utilities */
+.glass-card-premium {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+/* Custom Animations */
+@keyframes slide-up {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+    100% { transform: translateY(0px); }
+}
+
+.animate-slide-up {
+    animation: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+    animation: fade-in 1s ease forwards;
+}
+
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Gallery & Media Styles */
+.gallery-grid-item {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-grid-item:hover {
+    transform: scale(1.02) translateY(-10px);
+}
+
+/* Chatbot Custom Styles */
+#chatbot-container {
+    z-index: 9999;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-purple);
+}
+
+/* Form Styles */
+input::placeholder, textarea::placeholder {
+    color: #94a3b8;
+    font-weight: 500;
+}
+
+/* Navigation Hover Effects */
+.nav-link-active {
+    color: var(--primary-purple);
+    background: rgba(99, 102, 241, 0.1);
+}
+
+/* Selection Color */
+::selection {
+    background: var(--primary-purple);
+    color: white;
+}
+
+/* Mobile Responsiveness Overrides */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.75rem !important;
+        line-height: 1.1 !important;
+    }
+    h2 {
+        font-size: 2rem !important;
+        line-height: 1.2 !important;
+    }
+    .glass-card-premium {
+        padding: 1.5rem !important;
+        border-radius: 2rem !important;
+    }
+    
+    /* Chatbot Mobile Scaling */
+    #chatbot-container {
+        width: 100% !important;
+        height: 100% !important;
+        bottom: 0 !important;
+        right: 0 !important;
+        border-radius: 0 !important;
+    }
+    
+    #chatbot-toggle {
+        display: none !important;
+    }
+    
+    #mobile-menu {
+        position: fixed !important;
+        top: 100px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 90% !important;
+        max-width: 400px !important;
+        z-index: 9999 !important;
+        background: var(--glass-bg) !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        border: 1px solid var(--glass-border) !important;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.2) !important;
+        border-radius: 2rem !important;
+        padding: 2rem !important;
+    }
+}
+
+/* Global Dark Mode Support */
+.dark body {
+    background-color: var(--bg-dark) !important;
+    color: #f8fafc !important;
+}
+
+.dark .glass-card-premium, .dark #mobile-menu {
+    background: var(--glass-bg-dark) !important;
+    border-color: var(--glass-border-dark) !important;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3) !important;
+}
+
+.dark .text-slate-900, .dark .text-deep-purple, .dark h1, .dark h2, .dark h3 {
+    color: #f8fafc !important;
+}
+
+.dark .text-slate-700, .dark .text-slate-600, .dark .text-slate-500 {
+    color: #cbd5e1 !important;
+}
+
+.dark .bg-white {
+    background-color: #1e293b !important;
+}
+
+.dark .bg-slate-50 {
+    background-color: #0f172a !important;
+}
