@@ -13,13 +13,12 @@
             theme: {
                 extend: {
                     colors: {
-                        'primary-green': '#1a6b4a',
-                        'primary-green-dark': '#145239',
-                        'primary-green-light': '#2d7a5a',
-                        'accent-gold': '#d4af37',
-                        'accent-gold-light': '#e8c547',
-                        'cream': '#faf8f3',
-                        'off-white': '#f5f3ee',
+                        'primary-purple': '#6366f1',
+                        'primary-purple-dark': '#4338ca',
+                        'primary-purple-light': '#818cf8',
+                        'accent-pink': '#ec4899',
+                        'accent-pink-light': '#f472b6',
+                        'deep-purple': '#1e1b4b',
                     }
                 }
             }
@@ -32,32 +31,32 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
         }
         .font-heading {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Outfit', sans-serif;
         }
         
-        /* Styling untuk dropdown kategori donasi */
+        /* Dropdown custom styling */
         #kategori-donasi {
+            background-color: rgba(255, 255, 255, 0.1);
             color: white !important;
             font-weight: bold;
-            font-size: 1.125rem;
         }
         
         #kategori-donasi option {
-            background-color: #1a6b4a;
+            background-color: var(--deep-purple);
             color: white;
-            font-weight: bold;
-            padding: 12px;
+            padding: 15px;
         }
-        
-        #kategori-donasi:focus {
-            background-color: rgba(255, 255, 255, 0.35);
+
+        .hero-gradient-program {
+            background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%);
         }
     </style>
     
@@ -74,203 +73,171 @@
         })();
     </script>
 </head>
-<body class="bg-cream text-gray-800 transition-colors duration-300">
+<body class="text-slate-900 transition-colors duration-500 overflow-x-hidden">
     
+    <!-- Decorative Floating Shapes -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div class="floating-shape w-[500px] h-[500px] bg-primary-purple/10 top-[-250px] left-[-100px]"></div>
+        <div class="floating-shape w-[400px] h-[400px] bg-accent-pink/5 bottom-[-100px] right-[-200px]" style="animation-delay: -3s;"></div>
+    </div>
+
     <!-- Navigation Bar -->
-    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-md transition-all duration-300" role="navigation" aria-label="Navigasi Utama">
+    <nav id="main-navbar" class="fixed top-0 left-0 right-0 z-50 bg-white shadow-2xl transition-all duration-300 h-20" role="navigation" aria-label="Navigasi Utama">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="index.html" class="flex items-center space-x-3 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded-lg" aria-label="Beranda - Masjid Al-Ishlah">
-                        <img src="logo al-ishlah.png" alt="Logo Masjid Al-Ishlah" class="h-12 w-12 md:h-14 md:w-14 object-contain rounded-full bg-white p-1" width="56" height="56" loading="eager">
-                        <span class="font-heading font-bold text-lg md:text-xl text-primary-green hidden sm:block">Masjid Al-Ishlah</span>
+                    <a href="index.html" class="flex items-center space-x-3 focus:outline-none group transition-all duration-300" aria-label="Beranda - Masjid Al-Ishlah">
+                        <img src="logo al-ishlah.png" alt="Logo Masjid Al-Ishlah" class="h-12 w-12 object-contain rounded-xl bg-white p-1 shadow-lg border border-slate-100 group-hover:scale-110 transition-transform" width="48" height="48" loading="eager">
+                        <span class="font-heading font-extrabold text-xl text-slate-900 hidden sm:block tracking-tight">Masjid <span class="text-primary-purple">Al-Ishlah</span></span>
                     </a>
                 </div>
                 
                 <!-- Desktop Navigation -->
-                <div class="hidden lg:flex lg:items-center lg:space-x-1" role="menubar">
-                    <a href="index.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Beranda</a>
-                    <a href="program.html" class="px-4 py-2 rounded-lg text-primary-green font-medium hover:bg-green-50 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem" aria-current="page">Program</a>
-                    <a href="gallery.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Galeri</a>
-                    <a href="kontak.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Kontak</a>
-                    <a href="rishlah.html" class="px-4 py-2 rounded-lg text-gray-700 font-medium hover:bg-green-50 hover:text-primary-green transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 nav-link" role="menuitem">Rislah</a>
+                <div class="hidden lg:flex lg:items-center lg:space-x-8" role="menubar">
+                    <div class="flex space-x-1">
+                        <a href="index.html" class="px-4 py-2 rounded-full text-slate-600 font-semibold hover:text-primary-purple transition-all duration-300 nav-link" role="menuitem">Beranda</a>
+                        <a href="program.html" class="px-4 py-2 rounded-full text-primary-purple font-bold bg-primary-purple/10 transition-all duration-300 nav-link" role="menuitem" aria-current="page">Program</a>
+                        <a href="gallery.html" class="px-4 py-2 rounded-full text-slate-600 font-semibold hover:text-primary-purple transition-all duration-300 nav-link" role="menuitem">Galeri</a>
+                        <a href="kontak.html" class="px-4 py-2 rounded-full text-slate-600 font-semibold hover:text-primary-purple transition-all duration-300 nav-link" role="menuitem">Kontak</a>
+                    </div>
+                    
+                    <div class="h-6 w-[1px] bg-slate-200"></div>
+
                     <!-- Visitor Counter -->
-                    <div class="ml-4 px-3 py-1.5 bg-primary-green/20 rounded-lg flex items-center gap-2 border border-primary-green/30">
+                    <div class="px-4 py-2 bg-slate-100 rounded-full flex items-center gap-2 border border-slate-200">
                         <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span class="text-xs sm:text-sm text-primary-green font-medium">
-                            <span id="visitor-online-count" class="font-bold">0</span> Online
+                        <span class="text-xs font-bold text-slate-700">
+                            <span id="visitor-online-count" class="text-primary-purple">0</span> Online
                         </span>
                     </div>
-                    <!-- Dark Mode Toggle -->
-                    <button id="dark-mode-toggle" class="ml-4 dark-mode-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
-                        <svg class="icon icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        </svg>
-                        <svg class="icon icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                        </svg>
-                    </button>
-                    
-                    <a href="program.html" class="ml-4 px-6 py-2 bg-primary-green text-white rounded-lg font-medium hover:bg-primary-green-dark transition-all duration-200 shadow-md btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
+
+                    <a href="program.html" class="px-8 py-2.5 bg-primary-purple text-white rounded-full font-bold hover:bg-primary-purple-dark hover:shadow-xl hover:shadow-primary-purple/30 transition-all duration-300" role="menuitem">Donasi</a>
                 </div>
                 
-                <!-- Mobile Menu Buttons -->
-                <div class="lg:hidden flex items-center space-x-2">
-                    <!-- Dark Mode Toggle Button Mobile -->
-                    <button id="dark-mode-toggle-mobile" class="dark-mode-toggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode">
-                        <svg class="icon icon-sun" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
-                        </svg>
-                        <svg class="icon icon-moon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                <!-- Mobile Menu Button -->
+                <div class="lg:hidden flex items-center">
+                    <button id="hamburger-menu" class="p-2.5 bg-primary-purple text-white rounded-xl" aria-label="Toggle Menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
                         </svg>
                     </button>
-                    <!-- Hamburger Menu -->
-                    <button id="hamburger-menu" class="flex flex-col justify-center items-center w-10 h-10 space-y-1.5 focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2 rounded-lg" aria-label="Toggle Menu" aria-expanded="false" aria-controls="mobile-menu">
-                        <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
-                        <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
-                        <span class="block w-6 h-0.5 bg-primary-green transition-all duration-300"></span>
-                    </button>
                 </div>
-            </div>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-xl border-t" role="menu" aria-label="Menu Mobile">
-            <div class="px-4 pt-2 pb-4 space-y-1">
-                <a href="index.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Beranda</a>
-                <a href="program.html" class="block px-4 py-3 text-primary-green font-medium rounded-lg bg-green-50 focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem" aria-current="page">Program</a>
-                <a href="gallery.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Galeri</a>
-                <a href="kontak.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Kontak</a>
-                <a href="rishlah.html" class="block px-4 py-3 text-gray-700 font-medium rounded-lg hover:bg-green-50 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-green" role="menuitem">Rislah</a>
-                <!-- Visitor Counter Mobile -->
-                <div class="px-4 py-2 bg-primary-green/10 rounded-lg flex items-center justify-center gap-2 border border-primary-green/20">
-                    <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span class="text-xs text-primary-green font-medium">
-                        <span id="visitor-online-count-mobile" class="font-bold">0</span> Pengunjung Online
-                    </span>
-                </div>
-                <a href="program.html" class="block px-4 py-3 bg-primary-green text-white font-medium rounded-lg text-center mt-2 btn-hover focus:outline-none focus:ring-2 focus:ring-primary-green focus:ring-offset-2" role="menuitem">Donasi</a>
             </div>
         </div>
     </nav>
     
     <!-- Page Header -->
-    <section class="pt-32 pb-16 bg-gradient-to-r from-primary-green-dark to-primary-green text-white relative overflow-hidden">
-        <div class="absolute inset-0 opacity-10">
-            <img src="dokum/al-sihalh.png" alt="Background" class="w-full h-full object-cover">
-        </div>
+    <header class="pt-40 pb-32 hero-gradient-program text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-pattern-dots opacity-10"></div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center max-w-3xl mx-auto">
-                <h1 class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl mb-4">Program & Donasi</h1>
-                <p class="text-lg md:text-xl text-green-50">
-                    Dukung berbagai program keagamaan dan sosial Masjid Al-Ishlah untuk kemaslahatan umat
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="inline-block px-4 py-2 bg-white/10 rounded-full text-accent-pink-light font-bold text-sm mb-6 backdrop-blur-md border border-white/10">
+                    Bantu Sesama, Raih Ridho Illahi
+                </div>
+                <h1 class="font-heading font-black text-5xl md:text-7xl lg:text-8xl mb-8 leading-[1.1] tracking-tight">Program & <span class="text-primary-purple-light">Donasi</span></h1>
+                <p class="text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto leading-relaxed font-medium">
+                    Dukung berbagai program keagamaan dan sosial Masjid Al-Ishlah untuk mewujudkan kemaslahatan umat yang berkelanjutan.
                 </p>
             </div>
         </div>
-    </section>
+
+        <!-- Wave Divider -->
+        <div class="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+            <svg class="relative block w-[200%] h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="fill-[#f8fafc]"></path>
+            </svg>
+        </div>
+    </header>
     
     <!-- Jadwal Sholat & Kalender Hijriah Section -->
-    <section class="py-12 md:py-20 bg-white">
+    <section class="py-24 bg-[#f8fafc]">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="font-heading font-bold text-3xl md:text-4xl text-primary-green mb-4">Jadwal Sholat</h2>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-                    Jadwal sholat harian untuk wilayah Bandung dan sekitarnya
-                </p>
+            <div class="text-center mb-20">
+                <h2 class="font-heading font-extrabold text-4xl text-slate-900 mb-6 tracking-tight">Waktu Ibadah</h2>
+                <div class="w-24 h-1.5 bg-primary-purple mx-auto rounded-full"></div>
             </div>
             
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
                 <!-- Jadwal Sholat Card -->
-                <div class="bg-gradient-to-br from-primary-green/5 to-primary-green/10 rounded-xl p-6 md:p-8 border-l-4 border-primary-green">
-                    <div class="flex items-center justify-between mb-6">
+                <div class="glass-card-premium p-8 border-l-8 border-primary-purple">
+                    <div class="flex items-center justify-between mb-8">
                         <div class="flex items-center">
-                            <div class="w-12 h-12 bg-primary-green rounded-full flex items-center justify-center mr-4">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div class="w-14 h-14 bg-primary-purple text-white rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-primary-purple/30">
+                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="font-heading font-bold text-xl md:text-2xl text-primary-green">Jadwal Sholat</h3>
-                                <p class="text-gray-600 text-sm" id="jadwal-date-program">Loading...</p>
+                                <h3 class="font-heading font-extrabold text-2xl text-slate-900">Jadwal Sholat</h3>
+                                <p class="text-slate-500 font-bold text-sm" id="jadwal-date-program">Loading...</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="space-y-3" id="jadwal-sholat-container-program">
-                        <div class="flex items-center justify-between p-3 bg-white rounded-lg shadow-sm">
+                        <div class="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-100">
                             <div class="flex items-center">
-                                <span class="text-primary-green font-semibold mr-3">⏳</span>
-                                <span class="text-gray-700 font-medium">Memuat jadwal...</span>
+                                <span class="text-primary-purple font-black mr-3">⏳</span>
+                                <span class="text-slate-700 font-bold">Memuat jadwal...</span>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="mt-6 pt-6 border-t border-gray-300">
-                        <p class="text-xs text-gray-500 text-center">
-                            Sumber: Kemenag RI • Update otomatis setiap hari
+                    <div class="mt-8 pt-8 border-t border-slate-100">
+                        <p class="text-xs font-bold text-slate-400 text-center uppercase tracking-widest">
+                            Sumber: Kemenag RI
                         </p>
                     </div>
                 </div>
                 
                 <!-- Kalender Masehi Card -->
-                <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl p-6 md:p-8 border-l-4 border-blue-500">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="glass-card-premium p-8 border-l-8 border-blue-500">
+                    <div class="flex items-center mb-8">
+                        <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-blue-600/30">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-heading font-bold text-xl md:text-2xl text-primary-green">Kalender Masehi</h3>
-                            <p class="text-gray-600 text-sm" id="masehi-date-program">Loading...</p>
+                            <h3 class="font-heading font-extrabold text-2xl text-slate-900">Masehi</h3>
+                            <p class="text-blue-600 font-bold text-sm" id="masehi-date-program">Loading...</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white rounded-lg p-6 shadow-sm text-center" id="masehi-calendar-container-program">
-                        <div class="text-4xl md:text-5xl font-bold text-blue-600 mb-2" id="masehi-day-program">--</div>
-                        <div class="text-xl md:text-2xl font-semibold text-gray-700 mb-1" id="masehi-month-program">--</div>
-                        <div class="text-lg text-gray-600" id="masehi-year-program">--</div>
-                        <div class="mt-4 pt-4 border-t border-gray-200">
-                            <p class="text-sm text-gray-500" id="masehi-full-program">--</p>
-                        </div>
+                    <div class="bg-white rounded-3xl p-8 shadow-sm text-center border border-slate-100" id="masehi-calendar-container-program">
+                        <div class="text-6xl font-black text-blue-600 mb-2 tracking-tighter" id="masehi-day-program">--</div>
+                        <div class="text-2xl font-black text-slate-900 mb-1" id="masehi-month-program">--</div>
+                        <div class="text-lg font-bold text-slate-500" id="masehi-year-program">--</div>
                     </div>
                     
-                    <div class="mt-6 pt-6 border-t border-gray-300">
-                        <p class="text-xs text-gray-500 text-center">
-                            Tanggal saat ini
-                        </p>
+                    <div class="mt-8 pt-8 border-t border-slate-100">
+                        <p class="text-xs font-bold text-slate-400 text-center uppercase tracking-widest" id="masehi-full-program">--</p>
                     </div>
                 </div>
                 
                 <!-- Kalender Hijriah Card -->
-                <div class="bg-gradient-to-br from-accent-gold/10 to-accent-gold/5 rounded-xl p-6 md:p-8 border-l-4 border-accent-gold">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center mr-4">
-                            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                <div class="glass-card-premium p-8 border-l-8 border-accent-pink">
+                    <div class="flex items-center mb-8">
+                        <div class="w-14 h-14 bg-accent-pink text-white rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-accent-pink/30">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
                             </svg>
                         </div>
                         <div>
-                            <h3 class="font-heading font-bold text-xl md:text-2xl text-primary-green">Kalender Hijriah</h3>
-                            <p class="text-gray-600 text-sm" id="hijriah-date-program">Loading...</p>
+                            <h3 class="font-heading font-extrabold text-2xl text-slate-900">Hijriah</h3>
+                            <p class="text-accent-pink font-bold text-sm" id="hijriah-date-program">Loading...</p>
                         </div>
                     </div>
                     
-                    <div class="bg-white rounded-lg p-6 shadow-sm text-center" id="hijriah-calendar-container-program">
-                        <div class="text-4xl md:text-5xl font-bold text-primary-green mb-2" id="hijriah-day-program">--</div>
-                        <div class="text-xl md:text-2xl font-semibold text-gray-700 mb-1" id="hijriah-month-program">--</div>
-                        <div class="text-lg text-gray-600" id="hijriah-year-program">--</div>
-                        <div class="mt-4 pt-4 border-t border-gray-200">
-                            <p class="text-sm text-gray-500" id="hijriah-full-program">--</p>
-                        </div>
+                    <div class="bg-white rounded-3xl p-8 shadow-sm text-center border border-slate-100" id="hijriah-calendar-container-program">
+                        <div class="text-6xl font-black text-accent-pink mb-2 tracking-tighter" id="hijriah-day-program">--</div>
+                        <div class="text-2xl font-black text-slate-900 mb-1" id="hijriah-month-program">--</div>
+                        <div class="text-lg font-bold text-slate-500" id="hijriah-year-program">--</div>
                     </div>
                     
-                    <div class="mt-6 pt-6 border-t border-gray-300">
-                        <p class="text-xs text-gray-500 text-center">
-                            Konversi otomatis dari kalender Masehi
-                        </p>
+                    <div class="mt-8 pt-8 border-t border-slate-100">
+                        <p class="text-xs font-bold text-slate-400 text-center uppercase tracking-widest" id="hijriah-full-program">--</p>
                     </div>
                 </div>
             </div>
@@ -278,565 +245,412 @@
     </section>
     
     <!-- Programs Section -->
-    <section class="py-12 md:py-20 bg-cream">
+    <section class="py-24 bg-white">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
             <!-- Section Title -->
-            <div class="text-center mb-12 md:mb-16">
-                <h2 class="font-heading font-bold text-3xl md:text-4xl lg:text-5xl text-primary-green mb-4">
-                    Program & Kegiatan Masjid Al-Ishlah
+            <div class="text-center mb-24">
+                <h2 class="font-heading font-black text-4xl md:text-6xl text-slate-900 mb-6 tracking-tight">
+                    Program & <span class="text-primary-purple">Kegiatan</span>
                 </h2>
-                <p class="text-gray-600 text-lg md:text-xl max-w-3xl mx-auto">
-                    Berbagai program keagamaan, pendidikan, dan sosial untuk kemaslahatan umat
-                </p>
+                <div class="w-24 h-2 bg-accent-pink mx-auto rounded-full"></div>
             </div>
             
             <!-- Program Grid -->
-            <div class="space-y-12 md:space-y-16">
+            <div class="space-y-16 md:space-y-24">
                 
                 <!-- 1. Bidang ZIS -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-primary-green rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-xl">1</span>
+                <div class="glass-card-premium p-8 md:p-12 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary-purple/5 rounded-bl-full -z-0"></div>
+                    <div class="flex items-center mb-10 relative z-10">
+                        <div class="w-16 h-16 bg-primary-purple text-white rounded-2xl flex items-center justify-center mr-6 shadow-xl shadow-primary-purple/20 group-hover:rotate-12 transition-transform">
+                            <span class="font-black text-3xl">01</span>
                         </div>
-                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Bidang ZIS</h3>
+                        <h3 class="font-heading font-black text-3xl md:text-4xl text-slate-900">Bidang ZIS</h3>
                     </div>
-                    <p class="text-gray-600 mb-6 text-lg">
-                        <strong class="text-primary-green">Zakat, Infaq, dan Shodaqoh</strong> - Mengelola zakat yang ada di Masjid Al-Ishlah
+                    <p class="text-slate-600 mb-10 text-xl leading-relaxed max-w-4xl relative z-10 font-medium">
+                        <strong class="text-primary-purple font-black">Zakat, Infaq, dan Shodaqoh</strong> - Mengelola zakat yang ada di Masjid Al-Ishlah secara amanah, profesional, dan transparan.
                     </p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                        <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
-                            <div class="flex items-center mb-2">
-                                <svg class="w-6 h-6 text-primary-green mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="font-semibold text-primary-green">Zakat Penghasilan</span>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+                        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-primary-purple/30 transition-colors">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-primary-purple/10 text-primary-purple rounded-xl flex items-center justify-center mr-3">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <span class="font-black text-slate-800">Zakat Penghasilan</span>
                             </div>
                         </div>
-                        <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
-                            <div class="flex items-center mb-2">
-                                <svg class="w-6 h-6 text-primary-green mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                                <span class="font-semibold text-primary-green">Zakat Fitrah</span>
+                        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-primary-purple/30 transition-colors">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-primary-purple/10 text-primary-purple rounded-xl flex items-center justify-center mr-3">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                </div>
+                                <span class="font-black text-slate-800">Zakat Fitrah</span>
                             </div>
                         </div>
-                        <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
-                            <div class="flex items-center mb-2">
-                                <svg class="w-6 h-6 text-primary-green mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                                </svg>
-                                <span class="font-semibold text-primary-green">Donatur Shodaqoh Rutin</span>
+                        <div class="bg-slate-50 rounded-2xl p-6 border border-slate-100 hover:border-primary-purple/30 transition-colors">
+                            <div class="flex items-center mb-4">
+                                <div class="w-10 h-10 bg-primary-purple/10 text-primary-purple rounded-xl flex items-center justify-center mr-3">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                </div>
+                                <span class="font-black text-slate-800">Donatur Rutin</span>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 2. Program Sosial Keumatan -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-xl">2</span>
+                <div class="glass-card-premium p-8 md:p-12 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-accent-pink/5 rounded-bl-full -z-0"></div>
+                    <div class="flex items-center mb-10 relative z-10">
+                        <div class="w-16 h-16 bg-accent-pink text-white rounded-2xl flex items-center justify-center mr-6 shadow-xl shadow-accent-pink/20 group-hover:rotate-12 transition-transform">
+                            <span class="font-black text-3xl">02</span>
                         </div>
-                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Program Sosial Keumatan</h3>
+                        <h3 class="font-heading font-black text-3xl md:text-4xl text-slate-900">Sosial Keumatan</h3>
                     </div>
-                    <p class="text-gray-600 mb-6 text-lg">
-                        Program bantuan sosial untuk jemaah dan masyarakat yang membutuhkan
+                    <p class="text-slate-600 mb-10 text-xl leading-relaxed max-w-4xl relative z-10 font-medium">
+                        Program bantuan sosial yang berfokus pada kesejahteraan jemaah dan masyarakat sekitar melalui berbagai inisiatif pangan dan konsultasi.
                     </p>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-                        <div class="bg-accent-gold/10 rounded-lg p-4 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800">• Beras Perelek</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
+                        <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex items-center group/item hover:bg-accent-pink transition-all duration-300">
+                            <span class="w-2 h-2 bg-accent-pink rounded-full mr-4 group-hover/item:bg-white group-hover/item:scale-150 transition-all"></span>
+                            <span class="font-bold text-slate-700 group-hover/item:text-white transition-colors">Beras Perelek</span>
                         </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-4 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800">• Beras Bersubsidi untuk jemaah</p>
+                        <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex items-center group/item hover:bg-accent-pink transition-all duration-300">
+                            <span class="w-2 h-2 bg-accent-pink rounded-full mr-4 group-hover/item:bg-white group-hover/item:scale-150 transition-all"></span>
+                            <span class="font-bold text-slate-700 group-hover/item:text-white transition-colors">Beras Bersubsidi</span>
                         </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-4 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800">• Beras Gratis untuk jemaah</p>
+                        <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex items-center group/item hover:bg-accent-pink transition-all duration-300">
+                            <span class="w-2 h-2 bg-accent-pink rounded-full mr-4 group-hover/item:bg-white group-hover/item:scale-150 transition-all"></span>
+                            <span class="font-bold text-slate-700 group-hover/item:text-white transition-colors">Beras Gratis</span>
                         </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-4 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800">• Sembako bagi jemaah yang sakit</p>
+                        <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex items-center group/item hover:bg-accent-pink transition-all duration-300">
+                            <span class="w-2 h-2 bg-accent-pink rounded-full mr-4 group-hover/item:bg-white group-hover/item:scale-150 transition-all"></span>
+                            <span class="font-bold text-slate-700 group-hover/item:text-white transition-colors">Sembako Jemaah Sakit</span>
                         </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-4 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800">• Konsultasi masalah rumah tangga</p>
+                        <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex items-center group/item hover:bg-accent-pink transition-all duration-300">
+                            <span class="w-2 h-2 bg-accent-pink rounded-full mr-4 group-hover/item:bg-white group-hover/item:scale-150 transition-all"></span>
+                            <span class="font-bold text-slate-700 group-hover/item:text-white transition-colors">Konsultasi Keluarga</span>
                         </div>
-                        <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
-                            <p class="font-semibold text-gray-800">• Konsultasi bagi waris (Fara'id)</p>
+                        <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex items-center group/item hover:bg-accent-pink transition-all duration-300">
+                            <span class="w-2 h-2 bg-accent-pink rounded-full mr-4 group-hover/item:bg-white group-hover/item:scale-150 transition-all"></span>
+                            <span class="font-bold text-slate-700 group-hover/item:text-white transition-colors">Konsultasi Waris</span>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 3. Program Pendidikan -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-xl">3</span>
+                <div class="glass-card-premium p-8 md:p-12 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary-purple-light/5 rounded-bl-full -z-0"></div>
+                    <div class="flex items-center mb-12 relative z-10">
+                        <div class="w-16 h-16 bg-primary-purple-light text-white rounded-2xl flex items-center justify-center mr-6 shadow-xl shadow-primary-purple-light/20 group-hover:rotate-12 transition-transform">
+                            <span class="font-black text-3xl">03</span>
                         </div>
-                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Program Pendidikan</h3>
+                        <h3 class="font-heading font-black text-3xl md:text-4xl text-slate-900">Program Pendidikan</h3>
                     </div>
                     
-                    <!-- Pendidikan Formal -->
-                    <div class="mb-6">
-                        <h4 class="font-heading font-semibold text-xl text-primary-green mb-4 flex items-center">
-                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
-                            </svg>
-                            Pendidikan Formal
-                        </h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                            <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
-                                <p class="font-semibold text-gray-800">• KOBER/PAUD Al-Ishlah</p>
-                            </div>
-                            <div class="bg-blue-50 rounded-lg p-4 border-l-4 border-blue-500">
-                                <p class="font-semibold text-gray-800">• DTA (Diniyah Takmiliyah Awaliyah Al-Ishlah)</p>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
+                        <!-- Pendidikan Formal -->
+                        <div>
+                            <h4 class="font-heading font-black text-2xl text-primary-purple mb-8 flex items-center">
+                                <div class="w-10 h-10 bg-primary-purple/10 rounded-xl flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                                </div>
+                                Pendidikan Formal
+                            </h4>
+                            <div class="space-y-4">
+                                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-white hover:shadow-lg transition-all border-l-4 border-l-primary-purple">
+                                    <p class="font-black text-slate-800">KOBER/PAUD Al-Ishlah</p>
+                                </div>
+                                <div class="p-6 bg-slate-50 rounded-2xl border border-slate-100 hover:bg-white hover:shadow-lg transition-all border-l-4 border-l-primary-purple">
+                                    <p class="font-black text-slate-800">DTA (Diniyah Takmiliyah Awaliyah)</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <!-- Pendidikan Non-Formal -->
-                    <div>
-                        <h4 class="font-heading font-semibold text-xl text-primary-green mb-4 flex items-center">
-                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-                            </svg>
-                            Pendidikan Non-Formal
-                        </h4>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                            <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
-                                <p class="font-semibold text-gray-800">• Maghrib Mengaji</p>
-                            </div>
-                            <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
-                                <p class="font-semibold text-gray-800">• Tahsin bagi jama'ah</p>
-                            </div>
-                            <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
-                                <p class="font-semibold text-gray-800">• Materi Pembelajaran:</p>
-                                <p class="text-sm text-gray-600 mt-1 ml-4">- Metode Iqra</p>
-                                <p class="text-sm text-gray-600 ml-4">- Tahsin Al-Quran</p>
-                                <p class="text-sm text-gray-600 ml-4">- Akhlaq</p>
+                        
+                        <!-- Pendidikan Non-Formal -->
+                        <div>
+                            <h4 class="font-heading font-black text-2xl text-accent-pink mb-8 flex items-center">
+                                <div class="w-10 h-10 bg-accent-pink/10 rounded-xl flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
+                                </div>
+                                Pendidikan Non-Formal
+                            </h4>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 flex items-center font-bold text-slate-700">Maghrib Mengaji</div>
+                                <div class="p-5 bg-slate-50 rounded-2xl border border-slate-100 flex items-center font-bold text-slate-700">Tahsin Jama'ah</div>
+                                <div class="sm:col-span-2 p-6 bg-accent-pink/5 rounded-2xl border border-accent-pink/20">
+                                    <p class="font-black text-accent-pink mb-2">Materi:</p>
+                                    <div class="flex flex-wrap gap-3">
+                                        <span class="px-3 py-1 bg-white rounded-full text-sm font-bold text-slate-600 border border-slate-100 shadow-sm">Metode Iqra</span>
+                                        <span class="px-3 py-1 bg-white rounded-full text-sm font-bold text-slate-600 border border-slate-100 shadow-sm">Tahsin</span>
+                                        <span class="px-3 py-1 bg-white rounded-full text-sm font-bold text-slate-600 border border-slate-100 shadow-sm">Akhlaq</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- 4. Pembangunan dan Pemeliharaan Gedung Masjid -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-primary-green-dark rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-xl">4</span>
+                <!-- 4. Pembangunan dan Pemeliharaan -->
+                <div class="glass-card-premium p-8 md:p-12 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-slate-100 rounded-bl-full -z-0"></div>
+                    <div class="flex items-center mb-10 relative z-10">
+                        <div class="w-16 h-16 bg-slate-800 text-white rounded-2xl flex items-center justify-center mr-6 shadow-xl shadow-slate-800/20 group-hover:rotate-12 transition-transform">
+                            <span class="font-black text-3xl">04</span>
                         </div>
-                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Pembangunan dan Pemeliharaan Gedung Masjid</h3>
+                        <h3 class="font-heading font-black text-3xl md:text-4xl text-slate-900">Pembangunan & Pemeliharaan</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800">• Penambahan fasilitas</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+                        <div class="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all border-t-8 border-t-primary-purple">
+                            <p class="font-black text-slate-800 text-xl">Penambahan Fasilitas</p>
+                            <p class="text-slate-500 mt-2 font-medium">Meningkatkan kenyamanan ibadah melalui infrastruktur baru.</p>
                         </div>
-                        <div class="bg-primary-green/5 rounded-lg p-4 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800">• Memelihara fasilitas yang ada</p>
+                        <div class="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm hover:shadow-xl transition-all border-t-8 border-t-accent-pink">
+                            <p class="font-black text-slate-800 text-xl">Pemeliharaan Rutin</p>
+                            <p class="text-slate-500 mt-2 font-medium">Menjaga kebersihan dan kelayakan fasilitas yang sudah ada.</p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- 5. Kegiatan Bulan Ramadhan -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-accent-gold rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-xl">5</span>
+                <div class="glass-card-premium p-8 md:p-12 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary-purple/5 rounded-bl-full -z-0"></div>
+                    <div class="flex items-center mb-10 relative z-10">
+                        <div class="w-16 h-16 bg-primary-purple text-white rounded-2xl flex items-center justify-center mr-6 shadow-xl shadow-primary-purple/20 group-hover:rotate-12 transition-transform">
+                            <span class="font-black text-3xl">05</span>
                         </div>
-                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Kegiatan Bulan Ramadhan</h3>
+                        <h3 class="font-heading font-black text-3xl md:text-4xl text-slate-900">Gema Ramadhan</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• Sholat Tarawih</p>
-                        </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• Tadarus Al-Quran (Bapak-bapak dan Ibu-ibu)</p>
-                        </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• Takjil</p>
-                        </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• Pesantren Ramadhan bagi anak-anak</p>
-                        </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• Program Imam bagi para remaja masjid</p>
-                        </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• Menerima Infaq dan Shodaqoh</p>
-                        </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• Khultum Ba'da Tarawih</p>
-                        </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• Kajian Subuh</p>
-                        </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• I'tikaf 10 hari terakhir</p>
-                        </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• Menerima dan Menyalur Zakat Fitrah</p>
-                        </div>
-                        <div class="bg-accent-gold/10 rounded-lg p-3 border-l-4 border-accent-gold">
-                            <p class="font-semibold text-gray-800 text-sm">• Menyelenggarakan Sholat Id</p>
-                        </div>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 relative z-10">
+                        <div class="p-4 bg-white/50 backdrop-blur-md rounded-2xl border border-white font-bold text-slate-700 text-sm hover:bg-primary-purple hover:text-white transition-all cursor-default">Sholat Tarawih</div>
+                        <div class="p-4 bg-white/50 backdrop-blur-md rounded-2xl border border-white font-bold text-slate-700 text-sm hover:bg-primary-purple hover:text-white transition-all cursor-default">Tadarus Al-Quran</div>
+                        <div class="p-4 bg-white/50 backdrop-blur-md rounded-2xl border border-white font-bold text-slate-700 text-sm hover:bg-primary-purple hover:text-white transition-all cursor-default">Berbagi Takjil</div>
+                        <div class="p-4 bg-white/50 backdrop-blur-md rounded-2xl border border-white font-bold text-slate-700 text-sm hover:bg-primary-purple hover:text-white transition-all cursor-default">Pesantren Kilat</div>
+                        <div class="p-4 bg-white/50 backdrop-blur-md rounded-2xl border border-white font-bold text-slate-700 text-sm hover:bg-primary-purple hover:text-white transition-all cursor-default">Program Imam Muda</div>
+                        <div class="p-4 bg-white/50 backdrop-blur-md rounded-2xl border border-white font-bold text-slate-700 text-sm hover:bg-primary-purple hover:text-white transition-all cursor-default">I'tikaf 10 Hari</div>
+                        <div class="p-4 bg-white/50 backdrop-blur-md rounded-2xl border border-white font-bold text-slate-700 text-sm hover:bg-primary-purple hover:text-white transition-all cursor-default">Kajian Subuh</div>
+                        <div class="p-4 bg-white/50 backdrop-blur-md rounded-2xl border border-white font-bold text-slate-700 text-sm hover:bg-primary-purple hover:text-white transition-all cursor-default">Sholat Idul Fitri</div>
                     </div>
                 </div>
                 
-                <!-- 6. Pengajian Majelis Ta'lim Al-Ishlah (Rutin) -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-primary-green rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-xl">6</span>
+                <!-- 6. Pengajian Rutin -->
+                <div class="glass-card-premium p-8 md:p-12 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-accent-pink/5 rounded-bl-full -z-0"></div>
+                    <div class="flex items-center mb-10 relative z-10">
+                        <div class="w-16 h-16 bg-accent-pink text-white rounded-2xl flex items-center justify-center mr-6 shadow-xl shadow-accent-pink/20 group-hover:rotate-12 transition-transform">
+                            <span class="font-black text-3xl">06</span>
                         </div>
-                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Pengajian Majelis Ta'lim Al-Ishlah (Rutin)</h3>
+                        <h3 class="font-heading font-black text-3xl md:text-4xl text-slate-900">Majelis Ta'lim Al-Ishlah</h3>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Kajian Rutin Gerakan Sholat Subuh Berjamaah</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 relative z-10">
+                        <div class="p-5 bg-white rounded-2xl border border-slate-100 flex items-center font-bold text-slate-700 hover:border-accent-pink transition-colors">
+                            <div class="w-2 h-2 bg-accent-pink rounded-full mr-3"></div>
+                            Kajian Gerakan Subuh
                         </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Majelis Ta'lim Al-Fadilah Senin</p>
+                        <div class="p-5 bg-white rounded-2xl border border-slate-100 flex items-center font-bold text-slate-700 hover:border-accent-pink transition-colors">
+                            <div class="w-2 h-2 bg-accent-pink rounded-full mr-3"></div>
+                            Ta'lim Al-Fadilah Senin
                         </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Majelis Ta'lim Selasa Sore</p>
+                        <div class="p-5 bg-white rounded-2xl border border-slate-100 flex items-center font-bold text-slate-700 hover:border-accent-pink transition-colors">
+                            <div class="w-2 h-2 bg-accent-pink rounded-full mr-3"></div>
+                            Majelis Selasa Sore
                         </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Majelis Ta'lim Al-Fadilah Kamis</p>
+                        <div class="p-5 bg-white rounded-2xl border border-slate-100 flex items-center font-bold text-slate-700 hover:border-accent-pink transition-colors">
+                            <div class="w-2 h-2 bg-accent-pink rounded-full mr-3"></div>
+                            Malam Kamis Bapak-bapak
                         </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Kajian Bapak-bapak Malam Kamis</p>
+                        <div class="p-5 bg-white rounded-2xl border border-slate-100 flex items-center font-bold text-slate-700 hover:border-accent-pink transition-colors">
+                            <div class="w-2 h-2 bg-accent-pink rounded-full mr-3"></div>
+                            Dzikir Al-Ishlah Maljum
                         </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Kajian Jumat Sore</p>
-                        </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Majelis Dzikir Al-Ishlah Maljum</p>
-                        </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Pengajian Ibu-ibu Majelis Ta'lim Gabungan</p>
-                        </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Kajian Khusus Bulanan</p>
-                        </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Tahsin Rabu Sore</p>
-                        </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Pengajian Rabu Malam</p>
-                        </div>
-                        <div class="bg-primary-green/5 rounded-lg p-3 border-l-4 border-primary-green">
-                            <p class="font-semibold text-gray-800 text-sm">• Kajian Hadits Malam Ahad</p>
+                        <div class="p-5 bg-white rounded-2xl border border-slate-100 flex items-center font-bold text-slate-700 hover:border-accent-pink transition-colors">
+                            <div class="w-2 h-2 bg-accent-pink rounded-full mr-3"></div>
+                            Kajian Hadits Malam Ahad
                         </div>
                     </div>
                 </div>
                 
                 <!-- 7. Program Tambahan -->
-                <div class="bg-white rounded-2xl shadow-xl p-8 md:p-10">
-                    <div class="flex items-center mb-6">
-                        <div class="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white font-bold text-xl">7</span>
+                <div class="glass-card-premium p-8 md:p-12 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-primary-purple-dark/5 rounded-bl-full -z-0"></div>
+                    <div class="flex items-center mb-10 relative z-10">
+                        <div class="w-16 h-16 bg-primary-purple-dark text-white rounded-2xl flex items-center justify-center mr-6 shadow-xl shadow-primary-purple-dark/20 group-hover:rotate-12 transition-transform">
+                            <span class="font-black text-3xl">07</span>
                         </div>
-                        <h3 class="font-heading font-bold text-2xl md:text-3xl text-primary-green">Program Tambahan</h3>
+                        <h3 class="font-heading font-black text-3xl md:text-4xl text-slate-900">Layanan Umat</h3>
                     </div>
-                    <div class="space-y-4">
-                        <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
-                            <p class="font-semibold text-gray-800 mb-2">• Konsultansi Masalah Rumah Tangga</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                        <div class="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm border-l-8 border-l-primary-purple">
+                            <h4 class="font-black text-xl text-slate-900 mb-4">Tabungan Qurban</h4>
+                            <p class="text-slate-500 font-medium leading-relaxed">Fasilitasi kemudahan bagi jemaah yang hendak berqurban melalui sistem tabungan yang terencana.</p>
                         </div>
-                        <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
-                            <p class="font-semibold text-gray-800 mb-2">• Tabungan Fasilitator Qurban</p>
-                            <p class="text-sm text-gray-600 ml-4">(untuk memfasilitasi jamaah yang hendak berqurban dengan cara menabung)</p>
-                        </div>
-                        <div class="bg-purple-50 rounded-lg p-4 border-l-4 border-purple-500">
-                            <p class="font-semibold text-gray-800 mb-2">• KPJ (Kelompok Pemulasaran Husnul Khotimah Al-Ishlah)</p>
-                            <div class="ml-4 mt-2 space-y-1">
-                                <p class="text-sm text-gray-600">- Pemulasaran Jenazah</p>
-                                <p class="text-sm text-gray-600">- Iuran Kematian</p>
-                                <p class="text-sm text-gray-600">- Santunan bagi Ahli Waris</p>
-                            </div>
+                        <div class="p-8 bg-white rounded-3xl border border-slate-100 shadow-sm border-l-8 border-l-accent-pink">
+                            <h4 class="font-black text-xl text-slate-900 mb-4">KPJ (Pemulasaran Jenazah)</h4>
+                            <p class="text-slate-500 font-medium leading-relaxed">Layanan pengurusan jenazah, iuran kematian, dan santunan bagi ahli waris (Husnul Khotimah).</p>
                         </div>
                     </div>
                 </div>
                 
                 <!-- Informasi Donasi Global -->
-                <div class="bg-gradient-to-br from-primary-green to-primary-green-dark rounded-2xl shadow-2xl p-8 md:p-12 text-white">
-                    <div class="text-center mb-8">
-                        <div class="flex items-center justify-center gap-4 mb-4">
-                            <h3 class="font-heading font-bold text-3xl md:text-4xl">Informasi Donasi</h3>
-                            <button id="toggle-donasi-info" onclick="toggleDonasiInfo()" class="p-2 rounded-full hover:bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-white" aria-label="Tampilkan/Sembunyikan Informasi">
-                                <svg id="eye-icon-open" class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                </svg>
-                                <svg id="eye-icon-closed" class="w-6 h-6 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <p class="text-lg text-green-50">Dukung program-program Masjid Al-Ishlah melalui donasi Anda</p>
-                    </div>
-                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 md:p-8">
-                        <!-- Dropdown Kategori Donasi -->
-                        <div class="mb-6">
-                            <label class="block text-white text-base font-bold mb-3">Pilih Kategori Donasi:</label>
-                            <select id="kategori-donasi" onchange="ubahKategoriDonasi()" class="w-full p-4 bg-white/30 backdrop-blur-sm border-2 border-white/40 rounded-lg text-white font-bold text-lg focus:outline-none focus:ring-2 focus:ring-white cursor-pointer shadow-lg">
-                                <option value="zis" class="bg-primary-green text-white">1. Bidang ZIS</option>
-                                <option value="sosial" class="bg-primary-green text-white">2. Program Sosial Keumatan</option>
-                                <option value="pendidikan" class="bg-primary-green text-white">3. Program Pendidikan</option>
-                                <option value="pembangunan" class="bg-primary-green text-white">4. Pembangunan dan Pemeliharaan Gedung Masjid</option>
-                                <option value="ramadhan" class="bg-primary-green text-white">5. Kegiatan Bulan Ramadhan</option>
-                                <option value="pengajian" class="bg-primary-green text-white">6. Pengajian Majelis Ta'lim Al-Ishlah (Rutin)</option>
-                                <option value="tambahan" class="bg-primary-green text-white">7. Tabungan Fasilitator Qurban</option>
-                                <option value="tambahan" class="bg-primary-green text-white">8. KPJ (Kelompok Pemulasaran Husnul Khotimah Al-Ishlah)</option>
-                            </select>
-                        </div>
+                <div class="relative mt-32">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary-purple to-deep-purple rounded-[3rem] -rotate-1 scale-[1.02] opacity-20 blur-2xl"></div>
+                    <div class="relative bg-gradient-to-br from-deep-purple to-primary-purple-dark rounded-[3rem] shadow-2xl p-8 md:p-16 text-white overflow-hidden">
+                        <div class="absolute top-0 right-0 w-96 h-96 bg-accent-pink/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
                         
-                        <!-- Input Nama Donatur -->
-                        <div class="mb-6">
-                            <label class="block text-white text-base font-bold mb-3">Nama Donatur:</label>
-                            <input type="text" id="nama-donatur" oninput="updateBankInfoTextarea()" placeholder="Masukkan nama Anda" class="w-full p-4 bg-white/30 backdrop-blur-sm border-2 border-white/40 rounded-lg text-white font-medium text-lg placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white focus:bg-white/40 shadow-lg">
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" id="donasi-info-grid">
-                            <!-- Bank -->
-                            <div class="text-center relative">
-                                <div class="flex items-center justify-center gap-2 mb-2">
-                                    <p class="text-green-200 text-sm">Bank</p>
-                                    <button onclick="toggleBankInfo()" class="p-1 rounded-full hover:bg-white/20 transition-colors focus:outline-none" aria-label="Tampilkan/Sembunyikan Bank">
-                                        <svg id="eye-bank-open" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                        </svg>
-                                        <svg id="eye-bank-closed" class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <p id="bank-value" class="font-bold text-2xl blur-sm select-none">BJB</p>
-                                <p id="bank-value-hidden" class="font-bold text-2xl hidden">BJB</p>
-                            </div>
-                            
-                            <!-- No. Rekening -->
-                            <div class="text-center relative">
-                                <div class="flex items-center justify-center gap-2 mb-2">
-                                    <p class="text-green-200 text-sm">No. Rekening</p>
-                                    <button onclick="toggleRekeningInfo()" class="p-1 rounded-full hover:bg-white/20 transition-colors focus:outline-none" aria-label="Tampilkan/Sembunyikan Rekening">
-                                        <svg id="eye-rekening-open" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                        </svg>
-                                        <svg id="eye-rekening-closed" class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <p id="rekening-value" class="font-mono font-bold text-2xl blur-sm select-none">0000007021959</p>
-                                <p id="rekening-value-hidden" class="font-mono font-bold text-2xl hidden">0000007021959</p>
-                            </div>
-                            
-                            <!-- Atas Nama -->
-                            <div class="text-center relative">
-                                <div class="flex items-center justify-center gap-2 mb-2">
-                                    <p class="text-green-200 text-sm">Atas Nama</p>
-                                    <button onclick="toggleNamaInfo()" class="p-1 rounded-full hover:bg-white/20 transition-colors focus:outline-none" aria-label="Tampilkan/Sembunyikan Nama">
-                                        <svg id="eye-nama-open" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
-                                        </svg>
-                                        <svg id="eye-nama-closed" class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
-                                        </svg>
-                                    </button>
-                                </div>
-                                <p id="nama-value" class="font-bold text-xl blur-sm select-none">DODDY SUFRI ADIAT</p>
-                                <p id="nama-value-hidden" class="font-bold text-xl hidden">DODDY SUFRI ADIAT</p>
-                            </div>
-                        </div>
-                        <div class="mb-4">
-                            <div class="flex items-center justify-between mb-2">
-                                <label class="block text-green-100 text-sm font-semibold">Salin informasi:</label>
-                                <button onclick="toggleTextareaInfo()" class="p-1 rounded-full hover:bg-white/20 transition-colors focus:outline-none" aria-label="Tampilkan/Sembunyikan Textarea">
-                                    <svg id="eye-textarea-open" class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div class="text-center mb-16 relative z-10">
+                            <div class="flex items-center justify-center gap-6 mb-8">
+                                <h3 class="font-heading font-black text-4xl md:text-6xl tracking-tight">Kanal Donasi</h3>
+                                <button id="toggle-donasi-info" onclick="toggleDonasiInfo()" class="w-14 h-14 rounded-2xl bg-white/10 hover:bg-white/20 transition-all flex items-center justify-center backdrop-blur-md border border-white/10" aria-label="Tampilkan/Sembunyikan Informasi">
+                                    <svg id="eye-icon-open" class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
                                     </svg>
-                                    <svg id="eye-textarea-closed" class="w-4 h-4 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <svg id="eye-icon-closed" class="w-8 h-8 text-white hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path>
                                     </svg>
                                 </button>
                             </div>
-                            <textarea id="bank-info-textarea-global" readonly class="w-full p-4 bg-white/20 backdrop-blur-sm border-2 border-white/30 rounded-lg text-sm font-mono text-white resize-none focus:outline-none focus:ring-2 focus:ring-white blur-sm select-none" rows="5" onclick="selectBankInfoGlobal()"></textarea>
-                            <textarea id="bank-info-textarea-global-hidden" readonly class="w-full p-4 bg-white/20 backdrop-blur-sm border-2 border-white/30 rounded-lg text-sm font-mono text-white resize-none focus:outline-none focus:ring-2 focus:ring-white hidden" rows="5" onclick="selectBankInfoGlobal()"></textarea>
+                            <p class="text-xl md:text-2xl text-slate-300 font-medium">Salurkan kepedulian Anda untuk mendukung keberlangsungan dakwah Al-Ishlah.</p>
                         </div>
-                        <button onclick="copyBankInfoGlobal()" id="copy-button" class="w-full py-4 bg-accent-gold text-white font-bold text-lg rounded-lg hover:bg-accent-gold-light transition-colors shadow-lg">
-                            Salin Informasi Rekening
-                        </button>
+
+                        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 relative z-10">
+                            <!-- Left: Form -->
+                            <div class="space-y-8">
+                                <div class="space-y-4">
+                                    <label class="block text-accent-pink-light text-sm font-black uppercase tracking-widest">Pilih Kategori</label>
+                                    <select id="kategori-donasi" onchange="ubahKategoriDonasi()" class="w-full p-6 bg-white/5 border-2 border-white/10 rounded-3xl text-white font-bold text-xl focus:outline-none focus:ring-4 focus:ring-primary-purple/50 cursor-pointer backdrop-blur-xl transition-all">
+                                        <option value="zis">01. Bidang ZIS</option>
+                                        <option value="sosial">02. Sosial Keumatan</option>
+                                        <option value="pendidikan">03. Program Pendidikan</option>
+                                        <option value="pembangunan">04. Pembangunan & Gedung</option>
+                                        <option value="ramadhan">05. Kegiatan Ramadhan</option>
+                                        <option value="pengajian">06. Majelis Ta'lim</option>
+                                        <option value="tambahan">07. Tabungan Qurban / KPJ</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="space-y-4">
+                                    <label class="block text-accent-pink-light text-sm font-black uppercase tracking-widest">Nama Lengkap</label>
+                                    <input type="text" id="nama-donatur" oninput="updateBankInfoTextarea()" placeholder="Masukkan nama Anda..." class="w-full p-6 bg-white/5 border-2 border-white/10 rounded-3xl text-white font-bold text-xl placeholder-white/20 focus:outline-none focus:ring-4 focus:ring-primary-purple/50 backdrop-blur-xl transition-all">
+                                </div>
+                            </div>
+
+                            <!-- Right: Bank Info -->
+                            <div class="bg-white/10 backdrop-blur-2xl rounded-[2.5rem] p-8 md:p-10 border border-white/10 flex flex-col justify-between">
+                                <div class="space-y-8" id="donasi-info-grid">
+                                    <div class="flex items-center justify-between group cursor-pointer" onclick="toggleBankInfo()">
+                                        <div>
+                                            <p class="text-white/40 text-xs font-black uppercase tracking-widest mb-1">Bank</p>
+                                            <p id="bank-value" class="font-black text-2xl blur-md transition-all">BJB</p>
+                                            <p id="bank-value-hidden" class="font-black text-2xl hidden">BJB</p>
+                                        </div>
+                                        <div class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-white/40 group-hover:bg-white/20 transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center justify-between group cursor-pointer" onclick="toggleRekeningInfo()">
+                                        <div>
+                                            <p class="text-white/40 text-xs font-black uppercase tracking-widest mb-1">No. Rekening</p>
+                                            <p id="rekening-value" class="font-black text-3xl blur-md transition-all tracking-tighter">0000007021959</p>
+                                            <p id="rekening-value-hidden" class="font-black text-3xl hidden tracking-tighter">0000007021959</p>
+                                        </div>
+                                        <div class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-white/40 group-hover:bg-white/20 transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-center justify-between group cursor-pointer" onclick="toggleNamaInfo()">
+                                        <div>
+                                            <p class="text-white/40 text-xs font-black uppercase tracking-widest mb-1">Atas Nama</p>
+                                            <p id="nama-value" class="font-black text-2xl blur-md transition-all uppercase">Doddy Sufri Adiat</p>
+                                            <p id="nama-value-hidden" class="font-black text-2xl hidden uppercase">Doddy Sufri Adiat</p>
+                                        </div>
+                                        <div class="w-10 h-10 bg-white/5 rounded-xl flex items-center justify-center text-white/40 group-hover:bg-white/20 transition-colors">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-12 space-y-4">
+                                    <textarea id="bank-info-textarea-global" readonly class="w-full p-4 bg-white/5 rounded-2xl text-xs font-mono text-white/60 resize-none focus:outline-none blur-sm border border-white/5 select-none" rows="4"></textarea>
+                                    <textarea id="bank-info-textarea-global-hidden" readonly class="w-full p-4 bg-white/5 rounded-2xl text-xs font-mono text-white/60 resize-none focus:outline-none hidden border border-white/5" rows="4"></textarea>
+                                    
+                                    <button onclick="copyBankInfoGlobal()" id="copy-button" class="w-full py-6 bg-white text-deep-purple font-black text-xl rounded-3xl hover:bg-accent-pink hover:text-white transition-all shadow-xl hover:shadow-accent-pink/50 flex items-center justify-center gap-3">
+                                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path></svg>
+                                        Salin Rekening
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
-                <!-- OLD CARDS TO BE REMOVED -->
-                <div class="hidden">
-                    <!-- Header Image -->
-                    <div class="h-40 bg-gradient-to-br from-primary-green to-primary-green-dark flex items-center justify-center relative overflow-hidden">
-                        <img src="dokum/zakat2.jpg" alt="Zakat Fitrah" class="absolute inset-0 object-cover w-full h-full opacity-30">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                    
-                    <!-- Content -->
-                    <div class="p-6">
-                        <!-- Title -->
-                        <h3 class="font-heading font-bold text-2xl text-primary-green mb-4">Zakat Fitrah</h3>
-                        
-                        <!-- Pengelola -->
-                        <div class="mb-4">
-                            <p class="text-gray-600 text-sm leading-relaxed mb-3">
-                                Zakat yang ada di Masjid Al-Ishlah dikelola oleh <strong class="text-primary-green">Bidang Zis (Zakat, Infaq, dan Shodaqoh)</strong> yang membawahi:
-                            </p>
-                            <div class="bg-primary-green/5 rounded-lg p-3 space-y-2">
-                                <div class="flex items-center text-sm">
-                                    <span class="w-6 h-6 bg-primary-green text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">1</span>
-                                    <span class="text-gray-700 font-medium">Zakat Penghasilan</span>
-                                </div>
-                                <div class="flex items-center text-sm">
-                                    <span class="w-6 h-6 bg-primary-green text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">2</span>
-                                    <span class="text-gray-700 font-medium">Zakat Fitrah</span>
-                                </div>
-                                <div class="flex items-center text-sm">
-                                    <span class="w-6 h-6 bg-primary-green text-white rounded-full flex items-center justify-center text-xs font-bold mr-2">3</span>
-                                    <span class="text-gray-700 font-medium">Donator Shodaqoh Rutin</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Deskripsi -->
-                        <div class="mb-4 pb-4 border-b border-gray-200">
-                            <p class="text-gray-600 text-sm leading-relaxed">
-                                Zakat fitrah adalah zakat yang wajib dikeluarkan setiap muslim pada bulan Ramadhan sebelum shalat Idul Fitri. Zakat ini bertujuan untuk membersihkan harta dan jiwa, serta membantu fakir miskin merayakan hari raya dengan layak.
-                            </p>
-                        </div>
-                        
-                        <!-- Informasi Donasi -->
-                        <div class="bg-gradient-to-br from-primary-green/5 to-primary-green/10 rounded-lg p-4 border-l-4 border-primary-green mb-4">
-                            <div class="flex items-center mb-3">
-                                <svg class="w-5 h-5 text-primary-green mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-                                </svg>
-                                <h4 class="font-heading font-bold text-lg text-primary-green">Informasi Donasi</h4>
-                            </div>
-                            
-                            <div class="space-y-2 mb-3">
-                                <div class="flex items-center justify-between bg-white rounded-lg p-2">
-                                    <span class="text-sm text-gray-600 font-medium">Bank:</span>
-                                    <span class="text-sm font-semibold text-primary-green">BJB</span>
-                                </div>
-                                <div class="flex items-center justify-between bg-white rounded-lg p-2">
-                                    <span class="text-sm text-gray-600 font-medium">No. Rekening:</span>
-                                    <span class="text-sm font-mono font-bold text-primary-green">0000007021959</span>
-                                </div>
-                                <div class="flex items-center justify-between bg-white rounded-lg p-2">
-                                    <span class="text-sm text-gray-600 font-medium">Atas Nama:</span>
-                                    <span class="text-sm font-semibold text-primary-green">DODDY SUFRI ADIAT</span>
-                                </div>
-                            </div>
-                            
-                            <!-- Textarea untuk copy -->
-                            <div>
-                                <label class="block text-xs font-semibold text-gray-600 mb-2">Salin informasi:</label>
-                                <textarea id="bank-info-textarea" readonly class="w-full p-2.5 bg-white border-2 border-primary-green rounded-lg text-xs font-mono text-gray-800 resize-none focus:outline-none focus:ring-2 focus:ring-primary-green" rows="3" onclick="selectBankInfo()">Bank BJB
-No. Rekening: 0000007021959
-Atas Nama: DODDY SUFRI ADIAT</textarea>
-                            </div>
-                        </div>
-                        
-                        <!-- Button Copy -->
-                        <button onclick="copyBankInfo()" class="w-full py-2.5 bg-accent-gold text-white font-semibold rounded-lg hover:bg-accent-gold-light transition-colors shadow-md transform hover:scale-105 text-sm">
-                            Salin Informasi Rekening
-                        </button>
-                    </div>
-                </div>
-                
-                </div>
-                <!-- END OLD CARDS -->
-                
-            </div>
-            
-        </div>
     </section>
     
     <!-- Footer -->
-    <footer class="bg-primary-green-dark text-white py-12 md:py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                <!-- Kolom 1: Tentang Kami -->
-                <div>
-                    <h3 class="font-heading font-bold text-xl md:text-2xl mb-4 text-white">Tentang Kami</h3>
-                    <p class="text-green-100 leading-relaxed text-sm md:text-base">
-                        Masjid Al-Ishlah adalah pusat pendidikan dan dakwah yang terletak di Komplek Soreang Indah Blok J1, Cingcin, Soreang, Kabupaten Bandung, Jawa Barat 40921. Kami menyediakan berbagai program pendidikan & dakwah untuk umat Islam dan masyarakat demi kemaslahatan bersama.
+    <footer class="relative bg-deep-purple pt-32 pb-16 overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-slate-50 to-transparent"></div>
+        <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[150%] h-[300px] bg-primary-purple/10 blur-[120px] rounded-full"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
+                <!-- Branding & About -->
+                <div class="lg:col-span-2 space-y-8">
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-white/10 rounded-2xl backdrop-blur-xl flex items-center justify-center border border-white/10 shadow-2xl">
+                            <img src="dokum/ishlah.png" alt="Logo" class="w-10 h-10 object-contain">
+                        </div>
+                        <div>
+                            <h2 class="font-heading font-black text-2xl text-white tracking-tight uppercase">Al-Ishlah</h2>
+                            <p class="text-accent-pink font-bold text-xs tracking-widest uppercase">Pusat Dakwah & Pendidikan</p>
+                        </div>
+                    </div>
+                    <p class="text-slate-400 text-lg leading-relaxed max-w-md font-medium">
+                        Menjadi pusat keunggulan umat melalui pendidikan berbasis karakter, dakwah yang inklusif, dan pemberdayaan ekonomi syariah untuk kemaslahatan bersama.
                     </p>
                 </div>
-                <!-- Kolom 2: Tautan Cepat -->
-                <div>
-                    <h3 class="font-heading font-bold text-xl md:text-2xl mb-4 text-white">Tautan Cepat</h3>
-                    <ul class="space-y-2 text-green-100">
-                        <li><a href="index.html" class="hover:text-white transition-colors text-sm md:text-base">Beranda</a></li>
-                        <li><a href="program.html" class="hover:text-white transition-colors text-sm md:text-base">Program & Donasi</a></li>
-                        <li><a href="gallery.html" class="hover:text-white transition-colors text-sm md:text-base">Galeri</a></li>
-                        <li><a href="rishlah.html" class="hover:text-white transition-colors text-sm md:text-base">Rislah</a></li>
-                        <li><a href="kontak.html" class="hover:text-white transition-colors text-sm md:text-base">Kontak</a></li>
+
+                <!-- Quick Links -->
+                <div class="space-y-8">
+                    <h3 class="text-white font-black text-xl tracking-tight uppercase">Menu Utama</h3>
+                    <ul class="space-y-4">
+                        <li><a href="index.html" class="text-slate-400 font-bold hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1 h-1 bg-primary-purple rounded-full group-hover:w-4 transition-all"></span> Beranda</a></li>
+                        <li><a href="program.html" class="text-white font-bold transition-colors flex items-center gap-2 group"><span class="w-4 h-1 bg-accent-pink rounded-full"></span> Program & Donasi</a></li>
+                        <li><a href="gallery.html" class="text-slate-400 font-bold hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1 h-1 bg-primary-purple rounded-full group-hover:w-4 transition-all"></span> Galeri Foto</a></li>
+                        <li><a href="rishlah.html" class="text-slate-400 font-bold hover:text-white transition-colors flex items-center gap-2 group"><span class="w-1 h-1 bg-primary-purple rounded-full group-hover:w-4 transition-all"></span> Buletin Rislah</a></li>
                     </ul>
                 </div>
-                <!-- Kolom 3: Sosial Media -->
-                <div>
-                    <h3 class="font-heading font-bold text-xl md:text-2xl mb-4 text-white">Ikuti Kami</h3>
-                    <div class="flex space-x-3">
-                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 bg-primary-green rounded-full flex items-center justify-center hover:bg-primary-green-light transition-colors" aria-label="Facebook" title="Facebook">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                        </a>
-                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 bg-primary-green rounded-full flex items-center justify-center hover:bg-primary-green-light transition-colors" aria-label="Twitter" title="Twitter">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
-                        </a>
-                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 bg-primary-green rounded-full flex items-center justify-center hover:bg-primary-green-light transition-colors" aria-label="Instagram" title="Instagram">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"/></svg>
-                        </a>
-                        <a href="#" class="w-9 h-9 md:w-10 md:h-10 bg-primary-green rounded-full flex items-center justify-center hover:bg-primary-green-light transition-colors" aria-label="WhatsApp" title="WhatsApp">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                        </a>
+
+                <!-- Contact Info -->
+                <div class="space-y-8">
+                    <h3 class="text-white font-black text-xl tracking-tight uppercase">Alamat Kami</h3>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center shrink-0 text-accent-pink"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg></div>
+                            <p class="text-slate-400 font-medium text-sm leading-relaxed">Komplek Soreang Indah Blok J1, Cingcin, Soreang, Kabupaten Bandung, Jawa Barat 40921</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Lokasi Maps -->
-            <div class="mt-8 md:mt-10 mb-6 md:mb-8">
-                <h3 class="font-heading font-bold text-lg sm:text-xl md:text-2xl mb-3 md:mb-4 text-white text-center px-4">Lokasi Kami</h3>
-                <div class="w-full rounded-lg overflow-hidden shadow-lg bg-gray-200 mx-auto max-w-5xl">
-                    <div class="relative w-full" style="padding-bottom: 56.25%;">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.839201019071!2d107.53726117442147!3d-7.028179068853127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ec3a19fd2d63%3A0xc728ef3ee5aadc99!2sAl%20-%20Ishlah!5e0!3m2!1sid!2sid!4v1765711925347!5m2!1sid!2sid" 
-                            class="absolute top-0 left-0 w-full h-full"
-                            style="border:0;" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade"
-                            title="Lokasi Masjid Al-Ishlah"
-                            aria-label="Peta lokasi Masjid Al-Ishlah">
-                        </iframe>
-                    </div>
-                </div>
+            <!-- Maps Embed -->
+            <div class="rounded-[2rem] overflow-hidden border border-white/5 shadow-2xl mb-16 grayscale hover:grayscale-0 transition-all duration-700 opacity-50 hover:opacity-100 h-64 relative group">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.839201019071!2d107.53726117442147!3d-7.028179068853127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ec3a19fd2d63%3A0xc728ef3ee5aadc99!2sAl%20-%20Ishlah!5e0!3m2!1sid!2sid!4v1765711925347!5m2!1sid!2sid" class="w-full h-full border-0 grayscale group-hover:grayscale-0 transition-all duration-700" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
 
-            <!-- Garis pemisah -->
-            <div class="border-t border-green-700 mt-10 mb-4"></div>
-
-            <!-- Copyright -->
-            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-green-200 text-sm text-center">&copy; 2025 Masjid Al-Ishlah. Hak Cipta Dilindungi.</p>
-                <p class="text-green-400 text-xs text-center">
-                    Wakaf Website with <span class="text-accent-gold">&hearts;</span> • Farrel,Design web
-                </p>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+                <p class="text-slate-500 font-bold text-sm tracking-tight">&copy; 2025 Masjid Al-Ishlah. Seluruh Hak Cipta Dilindungi.</p>
+                <div class="flex items-center gap-6">
+                    <p class="text-slate-500 font-bold text-sm tracking-tight">Dikembangkan Oleh</p>
+                    <div class="flex items-center gap-2">
+                        <span class="w-8 h-8 bg-accent-pink rounded-lg flex items-center justify-center text-white text-[10px] font-black">FN</span>
+                        <p class="text-white font-black text-sm tracking-tighter">Farrel Nashwan</p>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -845,553 +659,79 @@ Atas Nama: DODDY SUFRI ADIAT</textarea>
     <script src="main.js"></script>
     <script src="jadwal-sholat.js"></script>
     <script>
-        // Initialize jadwal sholat untuk halaman program
         document.addEventListener('DOMContentLoaded', function() {
             if (typeof initJadwalSholat === 'function') {
                 initJadwalSholat('program');
             }
+            updateBankInfoTextarea();
         });
         
-        // Select Bank Info Textarea (Zakat)
-        function selectBankInfo() {
-            const textarea = document.getElementById('bank-info-textarea');
-            if (textarea) {
-                textarea.select();
-                textarea.setSelectionRange(0, 99999); // Untuk mobile
-            }
-        }
-        
-        // Select Bank Info Textarea (Program Sosial)
-        function selectBankInfoSosial() {
-            const textarea = document.getElementById('bank-info-textarea-sosial');
-            if (textarea) {
-                textarea.select();
-                textarea.setSelectionRange(0, 99999); // Untuk mobile
-            }
-        }
-        
-        // Copy Bank Info dengan multiple fallback methods (Zakat)
-        function copyBankInfo() {
-            const bankInfo = `Bank BJB
-No. Rekening: 0000007021959
-Atas Nama: DODDY SUFRI ADIAT`;
-            
-            const button = event.target;
-            const originalText = button.textContent;
-            
-            // Method 1: Modern Clipboard API (untuk HTTPS)
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(bankInfo).then(function() {
-                    showCopySuccess(button, originalText);
-                }).catch(function(err) {
-                    // Fallback ke method 2
-                    tryCopyFallback(bankInfo, button, originalText);
-                });
-            } else {
-                // Fallback langsung jika clipboard API tidak tersedia
-                tryCopyFallback(bankInfo, button, originalText);
-            }
-        }
-        
-        // Fallback copy method menggunakan textarea
-        function tryCopyFallback(bankInfo, button, originalText) {
-            // Method 2: Menggunakan textarea yang sudah ada
-            const textarea = document.getElementById('bank-info-textarea');
-            if (textarea) {
-                textarea.select();
-                textarea.setSelectionRange(0, 99999); // Untuk mobile
-                
-                try {
-                    // Method 2a: execCommand (untuk browser lama)
-                    const successful = document.execCommand('copy');
-                    if (successful) {
-                        showCopySuccess(button, originalText);
-                        return;
-                    }
-                } catch (err) {
-                    // Method 2b: Textarea sudah ter-select, user bisa copy manual
-                    showCopyManual(button, originalText);
-                    return;
-                }
-            }
-            
-            // Method 3: Buat textarea sementara
-            const tempTextarea = document.createElement('textarea');
-            tempTextarea.value = bankInfo;
-            tempTextarea.style.position = 'fixed';
-            tempTextarea.style.left = '-999999px';
-            tempTextarea.style.top = '-999999px';
-            document.body.appendChild(tempTextarea);
-            tempTextarea.focus();
-            tempTextarea.select();
-            
-            try {
-                const successful = document.execCommand('copy');
-                document.body.removeChild(tempTextarea);
-                
-                if (successful) {
-                    showCopySuccess(button, originalText);
-                } else {
-                    showCopyManual(button, originalText);
-                }
-            } catch (err) {
-                document.body.removeChild(tempTextarea);
-                showCopyManual(button, originalText);
-            }
-        }
-        
-        // Show success message
-        function showCopySuccess(button, originalText) {
-            button.textContent = '✓ Berhasil Disalin!';
-            button.classList.add('bg-green-500');
-            button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
-            
-            setTimeout(function() {
-                button.textContent = originalText;
-                button.classList.remove('bg-green-500');
-                button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
-            }, 2000);
-        }
-        
-        // Show manual copy instruction
-        function showCopyManual(button, originalText) {
-            const textarea = document.getElementById('bank-info-textarea');
-            if (textarea) {
-                // Select textarea untuk user
-                textarea.select();
-                textarea.setSelectionRange(0, 99999);
-                
-                button.textContent = '✓ Pilih & Salin Manual (Ctrl+C / Cmd+C)';
-                button.classList.add('bg-blue-500');
-                button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
-                
-                setTimeout(function() {
-                    button.textContent = originalText;
-                    button.classList.remove('bg-blue-500');
-                    button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
-                }, 3000);
-            } else {
-                alert('Silakan salin manual:\n\n' + bankInfo);
-            }
-        }
-        
-        // Copy Bank Info untuk Program Sosial dengan multiple fallback methods
-        function copyBankInfoSosial() {
-            const bankInfo = `Bank BJB
-No. Rekening: 0000007021959
-Atas Nama: DODDY SUFRI ADIAT`;
-            
-            const button = event.target;
-            const originalText = button.textContent;
-            
-            // Method 1: Modern Clipboard API (untuk HTTPS)
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(bankInfo).then(function() {
-                    showCopySuccessSosial(button, originalText);
-                }).catch(function(err) {
-                    // Fallback ke method 2
-                    tryCopyFallbackSosial(bankInfo, button, originalText);
-                });
-            } else {
-                // Fallback langsung jika clipboard API tidak tersedia
-                tryCopyFallbackSosial(bankInfo, button, originalText);
-            }
-        }
-        
-        // Fallback copy method untuk Program Sosial
-        function tryCopyFallbackSosial(bankInfo, button, originalText) {
-            // Method 2: Menggunakan textarea yang sudah ada
-            const textarea = document.getElementById('bank-info-textarea-sosial');
-            if (textarea) {
-                textarea.select();
-                textarea.setSelectionRange(0, 99999); // Untuk mobile
-                
-                try {
-                    // Method 2a: execCommand (untuk browser lama)
-                    const successful = document.execCommand('copy');
-                    if (successful) {
-                        showCopySuccessSosial(button, originalText);
-                        return;
-                    }
-                } catch (err) {
-                    // Method 2b: Textarea sudah ter-select, user bisa copy manual
-                    showCopyManualSosial(button, originalText);
-                    return;
-                }
-            }
-            
-            // Method 3: Buat textarea sementara
-            const tempTextarea = document.createElement('textarea');
-            tempTextarea.value = bankInfo;
-            tempTextarea.style.position = 'fixed';
-            tempTextarea.style.left = '-999999px';
-            tempTextarea.style.top = '-999999px';
-            document.body.appendChild(tempTextarea);
-            tempTextarea.focus();
-            tempTextarea.select();
-            
-            try {
-                const successful = document.execCommand('copy');
-                document.body.removeChild(tempTextarea);
-                
-                if (successful) {
-                    showCopySuccessSosial(button, originalText);
-                } else {
-                    showCopyManualSosial(button, originalText);
-                }
-            } catch (err) {
-                document.body.removeChild(tempTextarea);
-                showCopyManualSosial(button, originalText);
-            }
-        }
-        
-        // Show success message untuk Program Sosial
-        function showCopySuccessSosial(button, originalText) {
-            button.textContent = '✓ Berhasil Disalin!';
-            button.classList.add('bg-green-500');
-            button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
-            
-            setTimeout(function() {
-                button.textContent = originalText;
-                button.classList.remove('bg-green-500');
-                button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
-            }, 2000);
-        }
-        
-        // Show manual copy instruction untuk Program Sosial
-        function showCopyManualSosial(button, originalText) {
-            const textarea = document.getElementById('bank-info-textarea-sosial');
-            if (textarea) {
-                // Select textarea untuk user
-                textarea.select();
-                textarea.setSelectionRange(0, 99999);
-                
-                button.textContent = '✓ Pilih & Salin Manual (Ctrl+C / Cmd+C)';
-                button.classList.add('bg-blue-500');
-                button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
-                
-                setTimeout(function() {
-                    button.textContent = originalText;
-                    button.classList.remove('bg-blue-500');
-                    button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
-                }, 3000);
-            } else {
-                const bankInfo = `Bank BJB
-No. Rekening: 0000007021959
-Atas Nama: DODDY SUFRI ADIAT`;
-                alert('Silakan salin manual:\n\n' + bankInfo);
-            }
-        }
-        
-        // Toggle Bank Info
         function toggleBankInfo() {
-            const bankValue = document.getElementById('bank-value');
-            const bankValueHidden = document.getElementById('bank-value-hidden');
-            const eyeOpen = document.getElementById('eye-bank-open');
-            const eyeClosed = document.getElementById('eye-bank-closed');
-            
-            if (bankValue.classList.contains('blur-sm')) {
-                bankValue.classList.add('hidden');
-                bankValue.classList.remove('blur-sm', 'select-none');
-                bankValueHidden.classList.remove('hidden');
-                eyeOpen.classList.add('hidden');
-                eyeClosed.classList.remove('hidden');
-            } else {
-                bankValueHidden.classList.add('hidden');
-                bankValue.classList.remove('hidden');
-                bankValue.classList.add('blur-sm', 'select-none');
-                eyeClosed.classList.add('hidden');
-                eyeOpen.classList.remove('hidden');
-            }
+            const val = document.getElementById('bank-value');
+            const hidden = document.getElementById('bank-value-hidden');
+            val.classList.toggle('blur-md');
+            val.classList.toggle('hidden');
+            hidden.classList.toggle('hidden');
         }
-        
-        // Toggle Rekening Info
-        function toggleRekeningInfo() {
-            const rekeningValue = document.getElementById('rekening-value');
-            const rekeningValueHidden = document.getElementById('rekening-value-hidden');
-            const eyeOpen = document.getElementById('eye-rekening-open');
-            const eyeClosed = document.getElementById('eye-rekening-closed');
-            
-            if (rekeningValue.classList.contains('blur-sm')) {
-                rekeningValue.classList.add('hidden');
-                rekeningValue.classList.remove('blur-sm', 'select-none');
-                rekeningValueHidden.classList.remove('hidden');
-                eyeOpen.classList.add('hidden');
-                eyeClosed.classList.remove('hidden');
-            } else {
-                rekeningValueHidden.classList.add('hidden');
-                rekeningValue.classList.remove('hidden');
-                rekeningValue.classList.add('blur-sm', 'select-none');
-                eyeClosed.classList.add('hidden');
-                eyeOpen.classList.remove('hidden');
-            }
-        }
-        
-        // Toggle Nama Info
-        function toggleNamaInfo() {
-            const namaValue = document.getElementById('nama-value');
-            const namaValueHidden = document.getElementById('nama-value-hidden');
-            const eyeOpen = document.getElementById('eye-nama-open');
-            const eyeClosed = document.getElementById('eye-nama-closed');
-            
-            if (namaValue.classList.contains('blur-sm')) {
-                namaValue.classList.add('hidden');
-                namaValue.classList.remove('blur-sm', 'select-none');
-                namaValueHidden.classList.remove('hidden');
-                eyeOpen.classList.add('hidden');
-                eyeClosed.classList.remove('hidden');
-            } else {
-                namaValueHidden.classList.add('hidden');
-                namaValue.classList.remove('hidden');
-                namaValue.classList.add('blur-sm', 'select-none');
-                eyeClosed.classList.add('hidden');
-                eyeOpen.classList.remove('hidden');
-            }
-        }
-        
-        // Toggle Textarea Info
-        function toggleTextareaInfo() {
-            const textarea = document.getElementById('bank-info-textarea-global');
-            const textareaHidden = document.getElementById('bank-info-textarea-global-hidden');
-            const eyeOpen = document.getElementById('eye-textarea-open');
-            const eyeClosed = document.getElementById('eye-textarea-closed');
-            
-            if (textarea.classList.contains('blur-sm')) {
-                textarea.classList.add('hidden');
-                textarea.classList.remove('blur-sm', 'select-none');
-                textareaHidden.classList.remove('hidden');
-                eyeOpen.classList.add('hidden');
-                eyeClosed.classList.remove('hidden');
-            } else {
-                textareaHidden.classList.add('hidden');
-                textarea.classList.remove('hidden');
-                textarea.classList.add('blur-sm', 'select-none');
-                eyeClosed.classList.add('hidden');
-                eyeOpen.classList.remove('hidden');
-            }
-        }
-        
-        // Data Kategori Donasi
-        const kategoriDonasiData = {
-            zis: [
-                'Zakat Penghasilan',
-                'Zakat Fitrah',
-                'Donatur Shodaqoh Rutin'
-            ],
-            sosial: [
-                'Beras Perelek',
-                'Beras Bersubsidi untuk jemaah',
-                'Beras Gratis untuk jemaah',
-                'Sembako bagi jemaah yang sakit',
-                'Konsultasi masalah rumah tangga',
-                'Konsultasi bagi waris (Fara\'id)'
-            ],
-            pendidikan: [
-                'KOBER/PAUD Al-Ishlah',
-                'DTA (Diniyah Takmiliyah Awaliyah Al-Ishlah)',
-                'Maghrib Mengaji',
-                'Tahsin bagi jama\'ah'
-            ],
-            pembangunan: [
-                'Penambahan fasilitas',
-                'Memelihara fasilitas yang ada'
-            ],
-            ramadhan: [
-                'Kegiatan Bulan Ramadhan'
-            ],
-            pengajian: [
-                'Pengajian Majelis Ta\'lim Al-Ishlah (Rutin)'
-            ],
-            tambahan: [
-                'Konsultansi Masalah Rumah Tangga',
-                'Tabungan Fasilitator Qurban (untuk memfasilitasi jamaah yang hendak berqurban dengan cara menabung)',
-                'KPJ (Kelompok Pemulasaran Husnul Khotimah Al-Ishlah)',
-                '  - Pemulasaran Jenazah',
-                '  - Iuran Kematian',
-                '  - Santunan bagi Ahli Waris'
-            ]
-        };
-        
-        // Fungsi untuk mengubah kategori donasi dan update textarea
-        function ubahKategoriDonasi() {
-            updateBankInfoTextarea();
-        }
-        
-        // Fungsi untuk update textarea dengan informasi lengkap
-        function updateBankInfoTextarea() {
-            const kategoriSelect = document.getElementById('kategori-donasi');
-            const namaDonatur = document.getElementById('nama-donatur');
-            const kategoriText = kategoriSelect.options[kategoriSelect.selectedIndex].text;
-            const namaDonaturValue = namaDonatur.value.trim() || '(Nama Donatur)';
-            
-            const bankInfo = `Kategori Donasi: ${kategoriText}
-Nama Donatur: ${namaDonaturValue}
 
-Bank BJB
-No. Rekening: 0000007021959
-Atas Nama: DODDY SUFRI ADIAT`;
-            
-            const textarea = document.getElementById('bank-info-textarea-global');
-            const textareaHidden = document.getElementById('bank-info-textarea-global-hidden');
-            
-            if (textarea) textarea.value = bankInfo;
-            if (textareaHidden) textareaHidden.value = bankInfo;
+        function toggleRekeningInfo() {
+            const val = document.getElementById('rekening-value');
+            const hidden = document.getElementById('rekening-value-hidden');
+            val.classList.toggle('blur-md');
+            val.classList.toggle('hidden');
+            hidden.classList.toggle('hidden');
         }
-        
-        // Event listener untuk update textarea saat nama donatur berubah
-        document.addEventListener('DOMContentLoaded', function() {
-            const namaDonatur = document.getElementById('nama-donatur');
-            const kategoriSelect = document.getElementById('kategori-donasi');
-            
-            if (namaDonatur) {
-                namaDonatur.addEventListener('input', updateBankInfoTextarea);
-            }
-            if (kategoriSelect) {
-                kategoriSelect.addEventListener('change', updateBankInfoTextarea);
-            }
-            
-            // Inisialisasi textarea saat halaman dimuat
-            updateBankInfoTextarea();
-        });
-        
-        // Toggle Show/Hide Donasi Info (Global - untuk icon di header)
+
+        function toggleNamaInfo() {
+            const val = document.getElementById('nama-value');
+            const hidden = document.getElementById('nama-value-hidden');
+            val.classList.toggle('blur-md');
+            val.classList.toggle('hidden');
+            hidden.classList.toggle('hidden');
+        }
+
+        function toggleTextareaInfo() {
+            const val = document.getElementById('bank-info-textarea-global');
+            const hidden = document.getElementById('bank-info-textarea-global-hidden');
+            val.classList.toggle('blur-sm');
+            val.classList.toggle('hidden');
+            hidden.classList.toggle('hidden');
+        }
+
         function toggleDonasiInfo() {
             toggleBankInfo();
             toggleRekeningInfo();
             toggleNamaInfo();
             toggleTextareaInfo();
+            const iconOpen = document.getElementById('eye-icon-open');
+            const iconClosed = document.getElementById('eye-icon-closed');
+            iconOpen.classList.toggle('hidden');
+            iconClosed.classList.toggle('hidden');
         }
-        
-        // Select Bank Info Textarea (Global)
-        function selectBankInfoGlobal() {
-            const textarea = document.getElementById('bank-info-textarea-global-hidden');
-            const textareaBlur = document.getElementById('bank-info-textarea-global');
-            
-            // Use visible textarea
-            const activeTextarea = textarea && !textarea.classList.contains('hidden') ? textarea : textareaBlur;
-            
-            if (activeTextarea) {
-                activeTextarea.select();
-                activeTextarea.setSelectionRange(0, 99999);
-            }
-        }
-        
-        // Copy Bank Info Global
-        function copyBankInfoGlobal() {
-            const kategoriSelect = document.getElementById('kategori-donasi');
-            const namaDonatur = document.getElementById('nama-donatur');
-            const kategoriText = kategoriSelect.options[kategoriSelect.selectedIndex].text;
-            const namaDonaturValue = namaDonatur.value.trim() || '(Nama Donatur)';
-            
-            const bankInfo = `Kategori Donasi: ${kategoriText}
-Nama Donatur: ${namaDonaturValue}
 
-Bank BJB
-No. Rekening: 0000007021959
-Atas Nama: DODDY SUFRI ADIAT`;
-            
-            const button = event.target;
-            const originalText = button.textContent;
-            
-            if (navigator.clipboard && window.isSecureContext) {
-                navigator.clipboard.writeText(bankInfo).then(function() {
-                    showCopySuccessGlobal(button, originalText);
-                }).catch(function(err) {
-                    tryCopyFallbackGlobal(bankInfo, button, originalText);
-                });
-            } else {
-                tryCopyFallbackGlobal(bankInfo, button, originalText);
-            }
+        function updateBankInfoTextarea() {
+            const kategori = document.getElementById('kategori-donasi').options[document.getElementById('kategori-donasi').selectedIndex].text;
+            const nama = document.getElementById('nama-donatur').value || '(Hamba Allah)';
+            const info = `DONASI AL-ISHLAH\n\nKategori: ${kategori}\nDonatur: ${nama}\n\nBank: BJB\nNo Rek: 0000007021959\nAtas Nama: Doddy Sufri Adiat`;
+            document.getElementById('bank-info-textarea-global').value = info;
+            document.getElementById('bank-info-textarea-global-hidden').value = info;
         }
-        
-        function tryCopyFallbackGlobal(bankInfo, button, originalText) {
-            const textarea = document.getElementById('bank-info-textarea-global-hidden');
-            const textareaBlur = document.getElementById('bank-info-textarea-global');
-            
-            // Use visible textarea
-            const activeTextarea = textarea && !textarea.classList.contains('hidden') ? textarea : textareaBlur;
-            
-            if (activeTextarea) {
-                activeTextarea.select();
-                activeTextarea.setSelectionRange(0, 99999);
-                
-                try {
-                    const successful = document.execCommand('copy');
-                    if (successful) {
-                        showCopySuccessGlobal(button, originalText);
-                        return;
-                    }
-                } catch (err) {
-                    showCopyManualGlobal(button, originalText);
-                    return;
-                }
-            }
-            
-            const tempTextarea = document.createElement('textarea');
-            tempTextarea.value = bankInfo;
-            tempTextarea.style.position = 'fixed';
-            tempTextarea.style.left = '-999999px';
-            tempTextarea.style.top = '-999999px';
-            document.body.appendChild(tempTextarea);
-            tempTextarea.focus();
-            tempTextarea.select();
-            
-            try {
-                const successful = document.execCommand('copy');
-                document.body.removeChild(tempTextarea);
-                if (successful) {
-                    showCopySuccessGlobal(button, originalText);
-                } else {
-                    showCopyManualGlobal(button, originalText);
-                }
-            } catch (err) {
-                document.body.removeChild(tempTextarea);
-                showCopyManualGlobal(button, originalText);
-            }
-        }
-        
-        function showCopySuccessGlobal(button, originalText) {
-            button.textContent = '✓ Berhasil Disalin!';
-            button.classList.add('bg-green-500');
-            button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
-            setTimeout(function() {
-                button.textContent = originalText;
-                button.classList.remove('bg-green-500');
-                button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
-            }, 2000);
-        }
-        
-        function showCopyManualGlobal(button, originalText) {
-            const textarea = document.getElementById('bank-info-textarea-global-hidden');
-            const textareaBlur = document.getElementById('bank-info-textarea-global');
-            
-            // Use visible textarea
-            const activeTextarea = textarea && !textarea.classList.contains('hidden') ? textarea : textareaBlur;
-            
-            if (activeTextarea) {
-                activeTextarea.select();
-                activeTextarea.setSelectionRange(0, 99999);
-                button.textContent = '✓ Pilih & Salin Manual (Ctrl+C / Cmd+C)';
-                button.classList.add('bg-blue-500');
-                button.classList.remove('bg-accent-gold', 'hover:bg-accent-gold-light');
-                setTimeout(function() {
-                    button.textContent = originalText;
-                    button.classList.remove('bg-blue-500');
-                    button.classList.add('bg-accent-gold', 'hover:bg-accent-gold-light');
-                }, 3000);
-            } else {
-                const bankInfo = `Bank BJB
-No. Rekening: 0000007021959
-Atas Nama: DODDY SUFRI ADIAT`;
-                alert('Silakan salin manual:\n\n' + bankInfo);
-            }
+
+        function copyBankInfoGlobal() {
+            const text = document.getElementById('bank-info-textarea-global-hidden').value;
+            navigator.clipboard.writeText(text).then(() => {
+                const btn = document.getElementById('copy-button');
+                const original = btn.innerHTML;
+                btn.innerHTML = '✓ Berhasil Disalin';
+                btn.classList.add('bg-green-500', 'text-white');
+                setTimeout(() => {
+                    btn.innerHTML = original;
+                    btn.classList.remove('bg-green-500', 'text-white');
+                }, 2000);
+            });
         }
     </script>
-    
-    <!-- Ustadz Ishlah Chatbot -->
     <script src="ustadz-ishlah-chatbot.js"></script>
-    
-    <!-- Visitor Counter -->
     <script src="visitor-counter.js"></script>
 </body>
 </html>
