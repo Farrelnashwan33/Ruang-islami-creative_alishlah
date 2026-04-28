@@ -33,15 +33,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
-    <style>
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8fafc;
-        }
-        .font-heading {
-            font-family: 'Outfit', sans-serif;
-        }
-        
         /* Dropdown custom styling */
         #kategori-donasi {
             background-color: rgba(255, 255, 255, 0.1);
@@ -160,99 +151,6 @@
         </div>
     </header>
     
-    <!-- Jadwal Sholat & Kalender Hijriah Section -->
-    <section class="py-24 bg-[#f8fafc]">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20">
-                <h2 class="font-heading font-extrabold text-4xl text-slate-900 mb-6 tracking-tight">Waktu Ibadah</h2>
-                <div class="w-24 h-1.5 bg-primary-purple mx-auto rounded-full"></div>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
-                <!-- Jadwal Sholat Card -->
-                <div class="glass-card-premium p-8 border-l-8 border-primary-purple">
-                    <div class="flex items-center justify-between mb-8">
-                        <div class="flex items-center">
-                            <div class="w-14 h-14 bg-primary-purple text-white rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-primary-purple/30">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="font-heading font-extrabold text-2xl text-slate-900">Jadwal Sholat</h3>
-                                <p class="text-slate-500 font-bold text-sm" id="jadwal-date-program">Loading...</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-3" id="jadwal-sholat-container-program">
-                        <div class="flex items-center justify-between p-4 bg-white rounded-2xl border border-slate-100">
-                            <div class="flex items-center">
-                                <span class="text-primary-purple font-black mr-3">⏳</span>
-                                <span class="text-slate-700 font-bold">Memuat jadwal...</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="mt-8 pt-8 border-t border-slate-100">
-                        <p class="text-xs font-bold text-slate-400 text-center uppercase tracking-widest">
-                            Sumber: Kemenag RI
-                        </p>
-                    </div>
-                </div>
-                
-                <!-- Kalender Masehi Card -->
-                <div class="glass-card-premium p-8 border-l-8 border-blue-500">
-                    <div class="flex items-center mb-8">
-                        <div class="w-14 h-14 bg-blue-600 text-white rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-blue-600/30">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-heading font-extrabold text-2xl text-slate-900">Masehi</h3>
-                            <p class="text-blue-600 font-bold text-sm" id="masehi-date-program">Loading...</p>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-3xl p-8 shadow-sm text-center border border-slate-100" id="masehi-calendar-container-program">
-                        <div class="text-6xl font-black text-blue-600 mb-2 tracking-tighter" id="masehi-day-program">--</div>
-                        <div class="text-2xl font-black text-slate-900 mb-1" id="masehi-month-program">--</div>
-                        <div class="text-lg font-bold text-slate-500" id="masehi-year-program">--</div>
-                    </div>
-                    
-                    <div class="mt-8 pt-8 border-t border-slate-100">
-                        <p class="text-xs font-bold text-slate-400 text-center uppercase tracking-widest" id="masehi-full-program">--</p>
-                    </div>
-                </div>
-                
-                <!-- Kalender Hijriah Card -->
-                <div class="glass-card-premium p-8 border-l-8 border-accent-pink">
-                    <div class="flex items-center mb-8">
-                        <div class="w-14 h-14 bg-accent-pink text-white rounded-2xl flex items-center justify-center mr-4 shadow-lg shadow-accent-pink/30">
-                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="font-heading font-extrabold text-2xl text-slate-900">Hijriah</h3>
-                            <p class="text-accent-pink font-bold text-sm" id="hijriah-date-program">Loading...</p>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-white rounded-3xl p-8 shadow-sm text-center border border-slate-100" id="hijriah-calendar-container-program">
-                        <div class="text-6xl font-black text-accent-pink mb-2 tracking-tighter" id="hijriah-day-program">--</div>
-                        <div class="text-2xl font-black text-slate-900 mb-1" id="hijriah-month-program">--</div>
-                        <div class="text-lg font-bold text-slate-500" id="hijriah-year-program">--</div>
-                    </div>
-                    
-                    <div class="mt-8 pt-8 border-t border-slate-100">
-                        <p class="text-xs font-bold text-slate-400 text-center uppercase tracking-widest" id="hijriah-full-program">--</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
     
     <!-- Programs Section -->
     <section class="py-24 bg-white">
@@ -667,12 +565,8 @@
 
     <!-- JavaScript -->
     <script src="main.js"></script>
-    <script src="jadwal-sholat.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            if (typeof initJadwalSholat === 'function') {
-                initJadwalSholat('program');
-            }
             updateBankInfoTextarea();
         });
         

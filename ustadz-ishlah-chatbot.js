@@ -79,7 +79,7 @@ class UstadzIshlahChatbot {
         
         this.createChatbotHTML();
         this.attachEventListeners();
-        this.setupAutoWelcome();
+        // this.setupAutoWelcome(); // Popup otomatis dihilangkan sesuai permintaan user
         this.updateSoundIcon();
         
         // Initialize audio context on user interaction
