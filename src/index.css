@@ -1,56 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --color-primary-purple: #6366f1;
-  --color-primary-purple-dark: #4338ca;
-  --color-primary-purple-light: #818cf8;
-  --color-accent-pink: #ec4899;
-  --color-accent-pink-dark: #be185d;
-  --color-accent-pink-light: #f472b6;
-  --color-deep-purple: #1e1b4b;
+  --color-emerald-950: #022C22;
+  --color-emerald-900: #064E3B;
+  --color-emerald-800: #065F46;
+  --color-emerald-700: #0F766E;
+  --color-emerald-600: #0D9488;
+  --color-emerald-500: #14B8A6;
+  
+  --color-gold-500: #D4A373;
+  --color-gold-400: #E9C46A;
+  --color-gold-600: #BC6C25;
+  --color-gold-300: #F1E4C3;
 
-  --animate-fade-in-up: fade-in-up 0.8s ease-out forwards;
+  --font-cairo: "Cairo", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
+
+  --animate-fade-up: fade-up 0.8s ease-out forwards;
   --animate-float: float 6s ease-in-out infinite;
-  --animate-slide-up: slide-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  --animate-fade-in: fade-in 1s ease forwards;
 
-  @keyframes fade-in-up {
-    0% { opacity: 0; transform: translateY(20px); }
-    100% { opacity: 1; transform: translateY(0); }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
   }
   @keyframes float {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-20px); }
+    50% { transform: translateY(-15px); }
     100% { transform: translateY(0px); }
-  }
-  @keyframes slide-up {
-    from { opacity: 0; transform: translateY(40px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
   }
 }
 
 :root {
-  --font-heading: "Outfit", sans-serif;
-  --font-body: "Plus Jakarta Sans", sans-serif;
+  --primary: #0F766E;
+  --secondary: #D4A373;
+  --background: #FFFFFF;
+  --text-main: #1F2937;
+  --text-muted: #6B7280;
 }
 
-body {
-  font-family: var(--font-body);
-  @apply bg-slate-50 text-slate-900 antialiased;
+html, body {
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+  @apply bg-white text-slate-900 antialiased;
 }
 
-.font-heading {
-  font-family: var(--font-heading);
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.glass-card-premium {
-  @apply bg-white/70 backdrop-blur-xl border border-white/50 shadow-2xl;
+h1, h2, h3, h4, .font-cairo {
+  font-family: 'Cairo', sans-serif;
 }
 
-.dark .glass-card-premium {
-  @apply bg-slate-800/80 border-white/10 shadow-black/30;
+/* Responsive Typography with clamp() */
+h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); line-height: 1.1; font-weight: 900; }
+h2 { font-size: clamp(2rem, 5vw, 3rem); line-height: 1.2; font-weight: 800; }
+h3 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; }
+
+.section-padding {
+  @apply py-16 md:py-24 lg:py-32;
 }
+
+.container-custom {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.glass-nav {
+  @apply bg-white/80 backdrop-blur-md border-b border-white/20 shadow-sm;
+}
+
+.glass-card {
+  @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl rounded-2xl;
+}
+
+.premium-shadow {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.05);
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-emerald-700 via-emerald-600 to-emerald-500;
+}
+
+.btn-premium {
+  @apply px-8 py-3 rounded-full font-bold transition-all duration-300 transform hover:-translate-y-1 active:scale-95 flex items-center justify-center gap-2;
+}
+
+.btn-primary {
+  @apply bg-emerald-700 text-white hover:bg-emerald-800 shadow-lg shadow-emerald-700/20;
+}
+
+.btn-outline {
+  @apply border-2 border-emerald-700 text-emerald-700 hover:bg-emerald-50;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  @apply bg-slate-100;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-emerald-700/30 rounded-full hover:bg-emerald-700/50 transition-colors;
+}
+
+/* Swiper Overrides */
+.swiper-pagination-bullet-active {
+  @apply !bg-emerald-700;
+}
+

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { MapPin, Phone, Mail, Send, ChevronRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { FaMapMarkerAlt, FaPhoneAlt, FaEnvelope, FaPaperPlane, FaGoogle } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -21,114 +22,160 @@ const Contact = () => {
   return (
     <div className="bg-white">
       {/* Hero Section */}
-      <header className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-slate-50 text-center">
-        <div className="absolute top-0 right-0 w-full md:w-[800px] h-full md:h-[800px] bg-primary-purple/5 blur-[100px] md:blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <header className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-emerald-900 text-center">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-950 to-emerald-800 opacity-95"></div>
+        <div className="absolute top-0 right-0 w-full md:w-[800px] h-full bg-white/5 blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
+        
         <div className="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
-          <div className="inline-flex items-center gap-3 px-5 py-2 sm:px-6 sm:py-3 bg-white/50 backdrop-blur-xl border border-white rounded-2xl shadow-xl mb-6 sm:mb-8 animate-fade-in">
-            <span className="w-2 h-2 sm:w-3 sm:h-3 bg-primary-purple rounded-full animate-ping"></span>
-            <span className="text-[10px] sm:text-sm font-black text-slate-400 uppercase tracking-[0.3em]">Stay Connected</span>
-          </div>
-          <h1 className="font-heading font-black text-4xl sm:text-5xl md:text-7xl text-deep-purple tracking-tighter leading-tight mb-6 sm:mb-8 uppercase px-2">
-            Hubungi <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-purple to-accent-pink">Kami</span>
-          </h1>
-          <p className="text-slate-500 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed px-4">
-            Kami siap membantu Anda dengan berbagai program dan kegiatan keagamaan di Masjid Al-Ishlah.
-          </p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <div className="inline-flex items-center gap-3 px-5 py-2 bg-white/10 backdrop-blur-xl border border-white/10 rounded-full shadow-xl mb-8">
+              <span className="w-2 h-2 bg-gold-400 rounded-full animate-ping"></span>
+              <span className="text-xs font-black text-emerald-100 uppercase tracking-[0.3em]">Stay Connected</span>
+            </div>
+            <h1 className="font-cairo font-black text-4xl sm:text-5xl md:text-7xl text-white tracking-tight leading-tight mb-8 uppercase px-2">
+              Hubungi <span className="text-gold-400">Kami</span>
+            </h1>
+            <p className="text-emerald-100/70 text-lg sm:text-xl font-medium max-w-2xl mx-auto leading-relaxed px-4">
+              Kami siap membantu Anda dengan berbagai program dan kegiatan keagamaan di Masjid Al-Ishlah.
+            </p>
+          </motion.div>
         </div>
       </header>
 
       {/* Contact Info & Form */}
-      <section className="py-16 sm:py-24 max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+      <section className="py-16 sm:py-32 max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
           {/* Info Side */}
-          <div className="space-y-10 sm:space-y-12 text-center lg:text-left">
-            <h2 className="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-deep-purple uppercase tracking-tighter leading-tight">
-              Informasi <br className="hidden sm:block"/><span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-purple to-accent-pink">Kontak Kami</span>
-            </h2>
-            
-            <div className="space-y-4 sm:space-y-6">
-              {[
-                { icon: <MapPin />, title: 'Lokasi', content: 'Komplek Perumahan Soreang Indah, Blok J1, Cingcin, Soreang, Kabupaten Bandung, Jawa Barat 40921', color: 'primary-purple' },
-                { icon: <Phone />, title: 'Telepon', content: '+62 823-8538-7709 (DKM Masjid)', color: 'accent-pink' },
-                { icon: <Mail />, title: 'Email', content: 'alislahsorin.sekre@gmail.com', color: 'primary-purple' }
-              ].map((item, i) => (
-                <div key={i} className="glass-card-premium rounded-[2rem] sm:rounded-[2.5rem] p-6 sm:p-8 border border-white shadow-xl flex flex-col sm:flex-row items-center sm:items-start gap-4 sm:gap-6 hover:-translate-y-1 transition-all text-center sm:text-left">
-                  <div className={`w-12 h-12 sm:w-14 sm:h-14 bg-slate-100 rounded-2xl flex items-center justify-center text-primary-purple shrink-0`}>
-                    {React.cloneElement(item.icon, { size: 24 })}
-                  </div>
-                  <div>
-                    <h3 className="font-heading font-black text-lg sm:text-xl text-deep-purple uppercase tracking-tight mb-2">{item.title}</h3>
-                    <p className="text-slate-500 font-medium leading-relaxed text-sm sm:text-base">{item.content}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+          <div className="space-y-12">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <h2 className="font-cairo font-black text-4xl md:text-6xl text-emerald-900 uppercase tracking-tight leading-tight mb-12">
+                Informasi <br className="hidden sm:block"/><span className="text-gold-600">Kontak Kami</span>
+              </h2>
+              
+              <div className="space-y-6">
+                {[
+                  { icon: <FaMapMarkerAlt />, title: 'Lokasi', content: 'Komplek Perumahan Soreang Indah, Blok J1, Cingcin, Soreang, Kabupaten Bandung, Jawa Barat 40921', color: 'emerald' },
+                  { icon: <FaPhoneAlt />, title: 'Telepon', content: '+62 823-8538-7709 (DKM Masjid)', color: 'gold' },
+                  { icon: <FaEnvelope />, title: 'Email', content: 'alislahsorin.sekre@gmail.com', color: 'emerald' }
+                ].map((item, i) => (
+                  <motion.div 
+                    key={i} 
+                    whileHover={{ x: 10 }}
+                    className="bg-slate-50 rounded-[2.5rem] p-8 border border-slate-100 shadow-xl premium-shadow flex flex-col sm:flex-row items-center sm:items-start gap-6 transition-all"
+                  >
+                    <div className={`w-14 h-14 ${item.color === 'emerald' ? 'bg-emerald-700' : 'bg-gold-500'} text-white rounded-2xl flex items-center justify-center shrink-0 shadow-lg`}>
+                      <span className="text-xl">{item.icon}</span>
+                    </div>
+                    <div>
+                      <h3 className="font-cairo font-black text-xl text-emerald-900 uppercase tracking-tight mb-2">{item.title}</h3>
+                      <p className="text-slate-600 font-medium leading-relaxed">{item.content}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
 
           {/* Form Side */}
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-primary-purple/20 to-accent-pink/20 blur-2xl rounded-[4rem] -z-10 opacity-50"></div>
-            <div className="glass-card-premium rounded-[2.5rem] sm:rounded-[3.5rem] p-8 sm:p-12 border border-white shadow-2xl relative overflow-hidden">
-              <h2 className="font-heading font-black text-2xl sm:text-3xl text-deep-purple uppercase tracking-tight mb-4 text-center sm:text-left">Kirim Pesan</h2>
-              <p className="text-slate-400 font-medium mb-8 sm:mb-10 uppercase tracking-widest text-[10px] sm:text-xs text-center sm:text-left">Pesan Anda akan langsung kami terima</p>
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative"
+          >
+            <div className="absolute -inset-4 bg-emerald-900/5 blur-[80px] rounded-[4rem] -z-10"></div>
+            <div className="bg-white rounded-[3.5rem] p-8 md:p-16 border border-slate-100 shadow-2xl relative overflow-hidden premium-shadow">
+              <h2 className="font-cairo font-black text-3xl text-emerald-900 uppercase tracking-tight mb-2">Kirim Pesan</h2>
+              <p className="text-slate-400 font-bold mb-10 uppercase tracking-widest text-xs">Pesan Anda sangat berarti bagi kami</p>
               
-              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
-                <input 
-                  type="text" required placeholder="Nama Lengkap" 
-                  className="w-full px-6 sm:px-8 py-4 sm:py-5 bg-white/50 border border-white/50 rounded-2xl sm:rounded-3xl focus:ring-4 focus:ring-primary-purple/20 outline-none font-bold text-slate-700 shadow-inner text-sm sm:text-base"
-                  value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}
-                />
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="space-y-4">
                   <input 
-                    type="email" required placeholder="Email" 
-                    className="w-full px-6 sm:px-8 py-4 sm:py-5 bg-white/50 border border-white/50 rounded-2xl sm:rounded-3xl focus:ring-4 focus:ring-primary-purple/20 outline-none font-bold text-slate-700 shadow-inner text-sm sm:text-base"
-                    value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    type="text" required placeholder="Nama Lengkap" 
+                    className="w-full px-8 py-5 bg-slate-50 border border-slate-100 rounded-[2rem] focus:ring-4 focus:ring-emerald-500/10 outline-none font-bold text-slate-700 transition-all"
+                    value={formData.name} onChange={(e) => setFormData({...formData, name: e.target.value})}
                   />
-                  <input 
-                    type="tel" placeholder="Telepon" 
-                    className="w-full px-6 sm:px-8 py-4 sm:py-5 bg-white/50 border border-white/50 rounded-2xl sm:rounded-3xl focus:ring-4 focus:ring-primary-purple/20 outline-none font-bold text-slate-700 shadow-inner text-sm sm:text-base"
-                    value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                  />
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <input 
+                      type="email" required placeholder="Email" 
+                      className="w-full px-8 py-5 bg-slate-50 border border-slate-100 rounded-[2rem] focus:ring-4 focus:ring-emerald-500/10 outline-none font-bold text-slate-700 transition-all"
+                      value={formData.email} onChange={(e) => setFormData({...formData, email: e.target.value})}
+                    />
+                    <input 
+                      type="tel" placeholder="Telepon" 
+                      className="w-full px-8 py-5 bg-slate-50 border border-slate-100 rounded-[2rem] focus:ring-4 focus:ring-emerald-500/10 outline-none font-bold text-slate-700 transition-all"
+                      value={formData.phone} onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                    />
+                  </div>
+                  <select 
+                    required className="w-full px-8 py-5 bg-slate-50 border border-slate-100 rounded-[2rem] focus:ring-4 focus:ring-emerald-500/10 outline-none font-bold text-slate-700 transition-all appearance-none cursor-pointer"
+                    value={formData.subject} onChange={(e) => setFormData({...formData, subject: e.target.value})}
+                  >
+                    <option value="">Pilih Subjek</option>
+                    <option value="program">Program & Kegiatan</option>
+                    <option value="donasi">Donasi</option>
+                    <option value="umum">Pertanyaan Umum</option>
+                  </select>
+                  <textarea 
+                    rows="4" required placeholder="Pesan Anda..." 
+                    className="w-full px-8 py-5 bg-slate-50 border border-slate-100 rounded-[2rem] focus:ring-4 focus:ring-emerald-500/10 outline-none font-bold text-slate-700 transition-all resize-none"
+                    value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}
+                  ></textarea>
                 </div>
-                <select 
-                  required className="w-full px-6 sm:px-8 py-4 sm:py-5 bg-white/50 border border-white/50 rounded-2xl sm:rounded-3xl focus:ring-4 focus:ring-primary-purple/20 outline-none font-bold text-slate-700 shadow-inner appearance-none text-sm sm:text-base"
-                  value={formData.subject} onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                >
-                  <option value="">Pilih Subjek</option>
-                  <option value="program">Program & Kegiatan</option>
-                  <option value="donasi">Donasi</option>
-                  <option value="umum">Pertanyaan Umum</option>
-                </select>
-                <textarea 
-                  rows="4" sm:rows="5" required placeholder="Pesan Anda..." 
-                  className="w-full px-6 sm:px-8 py-4 sm:py-5 bg-white/50 border border-white/50 rounded-2xl sm:rounded-3xl focus:ring-4 focus:ring-primary-purple/20 outline-none font-bold text-slate-700 shadow-inner resize-none text-sm sm:text-base"
-                  value={formData.message} onChange={(e) => setFormData({...formData, message: e.target.value})}
-                ></textarea>
                 
-                <button type="submit" className="w-full py-5 sm:py-6 bg-gradient-to-r from-primary-purple to-accent-pink text-white rounded-2xl sm:rounded-[2rem] font-black uppercase tracking-widest shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center gap-3 text-sm sm:text-base">
-                  <Send size={18} sm:size={20} /> Kirim Pesan Sekarang
-                </button>
+                <motion.button 
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit" 
+                  className="w-full py-6 bg-emerald-900 text-white rounded-[2rem] font-black uppercase tracking-widest shadow-xl hover:bg-emerald-800 transition-all flex items-center justify-center gap-4"
+                >
+                  <FaPaperPlane /> Kirim Pesan Sekarang
+                </motion.button>
               </form>
 
               {status.msg && (
-                <div className={`mt-6 sm:mt-8 p-4 sm:p-6 rounded-2xl sm:rounded-3xl font-bold text-center animate-fade-in text-sm sm:text-base ${status.type === 'success' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
+                <motion.div 
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mt-8 p-6 rounded-[2rem] font-bold text-center ${status.type === 'success' ? 'bg-emerald-50 text-emerald-600' : 'bg-red-50 text-red-600'}`}
+                >
                   {status.msg}
-                </div>
+                </motion.div>
               )}
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Map */}
-      <section className="py-16 sm:py-24 bg-slate-50 text-center px-4">
-        <div className="max-w-7xl mx-auto">
-          <h2 className="font-heading font-black text-3xl sm:text-4xl text-deep-purple uppercase tracking-tighter mb-8 sm:mb-12">Lokasi Masjid</h2>
-          <div className="glass-card-premium rounded-[2rem] sm:rounded-[3rem] overflow-hidden border border-white shadow-2xl h-[300px] sm:h-[500px] relative group">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.839201019071!2d107.53726117442147!3d-7.028179068853127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ec3a19fd2d63%3A0xc728ef3ee5aadc99!2sAl%20-%20Ishlah!5e0!3m2!1sid!2sid!4v1765711925347!5m2!1sid!2sid" className="w-full h-full border-0 grayscale group-hover:grayscale-0 transition-all duration-1000"></iframe>
-            <a href="https://maps.app.goo.gl/sudBtZGk1jifMwMQA" target="_blank" rel="noreferrer" className="absolute bottom-6 sm:bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 sm:px-10 sm:py-5 bg-white/90 backdrop-blur-xl rounded-2xl sm:rounded-[2rem] font-black uppercase tracking-widest text-[10px] sm:text-sm shadow-2xl hover:scale-105 transition-all">
-              Buka di Google Maps
-            </a>
+      <section className="py-16 sm:py-32 bg-slate-50 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 relative z-10">
+          <div className="text-center mb-16">
+            <h2 className="font-cairo font-black text-4xl md:text-5xl text-emerald-900 uppercase tracking-tight mb-4">Lokasi Masjid</h2>
+            <div className="w-24 h-1.5 bg-gold-500 mx-auto rounded-full"></div>
+          </div>
+          <div className="bg-white rounded-[4rem] overflow-hidden border border-slate-100 shadow-2xl h-[400px] md:h-[600px] relative group premium-shadow">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3959.839201019071!2d107.53726117442147!3d-7.028179068853127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68ec3a19fd2d63%3A0xc728ef3ee5aadc99!2sAl%20-%20Ishlah!5e0!3m2!1sid!2sid!4v1765711925347!5m2!1sid!2sid" 
+              className="w-full h-full border-0 grayscale group-hover:grayscale-0 transition-all duration-1000"
+              title="Google Maps"
+            ></iframe>
+            <motion.a 
+              whileHover={{ scale: 1.05 }}
+              href="https://maps.app.goo.gl/sudBtZGk1jifMwMQA" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="absolute bottom-10 left-1/2 -translate-x-1/2 px-10 py-5 bg-white text-emerald-900 rounded-[2rem] font-black uppercase tracking-widest text-sm shadow-2xl border border-slate-100 flex items-center gap-3"
+            >
+              <FaMapMarkerAlt className="text-gold-600" /> Buka di Google Maps
+            </motion.a>
           </div>
         </div>
       </section>
@@ -137,3 +184,4 @@ const Contact = () => {
 };
 
 export default Contact;
+
