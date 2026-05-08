@@ -1,29 +1,35 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaCalendarAlt, FaArrowRight } from 'react-icons/fa';
+import { FaCalendarAlt, FaArrowRight, FaChevronRight } from 'react-icons/fa';
 import { articles } from '../data/dummyData';
 
 const Articles = () => {
   return (
-    <section className="section-padding bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+    <section className="section-padding bg-white relative overflow-hidden">
+      <div className="container-custom">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
           >
-            <span className="text-emerald-700 font-bold tracking-widest uppercase mb-4 block">Wawasan Islami</span>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 leading-tight font-cairo">
-              Artikel & <span className="text-gradient">Berita</span> Terbaru
+            <div className="flex items-center gap-3 mb-6">
+              <span className="w-12 h-px bg-emerald-700"></span>
+              <span className="text-emerald-700 font-black text-xs uppercase tracking-[0.3em]">Wawasan Islami</span>
+            </div>
+            <h2 className="text-slate-900 font-cairo">
+              Artikel & <span className="text-gradient">Hikmah</span>
             </h2>
           </motion.div>
+          
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="btn-premium bg-emerald-700 text-white shadow-lg shadow-emerald-700/20"
+            className="btn-premium btn-primary px-10 py-5 text-xs"
           >
-            Baca Semua Artikel
+            Jelajahi Seluruh Artikel
+            <FaChevronRight className="text-[10px]" />
           </motion.button>
         </div>
 
@@ -35,32 +41,36 @@ const Articles = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-white rounded-[2.5rem] overflow-hidden shadow-xl border border-slate-100 group hover:border-emerald-200 transition-all"
+              className="group flex flex-col bg-slate-50/50 rounded-[3rem] overflow-hidden border border-slate-100 hover:bg-white hover:shadow-2xl hover:border-emerald-100 transition-all duration-500"
             >
-              <div className="h-64 overflow-hidden relative">
+              <div className="h-72 overflow-hidden relative">
                 <img 
                   src={article.image} 
                   alt={article.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                  className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" 
                 />
-                <div className="absolute top-6 left-6 px-4 py-2 bg-white/90 backdrop-blur-md rounded-xl text-emerald-700 text-xs font-black uppercase tracking-widest">
+                <div className="absolute top-6 left-6 px-5 py-2 bg-white/90 backdrop-blur-md rounded-2xl text-emerald-700 text-[10px] font-black uppercase tracking-widest shadow-xl">
                   {article.category}
                 </div>
+                <div className="absolute inset-0 bg-emerald-950/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
               
-              <div className="p-8">
-                <div className="flex items-center gap-2 text-slate-400 text-xs font-bold uppercase tracking-widest mb-4">
+              <div className="p-10 flex flex-col flex-1">
+                <div className="flex items-center gap-3 text-slate-400 text-[10px] font-black uppercase tracking-[0.2em] mb-6">
                   <FaCalendarAlt className="text-gold-500" /> {article.date}
                 </div>
-                <h3 className="text-xl font-bold text-slate-900 mb-4 font-cairo group-hover:text-emerald-700 transition-colors">
+                <h3 className="text-2xl font-black text-slate-900 mb-6 font-cairo group-hover:text-emerald-700 transition-colors leading-tight">
                   {article.title}
                 </h3>
-                <p className="text-slate-500 text-sm leading-relaxed mb-6">
+                <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-1">
                   {article.excerpt}
                 </p>
-                <button className="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-widest text-xs hover:gap-4 transition-all">
-                  Baca Selengkapnya <FaArrowRight />
-                </button>
+                
+                <div className="pt-8 border-t border-slate-100">
+                  <button className="flex items-center gap-3 text-emerald-700 font-black uppercase tracking-[0.2em] text-[10px] group-hover:gap-5 transition-all">
+                    Lanjutkan Membaca <FaArrowRight />
+                  </button>
+                </div>
               </div>
             </motion.div>
           ))}

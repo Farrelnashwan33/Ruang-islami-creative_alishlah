@@ -1,43 +1,48 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaBookOpen, FaFeather, FaHeart, FaUsers, FaGift, FaLanguages, FaArrowRight } from 'react-icons/fa';
+import { FaBookOpen, FaFeather, FaHeart, FaUsers, FaArrowRight } from 'react-icons/fa';
+import { FiBookOpen, FiFeather, FiHeart, FiUsers } from 'react-icons/fi';
 import { programs } from '../data/dummyData';
 
 const iconMap = {
-  BookOpen: <FaBookOpen />,
-  Feather: <FaFeather />,
-  Heart: <FaHeart />,
-  Users: <FaUsers />,
-  Gift: <FaGift />,
-  Languages: <FaLanguages />
+  FiBookOpen: <FiBookOpen />,
+  FiFeather: <FiFeather />,
+  FiHeart: <FiHeart />,
+  FiUsers: <FiUsers />,
 };
 
 const Programs = () => {
   return (
-    <section className="section-padding bg-slate-50 relative overflow-hidden">
-      {/* Islamic Patterns (SVG) */}
-      <div className="absolute top-0 right-0 w-64 h-64 opacity-5 pointer-events-none">
-        <svg viewBox="0 0 100 100" className="w-full h-full fill-emerald-900">
-          <path d="M50 0 L100 50 L50 100 L0 50 Z" />
+    <section className="section-padding bg-white relative overflow-hidden">
+      {/* Background Islamic Pattern */}
+      <div className="absolute inset-0 opacity-[0.02] pointer-events-none">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid-pattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+              <path d="M40 0L80 40L40 80L0 40Z" fill="none" stroke="currentColor" strokeWidth="1" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid-pattern)" />
         </svg>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+      <div className="container-custom relative z-10">
+        <div className="flex flex-col items-center text-center mb-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            className="flex flex-col items-center"
           >
-            <span className="text-emerald-700 font-bold tracking-widest uppercase mb-4 block">Layanan & Kegiatan</span>
-            <h2 className="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight font-cairo">
-              Program <span className="text-gradient">Unggulan</span> Kami
+            <span className="text-emerald-700 font-black text-xs uppercase tracking-[0.3em] mb-4">Layanan & Kegiatan</span>
+            <h2 className="text-slate-900 font-cairo mb-6">
+              Program <span className="text-gradient">Khidmat</span> Umat
             </h2>
-            <div className="w-24 h-1.5 bg-gold-500 mx-auto rounded-full"></div>
+            <div className="w-16 h-1 bg-gold-500 rounded-full"></div>
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {programs.map((program, idx) => (
             <motion.div
               key={program.id}
@@ -45,39 +50,51 @@ const Programs = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              whileHover={{ y: -10 }}
-              className="bg-white rounded-[2.5rem] p-8 shadow-xl border border-slate-100 hover:border-emerald-200 transition-all group relative overflow-hidden"
+              className="group relative"
             >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-bl-[100%] -mr-16 -mt-16 group-hover:bg-emerald-100 transition-colors"></div>
+              {/* Card Glow Effect */}
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-600 to-gold-500 rounded-[2.5rem] blur-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
               
-              <div className="w-16 h-16 bg-emerald-700 text-white rounded-2xl flex items-center justify-center text-3xl mb-8 shadow-lg shadow-emerald-700/20 group-hover:scale-110 transition-transform relative z-10">
-                {iconMap[program.icon]}
+              <div className="relative bg-white p-10 rounded-[2.5rem] shadow-xl border border-slate-50 hover:border-emerald-100 transition-all duration-500 h-full flex flex-col">
+                <div className="w-16 h-16 bg-emerald-50 text-emerald-700 rounded-2xl flex items-center justify-center text-3xl mb-8 group-hover:bg-emerald-700 group-hover:text-white group-hover:rotate-6 transition-all duration-500 shadow-inner">
+                  {iconMap[program.icon]}
+                </div>
+
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-[10px] font-black text-gold-600 uppercase tracking-widest bg-gold-50 px-3 py-1 rounded-full">
+                    {program.category}
+                  </span>
+                  <span className="text-[10px] font-black text-slate-300 uppercase tracking-widest">
+                    {program.time}
+                  </span>
+                </div>
+
+                <h3 className="text-2xl font-black text-slate-900 mb-4 font-cairo group-hover:text-emerald-700 transition-colors">
+                  {program.title}
+                </h3>
+                
+                <p className="text-slate-500 text-sm leading-relaxed mb-8 flex-1">
+                  {program.description}
+                </p>
+
+                <button className="flex items-center gap-2 text-emerald-700 font-black uppercase tracking-widest text-[10px] group-hover:gap-4 transition-all">
+                  Detail Program <FaArrowRight />
+                </button>
               </div>
-
-              <span className="inline-block px-3 py-1 bg-gold-100 text-gold-600 rounded-lg text-xs font-bold uppercase tracking-wider mb-4 relative z-10">
-                {program.category}
-              </span>
-
-              <h3 className="text-2xl font-black text-slate-900 mb-4 font-cairo group-hover:text-emerald-700 transition-colors relative z-10">
-                {program.title}
-              </h3>
-              
-              <p className="text-slate-500 leading-relaxed mb-8 relative z-10">
-                {program.desc}
-              </p>
-
-              <button className="flex items-center gap-2 text-emerald-700 font-bold uppercase tracking-widest text-sm hover:gap-4 transition-all relative z-10">
-                Selengkapnya <FaArrowRight />
-              </button>
             </motion.div>
           ))}
         </div>
 
-        <div className="mt-16 text-center">
-          <button className="btn-premium border-2 border-emerald-700 text-emerald-700 hover:bg-emerald-700 hover:text-white">
-            Lihat Semua Program
+        <motion.div 
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="mt-20 text-center"
+        >
+          <button className="btn-premium btn-outline px-12 py-5 text-sm">
+            Lihat Semua Jadwal Kegiatan
           </button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
